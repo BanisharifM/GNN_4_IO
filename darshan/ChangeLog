@@ -1,0 +1,828 @@
+--------------------------
+Darshan Release Change Log
+--------------------------
+
+Darshan-3.4.4
+=============
+* Fixed bug leading to inconsistent heatmap record shapes when Darshan
+  shared file reductions are disabled
+  - also added a darshan-util fix to resolve this inconsisency on already
+    impacted logs (any generated with 3.4.0+ versions of Darshan)
+* Added workaround for potential undefined symbol errors for 'H5FD_mpio_init'
+  when LD_PRELOADing an HDF5-enabled runtime library
+  - bug triggered by 1.13+ versions of HDF5
+
+Darshan-3.4.3
+=============
+* Added new configure option '--with-username-env' to allow
+  specification of an env variable to use to find the username
+  associated with a job (e.g., SLURM_JOB_USER)
+* Fixed bug causing crashes for applications that call fork()
+  and use Darshan app exclusions settings
+* Fixed bug related to not closing open HDF5 file ID when
+  instrumenting H5Fflush() calls (reported/fixed by Zanhua
+  Huang)
+
+Darshan-3.4.2
+=============
+* Fixed segfault when defining scalar variables in PnetCDF module
+* Fixed memory corruption (and potential segfault) when
+  reading/writing high-dimensional PnetCDF variables using
+  vara/vars/varm interfaces
+* Fixed crashes related to using PnetCDF vard interfaces with input
+  MPI_DATATYPE_NULL datatypes
+* Fixed bug attributing all PnetCDF variable instrumentation to the
+  first variable instrumented
+
+Darshan-3.4.1
+=============
+* Added comprehensive instrumentation of PnetCDF APIs via PNETCDF_FILE and
+  PNETCDF_VAR modules (contributed by Wei-Keng Liao)
+  - disabled by default, enabled by passing `--enable-pnetcdf-mod` to
+    configure
+* Modified Darshan log format to support a max of 64 instrumentation
+  modules, since the current version of Darshan reached the old max (16)
+* Modified Darshan to report job start/end times at nanosecond
+  granularity (previously only second granularity was possible)
+* Added support for instrumenting H5Oopen family of calls
+* Modified HDF5 module extraction of dataspase selection details
+  - Extraction of point selections now possible regardless of HDF5 version
+  - H5S_ALL selections are no longer counted as regular hyperslab accesses
+* Fixed bug causing no instrumentation of child processes of fork() calls
+  (reported by Rui Wang)
+* Deprecated --file-list and --file-list-detailed options in darshan-parser
+* Added "darshan_accumulator" API to the logutils library
+  - _create(), _inject(), _emit(), and _destroy()
+  - generalizes the mechanism for producing summation records and derived
+    metrics for sets of records from a given module
+  - refactored darshan-parser to use new API
+  - implemented support for accumulators in POSIX, STDIO, and MPIIO modules
+* Fixed memory leak in darshan-util helper functions used by PyDarshan
+  - darshan_log_get_name_records
+  - darshan_log_get_filtered_name_records
+* Integrated the µnit Testing Framework in darshan-util
+  - implemented unit tests for darshan_accumlator API
+
+Darshan-3.4.0
+=============
+* Fix segfault affecting new DARSHAN_MOD_DISABLE/ENABLE environment variables
+* Fix divide-by-zero condition that can potentially be triggered by new
+  heatmap module
+* Fix potential MPI errors related to calling MPI_Type_size() on a
+  user-supplied MPI_DATATYPE_NULL type (reported by Jim Edwards)
+* cuserid() is no longer the default method for determining username, and must
+  be manually enabled at configure time
+* Fix backwards compatibility bug affecting darshan-3.0.0 logs in darshan-util
+  C library functions used by PyDarshan
+* Suppress noisy output warnings when using darshan-job-summary.pl
+* Clarify units displayed by darshan-job-summary.pl (reported by Jeff Layton)
+
+Darshan-3.4.0-pre1
+==================
+* Add a new "heatmap" module that records histograms of I/O traffic over time
+  on each process
+* Performance optimizations to runtime wrappers to limit function call
+  overhead and locking costs
+* Replace mutex locks with atomics in core library
+* Add optional, limited support for RDTSCP-based timing, enabled via
+  --enable-rdtscp at configure time
+* Remove unecessary explicit mpich binding libraries from link line when static linking
+* Graceful warnings when parsing log files with unknown module types
+* Remove deprecated performance estimate methods from darshan-parser
+* Add two new derived metrics to darshan-parser --perf: agg_time_by_slowest
+  (total elapsed time performing I/O by the slowest rank) and
+  slowest_rank_rw_only_time (total elapsed time performing read/write
+  operations by the slowest rank)
+* Add unified Darshan configuration support via env vars and config files
+* Adopt automake and libtool for Darshan build, and allow top-level build
+  of both darshan-runtime and darshan-util (contributed by Wei-Keng Liao)
+* Increase default memory limit for record names (NAMEMEM config setting)
+  to 1 MiB
+
+Darshan-3.3.1
+=============
+* fixed github issue 399: undefined llapi_layout_get_by_xattr function in some
+  scenarios because of incomplete dependency information in Darshan shared
+  library
+* modified Darshan to properly handle for non-MPI applications that call fork()
+
+Darshan-3.3.0
+=============
+* added AutoPerf modules for tracking MPI communication usage (APMPI) and
+  for tracking Cray XC performance counters (APXC)
+
+Darshan-3.3.0-pre2
+=============
+* fixed bug in HDF5 module resulting in warning messages for instrumented
+  datasets that use H5S_SELECT_NONE (reported by Marta Garcia Martinez)
+* disabled DXT's MPI-IO offset tracing for Darshan builds using OpenMPI
+  to workaround an OpenMPI bug (reported by Tobias Meisel)
+* modified Darshan to query Lustre striping information for all
+  instrumented files to workaround issue of retrieving striping info for
+  Lustre files that are symlinked to other file systems
+
+Darshan-3.3.0-pre1
+=============
+* added first version of PyDarshan, which provides interfaces for
+  accessing Darshan log file data from Python applications
+* modified Lustre module to use 'fgetxattr' rather than 'ioctl' for
+  querying stripe info to avoid known bug in Lustre that could cause
+  application crashes
+* fixed bug leading to potential deadlock when reducing shared file records
+  for MPI applications (known to affect mvapich2)
+* fixed bug preventing usage of Darshan's non-MPI mode in builds that use
+  MPI compilers
+* boosted Darshan's default internal memory allocation from 2 MiB to 4 MiB
+* added wrappers for openat, preadv, preadv2, pwritev, and pwritev2 (improves
+  profiling of ompio)
+* various bug fixes to enable usage of HDF5 modules in non-MPI applications
+* fixed HDF5 module bug leading to warnings on stdout for applications using
+  non-MPIIO VFD for HDF5
+* fixed HDF5 module bug leading to potentially incorrect values in H5D module
+  common access counters
+* added new H5D record value to indicate corresponding H5F record ID, to
+  allow easier mapping of HDF5 datasets to files they belong to
+* improved error handling in command line parsers to make incomplete logs more
+  obvious to users
+* fixed bug leading to incorrect internal timing information at Darshan
+  shutdown time
+* fixed bug causing negative Darshan counter values from being plotted when
+  using the darshan-job-summary tool
+
+Darshan-3.2.1
+=============
+* fixed bug causing corruption of Darshan common access
+  counters (POSIX, MPI-IO, and HDF5 modules) and potentially
+  other preceding counters (reported by Gerd Heber)
+
+Darshan-3.2.0
+=============
+* added detailed instrumentation of HDF5 library file and dataset
+  interfaces
+* added new logutil functions: darshan_log_get_modules,
+  darshan_log_get_name_records, and darshan_log_get_record (contributed
+  by Jakob Luettgau)
+* extended DXT MPIIO module to trace file offsets
+* added `darshan-config --log-path` command option to display the log path(s)
+  configured for use with Darshan
+* silenced stdout from darshan-job-summary.pl and remove --summary option
+* removed Darshan stubs library traditionally used in static linking test
+  cases and other general simplifications of Darshan's static linking options
+* fixed bug related to multiple definitions of fscanf symbols when building
+  Darshan (reported by Francois Trahay)
+* updated Darshan's compiler wrapper generators, MPICH profiling config
+  hooks, and Cray software modules to explicitly link in Darshan in
+  dynamic linking cases using rpath
+* reimplemented Darshan's MPI/PMPI wrapper macros (using functiona aliases)
+  to avoid potential deadlock with other PMPI tools
+* made use of DESTDIR match standard automake practice (contributed by
+  Christopher Morrone)
+* made "--with-mem-align" option optional, with a default of 8 (contributed
+  by Christopher Morrone)
+* corrected pkgconfig path for darshan-util when using DESTDIR (reported by
+  Matthew Curry)
+* added support for non-MPI instrumenation to Darshan, using GCC
+  construct/destructor attributes for bootstrapping rather than
+  intercepting MPI_Init()/MPI_Finalize(). This mechanism only
+  works for Darshan's shared library instrumentation (implemented with the
+  help of Glenn Lockwood)
+
+Darshan-3.1.8
+=============
+* added dynamic trace triggering functionality, allowing Darshan to
+  decide at runtime whether or not to trace specific files with DXT,
+  with this decision based on triggers in a user-provided config file
+
+Darshan-3.1.7
+=============
+* bug fix for handling DXT data in darshan-convert utility. Bug reported
+  by Mahzad Khoshlessan.
+* bug fix for darshan-parser backwards compatibility: Darshan logs generated
+  by Darshan versions prior to 3.1.0 may have included stdio counters that
+  were not properly up-converted.  Reported by Teng Wang.
+* bug fix to MiB reported in I/O performance estimate of
+  darshan-job-summary.pl when both posix and stdio access is present
+* added wrapper for __open_2(), bug reported by Cormac Garvey in which open
+  calls are not intercepted with some versions of glibc/gcc
+* added an instrumentation module for the MDHIM key/val storage system
+* added support for properly instrumenting dup(), fileno(), fdopen(), and
+  rename() calls
+
+Darshan-3.1.6
+=============
+* bug fix for linker failures caused when linking external libraries
+that use MPI internally (e.g., PETSc). Reported by Bilel Hadri.
+* bug fix in mapping of Darshan's MPI_File_read_all wrapper to the
+  underlying MPI library call in dynamic linking case
+
+Darshan-3.1.5
+=============
+* modify Darshan MPI instrumentation method to intercept both MPI and
+  PMPI symbols to workaround MPI implementations that are calling
+  PMPI routines directly (e.g., the Fortran bindings of OpenMPI2).
+  Contributed in part by Chris Zimmer.
+* add a new python utility for analzying DXT trace files (dxt_analyzer).
+  Contributed by Alex Sim.
+* bug fix to disable Darshan module instrumentation after the
+  Darshan shutdown procedure has began, an issue that was
+  leading to negative timers in some cases
+* bug fix for autoconf ignoring specified libbz2 location. Contributed
+  by Glenn Lockwood.
+* add regression tests harnesses for Cray systems at ALCF & NERSC
+* add support for DARSHAN_EXCLUDE_DIRS environment variable to
+  explicitly disable instrumentation for files in given
+  directories. Contributed by Cristian Simarro.
+* correct "undefined reference to `__wrap_H5get_libversion'" linker failure
+  when compiling some HDF5 programs, reported by Jialin Liu
+* bug fix in darshan-merge utility related to logs containing DXT trace
+  data. Reported by Glenn Lockwood.
+
+Darshan-3.1.4
+=============
+* bug fix to prevent darshan-parser segfault when parsing logs with
+  DXT module data present. Reported by James Dickson.
+* bug fixes to make the darshan-diff utility functional again.
+
+Darshan-3.1.3
+=============
+* disable instrumentation for mmap when dynamically linking; this avoids a
+  potential deadlock condition on Cray systems using dynamically linked
+  executabes.  Reported by Cristian Simarro for dynamic linking case.
+
+Darshan-3.1.3-pre1
+=============
+* add new DxT instrumentation modules to provide fine-grained read/write
+  operation tracing at both the POSIX and MPI-IO layers
+    - this functionality should be enabled at runtime by exporting the
+      DXT_ENABLE_IO_TRACE environment variable
+    - trace output is stored within Darshan's traditional log file format
+    - a corresponding trace parser (darshan-dxt-parser) is offered within
+      darshan-util to allow the DxT trace modules to be parsed and displayed
+    - this software was contributed by Cong Xu and Intel's HPDD division.
+* add logic to allow Darshan to capture command line arguments from Fortran
+  applications (contributed by Cristian Simarro)
+* skip instrumentation attempts for anonymous mmap() calls; this avoids a
+  potentential deadlock condition when used with hugepages on Cray systems.
+  Reported by Glenn Lockwood for static linking case.
+* fix segmentation fault in statistics collection for applications that issue
+  operations with a large number of distince access sizes or strides on the
+  same file.  Reported by Glenn Lockwood.
+* disable HDF5 module by default unless enabled using --enable-HDF5-post-1.10
+  or --enable-HDF5-pre-1.10 configure arguments.  These options
+  vary the wrapper prototypes to match the corresponding HDF5 library ABI.
+  The initial patch for HDF5 1.10 compatibility was contributed by 
+  Karl-Ulrich Bamberg.
+* modified Darshan's path exclusion logic to include a whitelist to prevent
+  I/O to/from Cray's Datawarp service from being filtered out (it is located
+  within the /var directory, which historically has been excluded). Reported
+  by Glenn Lockwood.
+
+Darshan-3.1.2
+=============
+* bug fix in resolving underlying call to fopen64 when using the LD_PRELOAD
+  instrumentation mechanism
+* bug fix to make sure Lustre module headers are installed when installing
+  darshan-util
+  - reported by Matthieu Dorrier
+
+Darshan-3.1.1
+=============
+* bug fix to MPIIO_F_WRITE_START_TIMESTAMP, which may have produced incorrect
+  timestamps in some cases
+  - reported by Wucherl (William) Yoo
+
+Darshan-3.1.0
+=============
+* add stdio I/O library instrumentation module (Philip Carns)
+    - this handles instrumentation of file stream I/O functions
+      like fopen(), fprintf(), fscanf(), etc.
+    - this module also captures stats on the standard streams (stdin,
+      stdout, & stderr)
+* add Lustre instrumentation module (Glenn Lockwood)
+    - this module provides Lustre striping details (e.g., stripe
+      width, stripe size, list of OSTs a file is striped over)
+* add new mmap-based logging mechanism that allows Darshan to
+  generate output logs even in cases where applications don't
+  call MPI_Finalize()
+    - these logs are uncompressed and are per-process rather
+      than per-job
+* add the darshan-merge utility to darshan-util to allow per-process
+  logs generated by the mmap-based logging mechanism to be converted
+  into Darshan's traditional compressed per-job log files
+* augment the POSIX module timestamp counters to also include a
+  LAST_OPEN & FIRST_CLOSE counters to give more details on application
+  I/O intervals
+* avoid saving duplicate mount point entries in Darshan log files
+
+Darshan-3.0.1
+=============
+* bug fix in darshan logutil mount parsing code that was
+  causing file paths to be matched to the first mount point
+  with a common prefix rather than the one with the longest
+  common prefix
+* bug fix in the darshan-util bzip2 configure check that
+  was accidentally overwriting Darshan's LDFLAGS
+* minor bug fixes to IO start time counters in all modules
+  to set IO start time to the actual first start time rather
+  than the first IO op to complete
+* update darshan-util perl scripts to get perl bin from
+  user's path, rather than from /usr/lib (reported by
+  Kay Thust)
+* update Darshan's fortran and cxx compiler wrapper generators
+  to automatically detect MPICH library names on BG/Q
+* fix bug that was calculating Darshan's agg_perf_by_slowest
+  performance metric incorrectly
+* add performance estimate info to darshan-job-summary
+  graphs
+
+Darshan-3.0.0
+=============
+* install darshan-null-log-format.h header when installing
+  darshan-util component, otherwise compiler errors are
+  generated when building external tools that use
+  libdarshan-util
+* update docs to give debugging tips for cases where
+  Darshan logs are not generated
+* fix shared library regression test script to check for
+  potential errors with Darshan symbols rather than
+  failing silently in these cases
+* bug fix for determining minimum non-zero counters in
+shared file reductions in all modules
+* loosen Darshan's PMPI symbol check to prevent inadvertent
+  disabling of Darshan for some MPICH builds
+* update runtime docs to give information on upgrading Darshan
+* bug fix for resolving MPI_Gather and MPI_Barrier when LDPRELOADing
+  Darshan's shared libraries (reported by Richard Hedges and Rob Latham)
+* add more helpful error handling when opening 2.x version log files
+* port darshan-diff utility over to new log file format
+* fix numerous configure bugs on Cray systems
+* add synthetic benchmarking hooks for testing Darshan's shutdown
+  procedure
+
+Darshan-3.0.0-pre3
+=============
+* add module-specific version fields to header to allow utilities
+  to handle different versions of a module's I/O data for backwards
+  compatibility -- NOTE: this breaks the log file parsing for logs
+  obtained using Darshan-3.0.0-pre2 & Darshan-3.0.0-pre1 
+* bug fix in regression test scripts for setting proper environment
+  variables to use MPI profiling configuration for Fortran apps
+* bug fix in bzip2 log writing implementation in darshan-logutils
+* possible race conditions resolved in each module's shutdown code
+* general code, comment, and documentation cleanup
+* addition of module-specific counter descriptions printed prior
+  to parsing a modules I/O data in darshan-parser
+
+Darshan-3.0.0-pre2
+=============
+* add fix to install appropriate headers for linking external
+  applications with darshan-util (reported by Matthieu Dorier)
+* add darshan-util Ruby bindings for the new modularized version
+  of Darshan (3.0) (Matthieu Dorier)
+* add enhancement to darshan-runtime to allow per-module instrumentation
+  memory to be user configurable using a configure option or a runtime
+  environment variable
+
+Darshan-3.0.0-pre1
+=============
+* new version of Darshan with the following features/improvements:
+    - hooks for developers to add their own instrumentation module
+      implementations to capture new I/O characterization data
+        - these instrumentation modules can be used to instrument new
+          I/O interfaces or gather system-specific parameters, for instance
+    - modularized log format allows new module-specific utilities to
+      access their I/O characterization data independently
+        - this new format also allows new counters to be added to existing
+          instrumentation modules without breaking existing utilities
+    - Darshan logs now contain a mapping of Darshan's unique record
+      identifiers to full file names, instead of fix-sized file name
+      suffixes
+    - a new instrumentation module for capturing BG/Q-specific parameters
+      (BG/Q environment is automatically detected at configure time)
+      (implemented by Kevin Harms)
+    - new darshan-parser and darshan-job-summary output to utilize the
+      new modularized log format
+* updated documentation outlining changes in this release, as well as
+  steps for adding new instrumentation modules is given in the top-level
+  'doc' directory.
+    - documentation for configuring and using the darshan-runtime and
+      darshan-util components are mostly the same and still located in
+      their respective directories ('darshan-runtime/doc' and 'darshan-util/doc')
+
+darshan-2.3.2-pre1
+=============
+* Fix gnuplot version number check to allow darshan-job-summary.pl to work
+  with gnuplot 5.0 (Kay Thust)
+* Fix function pointer mapping typo in lio_listio64 wrapper (Shane Snyder)
+* Fix faulty logic in extracting I/O data from the aio_return 
+  wrapper (Shane Snyder)
+* Fix bug in common access counter logic (Shane Snyder)
+* Expand and clarify darshan-parser documentation (Huong Luu)
+
+darshan-2.3.1
+=============
+* added documentation and example configuration files for using the -profile
+  or $MPICC_PROFILE hooks to add instrumentation to MPICH-based MPI
+  implementations without generating custom wrapper scripts
+* Add wrappers for mkstemp(), mkostemp(), mkstemps(), and mkostemps()
+  (reported by Tom Peterka)
+* Change OPEN_TIMESTAMP field to report timestamp right before open() is
+  invoked rather than after timestamp after open is completed.
+  NOTE: updated log format version to 2.06 to reflect this change.
+* Change start_time and end_time fields in job record to use min and max
+  (respectively) across all ranks
+* Fix bug in write volume data reported in file system table in
+  darshan-job-summary.pl (reported by Matthieu Dorier)
+* Clean up autoconf test for zlib and make zlib mandatory (reported by Kalyana
+  Chadalavada)
+* add --start-group and --end-group notation to Darshan libraries for Cray PE
+  2.x environment to fix link-time corner cases (Yushu Yao)
+* improve y axis labels on time interval graphs in darshan-job-summary.pl
+  (reported by Tom Peterka)
+* misc. improvements to darshan-parser --perf output (reported by Shane
+  Snyder)
+  - indicate which rank was slowest in unique file results
+  - label I/O vs. meta time more clearly
+  - include unique file meta time in agg_perf_by_slowest calculation
+* added regression test script framework in darshan-test/regression/
+  - currently support platforms include:
+    - Linux with static linking and generated compiler wrappers
+    - Linux with static linking and profiler configuration files
+    - Linux with dynamic linking and LD_PRELOAD
+    - Blue Gene/Q with static linking and profiler configuration files
+* update darshan-gen-fortran.pl and darshan-gen-cxx.pl to support new library
+  naming conventions in MPICH 3.1.1 and higher
+* update documentation to reflect known issues with some versions of MPICH
+* Cray platforms: modify darshan-runtime so that link-time instrumentation 
+  options are only used when statically linking via Libs.private.  
+  (reported by Kalyana Chadalavada)
+
+darshan-2.3.0
+=============
+* Fix incorrect version numbering in darshan-runtime component of Darshan
+  2.2.9, reported by Jean-Guillaume Piccinali
+
+darshan-2.2.9
+=============
+* Bug fixes:
+  - Fix mnt table overflow if a large number of file systems are mounted, 
+    reported by David Shrader.
+  - Fix argument parsing for darshan-convert, reported by Mouhamed Gueye.
+  - Fix metadata annotation overflow in darshan-convert, reported by 
+    Mouhamed Gueye.
+  - Fix const-correctness in dynamic library when built against MPI 3.x
+    libraries.
+  - Fix "undefined symbol: dlsym" error when using preloaded dynamic library
+    on some platforms, reported by Florin Isaila.
+  - Normalize timestamps to always be relative to MPI_Init().
+  - Better library name matching in compiler wrappers to handle more MPICH
+    variations on Blue Gene systems.
+  - Fixed header dependency problems when using darshan-logutils.h in external
+    programs (Shane Snyder).
+* Enhancements:
+  - Add support (both in documentation and in provided module files) for
+    Cray PE 2.x.
+  - Honor CC variable to allow darshan-util to be built with other compilers
+    besides gcc.
+  - Update documentation to clarify the interaction between rpath and
+    LD_PRELOAD when instrumenting dynamic libraries, issue reported and
+    investigated by Davide Del Vento.
+  - Ability to disable shared-file reduction by setting the
+    DARSHAN_DISABLE_SHARED_REDUCTION environment variable.
+  - More thorough output from darshan-parser --perf, suggested by Huong Luu.
+  - Increased metadata annotation room from 64 bytes to 1KiB in header.
+  - CP_F_{FASTEST/SLOWEST}_RANK_TIME counters now take MPI-IO time into
+    account, not just POSIX time, issue reported by Huong Luu.
+  - Better handling of systems with many mounted file systems (after which
+    point Darshan will assume file resides on / file system), issue reported
+    and investigated by David Shrader:
+    - Track up to 64 rather than 32 mounted file systems at runtime.
+    - Increase header space available for storing mount point information in
+      log file from approximately 1 KiB to approximately 3 KiB.
+    - Prioritize storing information about non-NFS volumes over NFS volumes
+      if too many file systems are mounted to record them all.
+  - Added darshan-util pkgconfig file (Shane Snyder).
+  - Added --enable-shared configure option to darshan-util to build and
+    a shared library version of libdarshan-util
+
+darshan-2.2.8
+=============
+* WARNING: please note that the Darshan module file for Cray environments has
+  been updated, especially in the DARSHAN_POST_LINK_OPTS variable.  Please
+  update your module file accordingly when upgrading from 2.2.7 or earlier 
+  on Cray platforms.
+* Improved ability to analyze I/O activity related to particular files 
+  opened by an application
+  - darshan-summary-per-file.sh script to generate a separate pdf summary for
+    each file opened by an application. Developed by Rob Latham.
+  - Added --file-list and --file-list-detailed options to darshan-parser to 
+    list files opened by an application along with brief statistics
+  - Added --file option to darshan-convert to filter out activity for a
+    specific file from a Darshan log
+* Add wrappers for POSIX AIO operations (fixes tracking of underlying POSIX
+  operations resulting from nonblocking MPI-IO operations.  Bug reported by
+  David Shrader.)
+* Fix compile-time errors when Darshan is configured for use with MPICH 3.x 
+  installations with const correct MPI function prototypes. Also affects 
+  MPICH 1.5+ installations with optional const support.  Reported by Yushu Yao.
+* Fix segmentation fault when using LD_PRELOAD instrumentation on programs
+  that use MPI_Init_thread() rather than MPI_Init().  Reported by Myriam
+  Botalla.
+
+darshan-2.2.7
+=============
+* Updated Cray installation documentation for cleaner integration in Cray
+  environments
+* Fix bug that recorded incorrect device ID (and therefore incorrect mount
+  point mapping) if stat() was called before open() on a file
+* Store version number of the darshan runtime library in the log file 
+  metadata (see lib_ver in darshan-parser output)
+
+darshan-2.2.6
+=============
+* Bug fixes:
+  - make sure to honor user-specified hints passed in at runtime
+    via the DARSHAN_LOGHINTS env variable.
+  - include fread and fwrite in darshan-job-summary.pl read and write counts
+  - fix segmentation fault on invalid arguments to darshan-parser
+* Performance enhancements:
+  - collect mount point information at rank 0 and broadcast to all 
+    processes to avoid excess file system traffic on startup
+  - change default MPI-IO hints for writing log file to
+    romio_no_indep_rw=true and cb_nodes=4 to improve log creation performance
+* Install libdarshan-util and headers during installation process for
+  darshan-util; patch contributed by Matthieu Dorier
+* Detect PMPI support at link time when using compiler scripts produced
+  by the darshan-gen-* utilities.  This avoids link problems when Darshan
+  compiler wrappers are used with the ADIOS dummy MPI library; reported
+  by Jingqing Mu
+* Support MPICH_{CC/CXX/F77} environment variables in compiler scripts
+  produced by the darshan-gen-* utilities
+* Add instrumentation of startup time, enabled via DARSHAN_INTERNAL_TIMING
+  environment variable
+* Rename cp-shutdown-bench test utility to darshan-shutdown-bench and enable
+  benchmarking hooks in library by default so that darshan-shutdown-bench 
+  can be used with any Darshan installation
+* Remove deprecated --enable-st-dev-workaround configure option
+* Misc. documentation updates
+
+darshan-2.2.5
+=============
+* Fix bug in mount point identification when --enable-stat-at-open option is
+  not used.  In Darshan 2.2.4, some file entries were recorded as using the "/"
+  file system regardless of their location.
+* Update patches and documentation for Cray xt-asyncpe environment 5.12 or 
+  higher; contributed by Yushu Yao.
+* Update documentation to no longer recommend --enable-stat-at-open option on 
+  any systems
+* Fix unresolved symbols error when linking non-MPI programs with Cray
+  compiler.  Reported by Yushu Yao.
+* Use fstat() in place of stat() for detecting file information when
+  --enable-stat-at-open option is used
+* Use statfs() at startup to detect default block size for supported file
+  systems
+* Added --enable-group-readable-logs configure option, which will cause
+  Darshan to to generate log files with the group read permission bit set.
+  This option is useful in conjunction with deployments that set the setgid
+  bit on log directories.
+
+darshan-2.2.4
+=============
+* Disable extra stat() of newly opened files by default.  This improves 
+  performance on shared files for some platforms.  Reported by Yushu Yao.
+  - prevents Darshan from reporting SIZE_AT_OPEN, FILE_ALIGNENT, and 
+    DARSHAN_FILE_NOT_ALIGNED values
+  - features can still be enabled via --enable-stat-at-open option
+* Fix missing -lz in post ld flags reported by Yushu Yao.  Fixes a link-time
+  error for some corner-case applications.
+* Fix bug in Cray compiler script patches that was setting compiler flags 
+  incorrectly.  Reported by Yushu Yao.
+  WARNING: if you are using a previous Darshan release (2.2.3 through
+  2.2.4-pre4) on a Cray platform, please re-patch your compiler scripts.
+* Update darshan-gen-* scripts to support the potential for additonal LDFLAGS
+  or CFLAGS that appear before the object or source file in the compile or
+  link commands.  This fixes compatibility with some mvapich2 installations,
+  reported by Dragos Constantin.
+
+darshan-2.2.3
+=============
+* improved Cray XE6 support
+  - support for GNU, PGI, Cray, Pathscale, and Intel compilers
+  - patch adding Darshan capability to system compiler scripts
+  - software module, including testing and features contributed 
+    by Yushu Yao and Katie Antypas of The National Energy Research 
+    Scientific Computing Center (NERSC)
+  - improved documentation
+* minor bug fixes:
+  - properly detect cxx library name when generating BG/Q compiler wrappers
+  - improve timing mechanism for cp-shutdown-bench benchmark
+  - improve hashing to avoid log file name collisions
+
+darshan-2.2.2
+=============
+* bug fixes:
+  - remove debugging message that was inadvertently included in
+    MPI_File_sync() wrapper
+  - fix potential hang if the --with-log-path-by-env argument was used at 
+    configure time but the environment variable was not set at run time
+
+darshan-2.2.1
+=============
+* significant improvements to how counters are handled in multi-threaded
+  applications
+* initial (rough) documentation for using Darshan in Cray
+  programming environments with static linking
+* bug fixes:
+  - escape special characters in mount point paths in darshan-job-summary.pl
+    (reported by Mouhamed Gueye)
+  - workarounds for various runtime problems with cuserid() and stat() in  
+    Cray environments
+  - build problems with darshan-utils on some versions of OSX
+  - accurate shared file statistics for libraries that use deferred opens
+
+darshan-2.2.0
+=============
+* split darshan into separate packages:
+  - darshan-runtime: for runtime instrumentation
+  - darshan-utils: for processing darshan log files
+* changed default output file name for darshan-job-summary.pl to be based on
+  input file name rather than summary.pdf
+* reorganized init and finalize routines so that can be linked separately (to
+  allow for easier integration with other instrumentation tools)
+* add -cc, -cxx, -f77, -f90, and -fc support to compiler scripts generated by
+  the darshan-gen-*.pl scripts
+* bug fixes:
+  - potential MAX_BYTE overflow on 32 bit systems
+  - incorrect pread and pwrite offset tracking
+  - corrections to darshan-job-summary variance table
+  - better runtime error handling if bzip or gnuplot tools are insufficient
+  - improvements to time range in darshan-job-summary graphs
+* documentation:
+  - improved documentation for both the darshan-runtime and darshan-util
+  portions of Darshan can be found in the respective doc/ subdirectory for
+  each
+
+darshan-2.1.2
+=============
+* improved error handling when writing log files.  If a write fails then the
+  log file will be deleted and a warning will be printed to stderr.
+
+darshan-2.1.1
+=============
+* new darshan-convert command line utility for converting existing log files,
+  with optional anonymization and optional bzip2 compression
+* bzip2 support in command line utilities (but not in the darshan library
+  itself)
+* updated log file format that allows for string key/value pairs to be stored
+  in the header
+* added ability to set MPI-IO hints when writing darshan log
+  at configure time: --with-log-hints
+  at run time: DARSHAN_LOGHINTS environment variable
+* bug fix contributed by Sandra Schröder: use case-insensitive search for MPI
+  symbols in Fortran wrapper script
+* performance bug fix: remove unecessary call to MPI_File_set_size when
+  writing log
+* added --with-logpath-by-env configure option to allow absolute 
+  log path to be specified via environment variable
+
+darshan-2.1.0
+=============
+* additinoal environment variables to control log, jobid and
+  alignment parameters
+* additional configure tests to improve portability
+* bug fixes for darshan-parser --perf calucations
+* support for MPI1.x
+* support for OpenMPI
+* support for PGI, Intel compilers
+* new libdarshan.so dynamic library for use with LD_PRELOAD
+
+darshan-2.0.2
+=============
+* added a random identifier to job logs (to avoid collisions from multiple
+  application instances within a single scheduler job)
+* improved installation and library path management for darshan-job-summary.pl
+* improved error handling in darshan-job-summary.pl
+* additional derived statistics categories for darshan-parser output:
+    --all   : all sub-options are enabled
+    --base  : darshan log field data [default]
+    --file  : total file counts
+    --perf  : derived perf data
+    --total : aggregated darshan field data
+
+darshan-2.0.1
+=============
+* bug fix to variance/minimum calculations on shared files
+* switch to automatic generation of all MPI compiler scripts using
+  darshan-gen-* tools
+* new run time environment variable: DARSHAN_INTERNAL_TIMING.  If set at job
+  execution time, it will cause Darshan to time its own internal data 
+  aggregation routines and print the results to stdout at rank 0.
+
+darshan-2.0.0
+=============
+* new output file format that is portable across architectures
+  NOTE: Darshan 1.x output files are incompatible with the tools in this 
+  release unless they were generated on a ppc32 architecture (Blue Gene)
+* 8 new counters that record the rank of the fastest and slowest process that
+  opened each shared file, along with the number of seconds and number of
+  bytes consumed by those processes.  It also reports the variance in both
+  time and amount of data.
+* new --with-jobid-env configure argument to support recording job identifiers
+  from different schedulers
+* job ID is now recorded within the Darshan log in addition to in the file
+  name
+* darshan-job-summary.pl:
+  * opens output files directly without using intermediate darshan-parser output
+  * table showing data usage per file system
+  * table showing I/O variance in shared files
+* Fixes for bugs reported by Noah Watkins: 
+  * avoid name collision in hashing function
+  * divide by zero error in darshan-job-summary.pl
+
+darshan-1.1.14
+==============
+* fixed erroneous incompatibility warning when opening old logs in darshan-parser
+
+darshan-1.1.13
+==============
+* updated compiler scripts to fix link order in some cases with -lhdf5
+
+darshan-1.1.12
+==============
+* improved mapping of file records to mount points
+* new page in darshan-job-summary.pl output showing timelines of file access
+* bug fix to "fast" mpif90 script
+* checkpoint/restart ability in parallel fsstats script
+
+darshan-1.1.11
+==============
+* Bug fix for lseek, pread, and pwrite when used in 32 applications without large file support
+* Improved experimental darshan-gen-cc.pl script
+* Added new experimental darshan-gen-cxx.pl script
+
+darshan-1.1.10
+==============
+* Bug fix for files that are accessed with stat() but never opened
+* Workaround zlib problems with 64 bit offsets on 32 bit architectures
+
+darshan-1.1.9
+=============
+* Added "fast" version of each BG/P compiler
+* Added experimental scripts in test directory to run fsstats in parallel
+* Kevin Harms: Added experimental utilities for loading darshan results into SQL
+* Use exclusive flag when opening output file (to protect against file name collision)
+* Rob Ross: updates to allow command line tools to build on Darwin
+* Bug fix for pnetcdf configure problem reported by Rob Latham; darshan now always pulls in MPI_Wtime() symbol at link time
+
+darshan-1.1.8
+=============
+* Added tracking of file system type and mount point for each file
+* Added tracking of file size at open time (CP_SIZE_AT_OPEN)
+* Moved sync cost to be counted in cumulative write time rather than cumulative metadata time
+* Added sync as a separate category in darshan-job-summar.pl counters
+* Bug fix to most frequent access size table in darshan-job-summary.pl
+* Converted all utilities to use darshan-logutils api for reading output files
+* Added backwards compatibility to darshan-logutils routines
+* Kevin Harms: Added darshan-analyzer utility to summarize usage of MPI-IO, pNetCDF, HDF5, and shared files across a set of output files
+* Fixed bug field listing for darshan-diff utility
+
+darshan-1.1.7
+=============
+* Minor fix for a compile warning
+
+darshan-1.1.6
+=============
+* Kevin Harms: bug fix for segfault in apps that use MPI_Init_thread()
+
+darshan-1.1.5
+=============
+* Limit PMPI usage in library to fewer functions
+* Update PMPI detection in compiler scripts to ignore functions unused by Darshan
+
+darshan-1.1.4
+=============
+* Track files opened via Parallel NetCDF
+* Track files opened via HDF5
+* Record slowest individual POSIX read and write times along with access size for those operations
+* Inspect symbols at compile time to determine whether to enable Darshan or not based on the presence of MPI and PMPI symbols
+* Use GNU and IBM compilers from path rather than hard coded location
+* Simplify warning message if unable to open log file
+* Remove unused internal benchmark routines
+
+darshan-1.1.3
+=============
+* Updated compiler scripts for V1R4 driver on BlueGene/P
+
+darshan-1.1.2
+=============
+* Added *_r versions of each IBM compiler script on BlueGene/P
+
+darshan-1.1.1
+=============
+* Set default permissions to 0400 (user read only) for output files
+* Automatically disable Darshan at link time if common PMPI libraries are detected in the command line
+* Experimental tool (darshan-gen-cc.pl) to automatically generate Darshan-enabled mpicc scripts
+
+darshan-1.1.0
+=============
+* Initial public release

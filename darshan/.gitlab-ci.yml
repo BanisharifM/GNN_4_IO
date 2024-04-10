@@ -1,0 +1,85 @@
+variables:
+  ANL_THETA_PROJECT_SERVICE_USER: "ecpcscstdm"
+
+stages:
+  - build
+  - test
+
+build_darshan:
+  tags:
+    - shell
+    - ecp-theta
+
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "schedules"'
+      when: always
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: always
+
+  stage: build
+
+  script:
+    - source darshan-test/automated/common/setup.sh
+    - source darshan-test/automated/theta/configure.sh
+    - source darshan-test/automated/common/build.sh
+
+  artifacts:
+    paths:
+      - install/
+
+test_darshan_static:
+  tags:
+    - shell
+    - ecp-theta
+
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web" && $RUN_TESTS == "true"'
+      when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "schedules" && $RUN_TESTS == "true"'
+      when: on_success
+
+  stage: test
+
+  script:
+    - export CRAYPE_LINK_TYPE=static
+    - darshan-test/regression/run-all.sh $PWD/install $PWD/scratch cray-module-alcf
+
+  artifacts:
+    paths:
+        - $PWD/scratch/*.darshan
+        - $PWD/scratch/*.debuglog
+        - $PWD/scratch/*.out
+        - $PWD/scratch/*.err
+
+  resource_group: debug-queue
+
+test_darshan_dynamic:
+  tags:
+    - shell
+    - ecp-theta
+
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web" && $RUN_TESTS == "true"'
+      when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "schedules" && $RUN_TESTS == "true"'
+      when: on_success
+
+  stage: test
+
+  script:
+    - export CRAYPE_LINK_TYPE=dynamic
+    - darshan-test/regression/run-all.sh $PWD/install $PWD/scratch cray-module-alcf
+    - ldd $PWD/scratch/mpi-io-test
+    - nm $PWD/scratch/mpi-io-test | grep darshan
+    - nm $PWD/scratch/mpi-io-test | grep MPI
+
+  artifacts:
+    paths:
+        - $PWD/scratch/*.darshan
+        - $PWD/scratch/*.debuglog
+        - $PWD/scratch/*.out
+        - $PWD/scratch/*.err
+
+  resource_group: debug-queue

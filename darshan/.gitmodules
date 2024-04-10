@@ -1,0 +1,4 @@
+[submodule "modules/autoperf"]
+	path = modules/autoperf
+	url = https://github.com/argonne-lcf/autoperf.git
+	branch = main

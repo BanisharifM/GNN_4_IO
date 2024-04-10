@@ -4,4 +4,6 @@ services:
   darshan-converter:
     build: .
     container_name: darshan-converter
+    volumes:
+      - ./CSVs:/app/CSVs
 

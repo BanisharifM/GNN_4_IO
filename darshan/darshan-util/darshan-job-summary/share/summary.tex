@@ -1,0 +1,141 @@
+\documentclass[11pt,letterpaper,twocolumn]{article}
+\usepackage{charter}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{color}
+
+%
+% GET THE MARGINS RIGHT, THE UGLY WAY
+%
+
+\addtolength{\hoffset}{-1cm}
+\addtolength{\textwidth}{2cm}
+
+\addtolength{\voffset}{-1.5cm}
+\addtolength{\textheight}{3cm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+%
+% BEGINNING OF DOCUMENT
+%
+
+\input{title.tex}
+
+\begin{document}
+\fontfamily{cmss}
+\selectfont
+
+\pagestyle{fancy}
+
+\ifdefined\incompletelog
+\twocolumn[
+\vspace{3.5in}
+\center
+{\bf \textcolor{red}{WARNING}}: This Darshan log contains incomplete data.
+This happens when a module runs out of memory to store new record data.
+Please run darshan-parser on the log file for more information.
+\endcenter
+]
+\newpage
+\fi
+
+\begin{figure*}[!h]
+\centering
+\subfigure
+{
+    \input{job-table.tex}
+}\\
+\vspace{1em}
+\ifdefined\inclperf
+I/O performance \emph{estimate} (at the \perflayer \ layer):
+transferred \textcolor{red}{\perfbytes \ MiB} at \textcolor{red}{\perfest \ MiB/s\\}
+\fi
+\ifdefined\inclstdio
+I/O performance \emph{estimate} (at the STDIO layer):
+transferred \textcolor{red}{\stdioperfbytes \ MiB} at \textcolor{red}{\stdioperfest \ MiB/s}
+\fi
+
+\vspace{3em}
+\subfigure
+{
+    \includegraphics[scale=0.65]{time-summary.pdf}
+}
+\subfigure
+{
+    \includegraphics[scale=0.65]{op-counts.pdf}
+}
+\end{figure*}
+
+\begin{figure*}[!h]
+\centering
+\subfigure
+{
+    \includegraphics[scale=0.65]{posix-access-hist.pdf}
+}
+\ifdefined\inclmpiio
+\subfigure
+{
+    \includegraphics[scale=0.65]{mpiio-access-hist.pdf}
+}
+\fi
+\end{figure*}
+
+\begin{figure*}[!h]
+\centering
+\subfigure
+{
+    \input{access-table.tex}
+}
+\subfigure
+{
+    \input{file-count-table.tex}
+}
+\end{figure*}
+
+\begin{figure*}[!h]
+\centering
+\subfigure
+{
+    \includegraphics[scale=0.65]{file-access-read.pdf}
+}
+\subfigure
+{
+    \includegraphics[scale=0.65]{file-access-write.pdf}
+}
+\subfigure
+{
+    \includegraphics[scale=0.65]{file-access-shared.pdf}
+}
+\subfigure
+{
+    \input{file-access-table.tex}
+}
+\subfigure
+{
+    \input{fs-data-table.tex}
+}
+\end{figure*}
+
+\begin{figure*}[!h]
+\centering
+\subfigure
+{
+    \includegraphics[scale=0.65]{pattern.pdf}
+}
+\scriptsize
+\\ \textit{sequential}: An I/O op issued at an offset greater than where the previous I/O op ended.
+\\ \textit{consecutive}: An I/O op issued at the offset immediately following the end of the previous I/O op. \\
+\normalsize
+\subfigure
+{
+    \input{variance-table.tex}
+}
+\end{figure*}
+
+\end{document}

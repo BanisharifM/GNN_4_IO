@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Example Darshan profiling configuration file for MPICH.
+DARSHAN_PREFIX=@prefix@
+
+# Libraries (and paths) to include before the MPI library
+export PROFILE_PRELIB=`$DARSHAN_PREFIX/bin/darshan-config --dyn-ld-flags`

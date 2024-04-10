@@ -1,0 +1,111 @@
+[build-system]
+requires = [
+    "wheel",
+    "setuptools>=65.0.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "darshan"
+dynamic = ["version"]
+requires-python = ">=3.7"
+description = "Python tools to interact with Darshan log records of HPC applications."
+readme = 'README.rst'
+dependencies = [
+    "cffi",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "mako",
+    "humanize"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+
+[project.urls]
+homepage = 'https://www.mcs.anl.gov/research/projects/darshan/'
+repository = 'https://github.com/darshan-hpc/darshan'
+
+[project.optional-dependencies]
+test = [
+    "packaging",
+    "pytest",
+    "lxml",
+    "matplotlib",
+    "importlib_resources;python_version<'3.9'",
+    "humanize"
+]
+
+[tool.setuptools.packages.find]
+include = ["darshan"]
+
+[tool.setuptools.package-data]
+"*" = ["*.darshan"]
+"darshan" = ["cli/style.css",
+             "cli/base.html",
+             "examples/example_logs/*",
+             "examples/darshan-graph/*",
+             "tests/input/*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "darshan.__version__"}
+
+[tool.cibuildwheel]
+environment = "PYDARSHAN_BUILD_EXT=1"
+skip = [
+    "cp36-*",
+    "pp*",
+    "*musllinux*",
+    "*i686*",
+    "*_ppc64le",
+    "*_s390x"
+]
+test-requires = [
+    "packaging",
+    "pytest",
+    "lxml",
+    "matplotlib",
+    "importlib_resources;python_version<'3.9'",
+    "humanize"
+]
+before-test = "pip install -U git+https://github.com/darshan-hpc/darshan-logs.git@main"
+test-command = "pytest {package}"
+
+[tool.cibuildwheel.linux]
+before-all = [
+    "yum install -y blas-devel lapack-devel",
+    "yum install -y libxslt-devel libxml2-devel",
+    "yum install -y libjpeg libjpeg-devel",
+    "git submodule update --init",
+    "./prepare.sh",
+    "./configure --disable-darshan-runtime --enable-apxc-mod --enable-apmpi-mod",
+    "make install"
+]
+repair-wheel-command = "auditwheel repair -w {dest_dir} {wheel}"
+
+[tool.cibuildwheel.macos]
+before-all = [
+    "brew install automake",
+    "brew install openblas",
+    "brew install lapack",
+    "git submodule update --init",
+    "./prepare.sh",
+    "./configure --disable-darshan-runtime --enable-apxc-mod --enable-apmpi-mod",
+    "make install"
+]
+repair-wheel-command = [
+  "delocate-listdeps {wheel}",
+  "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} {wheel}",
+]

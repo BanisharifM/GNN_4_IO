@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Example Darshan profiling configuration file for MPICH.
+
+
+DARSHAN_PREFIX=@prefix@
+
+export PROFILE_PRELIB="`$DARSHAN_PREFIX/bin/darshan-config --dyn-ld-flags`"
