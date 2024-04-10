@@ -1,42 +1,47 @@
 import darshan
 import pandas as pd
 import os
+from glob import glob
 
-# Path to the .darshan log file
-# log_file_path = "data/hdf5_orthogonality/treddy_h5d_no_h5f.darshan"
-log_file_path = "darshan_logs/"
-
+# Path to the directory containing .darshan log files
+data_dir = "data"
 
 # Path to the directory where the CSV files will be saved
 output_dir = "CSVs/"
 os.makedirs(output_dir, exist_ok=True)
 
-# open a Darshan log file and read all data stored in it
-with darshan.DarshanReport(log_file_path, read_all=True) as report:
+# Recursively find all .darshan files in the data directory
+darshan_files = glob(os.path.join(data_dir, "**/*.darshan"), recursive=True)
 
-    # print the metadata dict for this log
-    print("metadata: ", report.metadata)
-    # print job runtime and nprocs
-    print("run_time: ", report.metadata["job"]["run_time"])
-    print("nprocs: ", report.metadata["job"]["nprocs"])
+for darshan_file in darshan_files:
+    # Create the output directory structure in CSVs directory
+    output_subdir = os.path.relpath(os.path.dirname(darshan_file), data_dir)
+    os.makedirs(os.path.join(output_dir, output_subdir), exist_ok=True)
 
-    # print modules contained in the report
-    print("modules: ", list(report.modules.keys()))
+    # Open a Darshan log file and read all data stored in it
+    with darshan.DarshanReport(darshan_file, read_all=True) as report:
+        # Export POSIX module records to a pandas DataFrame
+        posix_df = report.records["POSIX"].to_df()
 
-    # export POSIX module records to DataFrame and print
-    posix_df = report.records["POSIX"].to_df()
-    print("POSIX df: ", posix_df)
+        # Export the DataFrame to a CSV file
+        output_csv_path_counters = os.path.join(
+            output_dir,
+            output_subdir,
+            os.path.basename(darshan_file).replace(".darshan", "_counters.csv"),
+        )
 
-    print(type(posix_df))
-    print(posix_df.keys())
+        output_csv_path_fcounters = os.path.join(
+            output_dir,
+            output_subdir,
+            os.path.basename(darshan_file).replace(".darshan", "_fcounters.csv"),
+        )
 
+        posix_df["counters"].to_csv(output_csv_path_counters, index=False)
+        posix_df["fcounters"].to_csv(output_csv_path_fcounters, index=False)
 
-# Open the Darshan log file
-with darshan.DarshanReport(log_file_path, read_all=True) as report:
-    # Export POSIX module records to a pandas DataFrame
-    posix_df = report.records["POSIX"].to_df()
-
-    # Export the DataFrame to a CSV file
-    # posix_df.to_csv("output.csv", index=False)
-    posix_df["counters"].to_csv(os.path.join(output_dir, "output3.csv"), index=False)
-    posix_df["fcounters"].to_csv(os.path.join(output_dir, "output4.csv"), index=False)
+        # posix_df["counters"].to_csv(
+        #     os.path.join(output_dir, "output1.csv"), index=False
+        # )
+        # posix_df["fcounters"].to_csv(
+        #     os.path.join(output_dir, "output2.csv"), index=False
+        # )
