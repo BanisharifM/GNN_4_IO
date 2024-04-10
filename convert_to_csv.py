@@ -3,7 +3,8 @@ import pandas as pd
 import os
 
 # Path to the .darshan log file
-log_file_path = "data/hdf5_diagonal_write_1_byte_dxt.darshan"
+# log_file_path = "data/hdf5_orthogonality/treddy_h5d_no_h5f.darshan"
+log_file_path = "darshan_logs/"
 
 
 # Path to the directory where the CSV files will be saved
@@ -37,5 +38,5 @@ with darshan.DarshanReport(log_file_path, read_all=True) as report:
 
     # Export the DataFrame to a CSV file
     # posix_df.to_csv("output.csv", index=False)
-    posix_df["counters"].to_csv(os.path.join(output_dir, "output1.csv"), index=False)
-    posix_df["fcounters"].to_csv(os.path.join(output_dir, "output2.csv"), index=False)
+    posix_df["counters"].to_csv(os.path.join(output_dir, "output3.csv"), index=False)
+    posix_df["fcounters"].to_csv(os.path.join(output_dir, "output4.csv"), index=False)
