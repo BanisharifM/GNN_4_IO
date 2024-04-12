@@ -38,22 +38,3 @@ for darshan_file in darshan_files:
 
         posix_df["counters"].to_csv(output_csv_path_counters, index=False)
         posix_df["fcounters"].to_csv(output_csv_path_fcounters, index=False)
-
-# # open a Darshan log file and read all data stored in it
-# with darshan.DarshanReport(log_file_path, read_all=True) as report:
-
-#     # print the metadata dict for this log
-#     print("metadata: ", report.metadata)
-#     # print job runtime and nprocs
-#     print("run_time: ", report.metadata["job"]["run_time"])
-#     print("nprocs: ", report.metadata["job"]["nprocs"])
-
-#     # print modules contained in the report
-#     print("modules: ", list(report.modules.keys()))
-
-#     # export POSIX module records to DataFrame and print
-#     posix_df = report.records["POSIX"].to_df()
-#     print("POSIX df: ", posix_df)
-
-#     print(type(posix_df))
-#     print(posix_df.keys())

@@ -46,4 +46,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run convert_to_csv.py when the container launches
-CMD ["python", "convert_to_csv.py"]
+# CMD ["python", "convert_to_csv.py"]
+CMD ["python", "read_darshan_logs.py"]
