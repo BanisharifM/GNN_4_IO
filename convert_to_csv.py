@@ -20,8 +20,6 @@ for darshan_file in darshan_files:
 
     # Open a Darshan log file and read all data stored in it
     with darshan.DarshanReport(darshan_file, read_all=True) as report:
-        # Export POSIX module records to a pandas DataFrame
-        posix_df = report.records["POSIX"].to_df()
 
         # Export the DataFrame to a CSV file
         output_csv_path_counters = os.path.join(
@@ -36,5 +34,14 @@ for darshan_file in darshan_files:
             os.path.basename(darshan_file).replace(".darshan", "_fcounters.csv"),
         )
 
-        posix_df["counters"].to_csv(output_csv_path_counters, index=False)
-        posix_df["fcounters"].to_csv(output_csv_path_fcounters, index=False)
+        for module in report.modules.keys():
+             for record in report.records[module]:
+                record_df = record.to_df()
+                record_df["counters"].to_csv(output_csv_path_counters, index=False)
+                record_df["fcounters"].to_csv(output_csv_path_counters, index=False)
+
+        # # Export POSIX module records to a pandas DataFrame
+        # posix_df = report.records["POSIX"].to_df()
+
+        # posix_df["counters"].to_csv(output_csv_path_counters, index=False)
+        # posix_df["fcounters"].to_csv(output_csv_path_fcounters, index=False)
