@@ -36,22 +36,27 @@ def calculate_performance_metrics(
     for counter in read_counters:
         if counter in module_df:
             total_bytes_read += module_df[counter].sum()
+            print(f"Reading counter {counter}: {module_df[counter].sum()}")
 
     for counter in write_counters:
         if counter in module_df:
             total_bytes_written += module_df[counter].sum()
+            print(f"Writing counter {counter}: {module_df[counter].sum()}")
 
     for counter in read_time_counters:
         if counter in module_df:
             total_read_time += module_df[counter].sum()
+            print(f"Read time counter {counter}: {module_df[counter].sum()}")
 
     for counter in write_time_counters:
         if counter in module_df:
             total_write_time += module_df[counter].sum()
+            print(f"Write time counter {counter}: {module_df[counter].sum()}")
 
     for counter in meta_time_counters:
         if counter in module_df:
             total_meta_time += module_df[counter].sum()
+            print(f"Metadata time counter {counter}: {module_df[counter].sum()}")
 
     read_throughput = total_bytes_read / total_read_time if total_read_time > 0 else 0
     write_throughput = (
@@ -85,6 +90,7 @@ with darshan.DarshanReport(log_file, read_all=True) as report:
     # POSIX module performance metrics
     if "POSIX" in report.records:
         posix_df = report.records["POSIX"].to_df()
+        print("POSIX DataFrame:", posix_df)
         posix_metrics = calculate_performance_metrics(
             posix_df,
             [
@@ -111,6 +117,7 @@ with darshan.DarshanReport(log_file, read_all=True) as report:
     # MPI-IO module performance metrics
     if "MPI-IO" in report.records:
         mpiio_df = report.records["MPI-IO"].to_df()
+        print("MPI-IO DataFrame:", mpiio_df)
         mpiio_metrics = calculate_performance_metrics(
             mpiio_df,
             ["MPIIO_BYTES_READ"],
@@ -124,6 +131,7 @@ with darshan.DarshanReport(log_file, read_all=True) as report:
     # STDIO module performance metrics
     if "STDIO" in report.records:
         stdio_df = report.records["STDIO"].to_df()
+        print("STDIO DataFrame:", stdio_df)
         stdio_metrics = calculate_performance_metrics(
             stdio_df,
             ["STDIO_BYTES_READ"],

@@ -6,4 +6,7 @@ services:
     container_name: darshan-converter
     volumes:
       - ./CSVs:/app/CSVs
-
+      - ./Graph:/app/Graph
+      - ./Graph2:/app/Graph2
+      - ./Graph3:/app/Graph3
+      - ./Graph_Images:/app/Graph_Images
