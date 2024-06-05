@@ -61,4 +61,5 @@ COPY . .
 # CMD ["python", "graph_gen.py"]
 # CMD ["python", "graph_gen2.py"]
 # CMD ["python", "graph_gen3.py"]
-CMD ["python", "graph_represent.py"]
+CMD ["python", "graph_gen4.py"]
+# CMD ["python", "graph_represent.py"]

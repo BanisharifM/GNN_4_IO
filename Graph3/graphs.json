@@ -1,0 +1,1014 @@
+[
+    {
+        "index": 0,
+        "nodes": [
+            {
+                "id": "Tag",
+                "value": 1.7358322782485445
+            },
+            {
+                "id": "POSIX_ACCESS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_ACCESS1_ACCESS",
+                "value": 2.3443922736851106
+            },
+            {
+                "id": "POSIX_ACCESS2_ACCESS",
+                "value": 3.912859475162355
+            },
+            {
+                "id": "POSIX_ACCESS3_ACCESS",
+                "value": 3.908592238847569
+            },
+            {
+                "id": "POSIX_ACCESS4_ACCESS",
+                "value": 3.909502541405416
+            },
+            {
+                "id": "POSIX_ACCESS1_COUNT",
+                "value": 4.06628864526571
+            },
+            {
+                "id": "POSIX_ACCESS2_COUNT",
+                "value": 2.710117365111816
+            },
+            {
+                "id": "POSIX_ACCESS3_COUNT",
+                "value": 2.506505032404872
+            },
+            {
+                "id": "POSIX_ACCESS4_COUNT",
+                "value": 2.4099331233312946
+            },
+            {
+                "id": "POSIX_STRIDE",
+                "value": ""
+            },
+            {
+                "id": "POSIX_STRIDE1_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE2_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE3_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE4_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE1_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE2_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE3_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE4_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE",
+                "value": ""
+            },
+            {
+                "id": "POSIX_SIZE_READ_0_100",
+                "value": 4.358867197666904
+            },
+            {
+                "id": "POSIX_SIZE_READ_100_1K",
+                "value": 4.06628864526571
+            },
+            {
+                "id": "POSIX_SIZE_READ_1K_10K",
+                "value": 3.591621038213319
+            },
+            {
+                "id": "POSIX_SIZE_READ_100K_1M",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_0_100",
+                "value": 2.737987326333431
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_100_1K",
+                "value": 1.505149978319906
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_1K_10K",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_10K_100K",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_100K_1M",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_OPERATIONS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_OPENS",
+                "value": 3.171433900943008
+            },
+            {
+                "id": "POSIX_FILENOS",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_READS",
+                "value": 4.584342533972404
+            },
+            {
+                "id": "POSIX_WRITES",
+                "value": 2.761927838420529
+            },
+            {
+                "id": "POSIX_SEEKS",
+                "value": 4.511241467305815
+            },
+            {
+                "id": "POSIX_STATS",
+                "value": 3.171433900943008
+            },
+            {
+                "id": "POSIX_DATA_TRANSFERS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_BYTES_READ",
+                "value": 7.529622933586103
+            },
+            {
+                "id": "POSIX_BYTES_WRITTEN",
+                "value": 4.492383185039623
+            },
+            {
+                "id": "POSIX_PATTERNS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_CONSEC_READS",
+                "value": 4.424244421837034
+            },
+            {
+                "id": "POSIX_CONSEC_WRITES",
+                "value": 2.7596678446896306
+            },
+            {
+                "id": "POSIX_SEQ_READS",
+                "value": 4.424244421837034
+            },
+            {
+                "id": "POSIX_SEQ_WRITES",
+                "value": 2.7596678446896306
+            },
+            {
+                "id": "POSIX_ALIGNMENTS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_MEM_ALIGNMENT",
+                "value": 0.9542425094393248
+            },
+            {
+                "id": "POSIX_FILE_ALIGNMENT",
+                "value": 6.020600327454919
+            },
+            {
+                "id": "POSIX_MEM_NOT_ALIGNED",
+                "value": 4.18369680863468
+            },
+            {
+                "id": "POSIX_FILE_NOT_ALIGNED",
+                "value": 4.433529825915495
+            },
+            {
+                "id": "POSIX_RESOURCE_UTILIZATION",
+                "value": ""
+            },
+            {
+                "id": "POSIX_RW_SWITCHES",
+                "value": 0.0
+            },
+            {
+                "id": "LUSTRE_CONFIGURATION",
+                "value": ""
+            },
+            {
+                "id": "LUSTRE_STRIPE_SIZE",
+                "value": 6.020600327454919
+            },
+            {
+                "id": "LUSTRE_STRIPE_WIDTH",
+                "value": 0.3010299956639812
+            },
+            {
+                "id": "GENERAL",
+                "value": ""
+            },
+            {
+                "id": "nprocs",
+                "value": 1.5185139398778875
+            }
+        ],
+        "edges": [
+            {
+                "source": "Tag",
+                "target": "POSIX_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_SIZE",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_OPERATIONS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_DATA_TRANSFERS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_PATTERNS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_ALIGNMENTS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_RESOURCE_UTILIZATION",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "LUSTRE_CONFIGURATION",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "GENERAL",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS1_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS2_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS3_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS4_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS1_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS2_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS3_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS4_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE1_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE2_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE3_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE4_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE1_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE2_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE3_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE4_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_0_100",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_100_1K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_1K_10K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_100K_1M",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_0_100",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_100_1K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_1K_10K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_10K_100K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_100K_1M",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_OPENS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_FILENOS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_SEEKS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_STATS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_DATA_TRANSFERS",
+                "target": "POSIX_BYTES_READ",
+                "data": {}
+            },
+            {
+                "source": "POSIX_DATA_TRANSFERS",
+                "target": "POSIX_BYTES_WRITTEN",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_CONSEC_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_CONSEC_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_SEQ_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_SEQ_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_MEM_ALIGNMENT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_FILE_ALIGNMENT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_MEM_NOT_ALIGNED",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_FILE_NOT_ALIGNED",
+                "data": {}
+            },
+            {
+                "source": "POSIX_RESOURCE_UTILIZATION",
+                "target": "POSIX_RW_SWITCHES",
+                "data": {}
+            },
+            {
+                "source": "LUSTRE_CONFIGURATION",
+                "target": "LUSTRE_STRIPE_SIZE",
+                "data": {}
+            },
+            {
+                "source": "LUSTRE_CONFIGURATION",
+                "target": "LUSTRE_STRIPE_WIDTH",
+                "data": {}
+            },
+            {
+                "source": "GENERAL",
+                "target": "nprocs",
+                "data": {}
+            }
+        ]
+    },
+    {
+        "index": 1,
+        "nodes": [
+            {
+                "id": "Tag",
+                "value": 0.5866946274035947
+            },
+            {
+                "id": "POSIX_ACCESS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_ACCESS1_ACCESS",
+                "value": 1.963787827345556
+            },
+            {
+                "id": "POSIX_ACCESS2_ACCESS",
+                "value": 2.0863598306747484
+            },
+            {
+                "id": "POSIX_ACCESS3_ACCESS",
+                "value": 1.8864907251724816
+            },
+            {
+                "id": "POSIX_ACCESS4_ACCESS",
+                "value": 3.913336925932623
+            },
+            {
+                "id": "POSIX_ACCESS1_COUNT",
+                "value": 6.316725193630303
+            },
+            {
+                "id": "POSIX_ACCESS2_COUNT",
+                "value": 6.0156954074060245
+            },
+            {
+                "id": "POSIX_ACCESS3_COUNT",
+                "value": 4.670050933609862
+            },
+            {
+                "id": "POSIX_ACCESS4_COUNT",
+                "value": 4.362463624755212
+            },
+            {
+                "id": "POSIX_STRIDE",
+                "value": ""
+            },
+            {
+                "id": "POSIX_STRIDE1_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE2_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE3_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE4_STRIDE",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE1_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE2_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE3_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_STRIDE4_COUNT",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE",
+                "value": ""
+            },
+            {
+                "id": "POSIX_SIZE_READ_0_100",
+                "value": 4.37692352441803
+            },
+            {
+                "id": "POSIX_SIZE_READ_100_1K",
+                "value": 4.083968197598416
+            },
+            {
+                "id": "POSIX_SIZE_READ_1K_10K",
+                "value": 4.430687668976669
+            },
+            {
+                "id": "POSIX_SIZE_READ_100K_1M",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_0_100",
+                "value": 6.338956839232797
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_100_1K",
+                "value": 6.033586183414998
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_1K_10K",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_10K_100K",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_SIZE_WRITE_100K_1M",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_OPERATIONS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_OPENS",
+                "value": 3.229937685907934
+            },
+            {
+                "id": "POSIX_FILENOS",
+                "value": 0.0
+            },
+            {
+                "id": "POSIX_READS",
+                "value": 4.79870587811505
+            },
+            {
+                "id": "POSIX_WRITES",
+                "value": 6.513605893522459
+            },
+            {
+                "id": "POSIX_SEEKS",
+                "value": 4.526041890680879
+            },
+            {
+                "id": "POSIX_STATS",
+                "value": 3.2380461031287955
+            },
+            {
+                "id": "POSIX_DATA_TRANSFERS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_BYTES_READ",
+                "value": 8.348422607105483
+            },
+            {
+                "id": "POSIX_BYTES_WRITTEN",
+                "value": 8.517666046342947
+            },
+            {
+                "id": "POSIX_PATTERNS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_CONSEC_READS",
+                "value": 4.703703976818275
+            },
+            {
+                "id": "POSIX_CONSEC_WRITES",
+                "value": 6.513602699108046
+            },
+            {
+                "id": "POSIX_SEQ_READS",
+                "value": 4.703978825008386
+            },
+            {
+                "id": "POSIX_SEQ_WRITES",
+                "value": 6.513604030116906
+            },
+            {
+                "id": "POSIX_ALIGNMENTS",
+                "value": ""
+            },
+            {
+                "id": "POSIX_MEM_ALIGNMENT",
+                "value": 0.9542425094393248
+            },
+            {
+                "id": "POSIX_FILE_ALIGNMENT",
+                "value": 6.020600327454919
+            },
+            {
+                "id": "POSIX_MEM_NOT_ALIGNED",
+                "value": 4.5887869506591805
+            },
+            {
+                "id": "POSIX_FILE_NOT_ALIGNED",
+                "value": 6.520283960348046
+            },
+            {
+                "id": "POSIX_RESOURCE_UTILIZATION",
+                "value": ""
+            },
+            {
+                "id": "POSIX_RW_SWITCHES",
+                "value": 0.3010299956639812
+            },
+            {
+                "id": "LUSTRE_CONFIGURATION",
+                "value": ""
+            },
+            {
+                "id": "LUSTRE_STRIPE_SIZE",
+                "value": 6.020600327454919
+            },
+            {
+                "id": "LUSTRE_STRIPE_WIDTH",
+                "value": 0.3010299956639812
+            },
+            {
+                "id": "GENERAL",
+                "value": ""
+            },
+            {
+                "id": "nprocs",
+                "value": 1.5185139398778875
+            }
+        ],
+        "edges": [
+            {
+                "source": "Tag",
+                "target": "POSIX_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_SIZE",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_OPERATIONS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_DATA_TRANSFERS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_PATTERNS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_ALIGNMENTS",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "POSIX_RESOURCE_UTILIZATION",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "LUSTRE_CONFIGURATION",
+                "data": {}
+            },
+            {
+                "source": "Tag",
+                "target": "GENERAL",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS1_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS2_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS3_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS4_ACCESS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS1_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS2_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS3_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ACCESS",
+                "target": "POSIX_ACCESS4_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE1_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE2_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE3_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE4_STRIDE",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE1_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE2_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE3_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_STRIDE",
+                "target": "POSIX_STRIDE4_COUNT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_0_100",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_100_1K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_1K_10K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_READ_100K_1M",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_0_100",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_100_1K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_1K_10K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_10K_100K",
+                "data": {}
+            },
+            {
+                "source": "POSIX_SIZE",
+                "target": "POSIX_SIZE_WRITE_100K_1M",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_OPENS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_FILENOS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_SEEKS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_OPERATIONS",
+                "target": "POSIX_STATS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_DATA_TRANSFERS",
+                "target": "POSIX_BYTES_READ",
+                "data": {}
+            },
+            {
+                "source": "POSIX_DATA_TRANSFERS",
+                "target": "POSIX_BYTES_WRITTEN",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_CONSEC_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_CONSEC_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_SEQ_READS",
+                "data": {}
+            },
+            {
+                "source": "POSIX_PATTERNS",
+                "target": "POSIX_SEQ_WRITES",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_MEM_ALIGNMENT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_FILE_ALIGNMENT",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_MEM_NOT_ALIGNED",
+                "data": {}
+            },
+            {
+                "source": "POSIX_ALIGNMENTS",
+                "target": "POSIX_FILE_NOT_ALIGNED",
+                "data": {}
+            },
+            {
+                "source": "POSIX_RESOURCE_UTILIZATION",
+                "target": "POSIX_RW_SWITCHES",
+                "data": {}
+            },
+            {
+                "source": "LUSTRE_CONFIGURATION",
+                "target": "LUSTRE_STRIPE_SIZE",
+                "data": {}
+            },
+            {
+                "source": "LUSTRE_CONFIGURATION",
+                "target": "LUSTRE_STRIPE_WIDTH",
+                "data": {}
+            },
+            {
+                "source": "GENERAL",
+                "target": "nprocs",
+                "data": {}
+            }
+        ]
+    }
+]

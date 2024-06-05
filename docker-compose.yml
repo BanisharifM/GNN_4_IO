@@ -9,4 +9,5 @@ services:
       - ./Graph:/app/Graph
       - ./Graph2:/app/Graph2
       - ./Graph3:/app/Graph3
+      - ./Graph4:/app/Graph4
       - ./Graph_Images:/app/Graph_Images
