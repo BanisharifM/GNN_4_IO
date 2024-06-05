@@ -67,7 +67,7 @@ categories = {
 }
 
 # Directory to save the graph representations
-output_dir = "Graph3"
+output_dir = "Graph4"
 os.makedirs(output_dir, exist_ok=True)
 print(f"Output directory created at: {output_dir}")
 
@@ -111,7 +111,7 @@ def create_and_save_graph(row, index):
 
 # Create and save graphs for the first 10 rows
 for index, row in df.iterrows():
-    if index < 2:
+    if index < 100:
         create_and_save_graph(row, index)
     else:
         break
