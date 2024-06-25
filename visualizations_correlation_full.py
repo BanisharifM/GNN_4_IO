@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the data to get the list of attributes
-data = pd.read_csv("CSVs/sample_train_100.csv")
+data = pd.read_csv('CSVs/sample_train_100.csv')
 data = data.loc[:, (data != data.iloc[0]).any()]
 attributes = data.columns
 
@@ -12,13 +12,15 @@ attributes = data.columns
 visualization_dir = "results/correlation/visualization"
 os.makedirs(visualization_dir, exist_ok=True)
 
-
 # Function to create and save visualizations
 def create_visualizations(attribute, sorted_results, threshold=0.7):
     # Filter attributes with Combined_Score greater than the threshold
-    filtered_sorted_results = sorted_results[
-        sorted_results["Combined_Score"] > threshold
-    ]
+    filtered_sorted_results = sorted_results[sorted_results["Combined_Score"] > threshold]
+
+    # Check if there are any results left after filtering
+    if filtered_sorted_results.empty:
+        print(f"No attributes for {attribute} with Combined_Score > {threshold}")
+        return
 
     # Bar chart of combined scores
     plt.figure(figsize=(10, 8))
@@ -28,7 +30,7 @@ def create_visualizations(attribute, sorted_results, threshold=0.7):
     plt.ylabel("Attribute")
     plt.tight_layout()
     for index, value in enumerate(filtered_sorted_results["Combined_Score"]):
-        plt.text(value, index, f"{value:.2f}")
+        plt.text(value, index, f'{value:.2f}')
     bar_chart_path = f"{visualization_dir}/combined_scores_bar_chart_{attribute}.png"
     plt.savefig(bar_chart_path)
     plt.close()
@@ -45,7 +47,6 @@ def create_visualizations(attribute, sorted_results, threshold=0.7):
     plt.savefig(heatmap_path)
     plt.close()
 
-
 # Generate visualizations for each attribute
 for attr in attributes:
     sorted_results_path = f"results/correlation/sorted/sorted_{attr}_correlations.xlsx"
@@ -53,3 +54,4 @@ for attr in attributes:
     create_visualizations(attr, sorted_results)
 
 print("Visualizations created and saved.")
+
