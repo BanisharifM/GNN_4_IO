@@ -58,6 +58,9 @@ def format_excel(file_path):
 # Prepare a dictionary to store sorted results for each attribute
 sorted_results = {}
 
+# Set to track processed pairs to avoid duplicates
+processed_pairs = set()
+
 # Sort the correlations for each attribute
 for attr in attributes:
     # Filter the correlations where attr is either Attribute1 or Attribute2
@@ -98,7 +101,16 @@ for attr in attributes:
     # Sort by Combined_Score
     sorted_filtered_results = filtered_results.sort_values(
         by="Combined_Score", ascending=False
-    ).drop_duplicates()
+    )
+
+    # Remove duplicates by keeping track of processed pairs
+    sorted_filtered_results = sorted_filtered_results[
+        sorted_filtered_results.apply(
+            lambda row: (row["Attribute1"], row["attr2"]) not in processed_pairs
+            and not processed_pairs.add((row["Attribute1"], row["attr2"])),
+            axis=1,
+        )
+    ]
 
     # Store the sorted results
     sorted_results[attr] = sorted_filtered_results
