@@ -14,8 +14,11 @@ with open(yaml_file_path, 'r') as file:
     graph_structure = yaml.safe_load(file)
 
 # Load the CSV data
+print("Loading data")
 data_path = 'CSVs/sample_train.csv'
 data = pd.read_csv(data_path)
+print("data is loaded...!")
+
 
 # Parameters
 num_epochs = 200
@@ -29,11 +32,13 @@ num_classes = data['tag'].nunique()
 # GNN model definition
 class GNN(torch.nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
+        print("__init__ def")
         super(GNN, self).__init__()
         self.conv1 = GCNConv(input_dim, hidden_dim)
         self.conv2 = GCNConv(hidden_dim, output_dim)
 
     def forward(self, data):
+        print("forward def")
         x, edge_index = data.x, data.edge_index
         x = self.conv1(x, edge_index)
         x = F.relu(x)
@@ -42,6 +47,7 @@ class GNN(torch.nn.Module):
 
 # Data preprocessing
 def generate_graph(row, graph_structure):
+    # print("generate_graph def",row)
     nodes = ['tag'] + [node for primary, secondaries in graph_structure['tag'].items() for node in [primary] + secondaries]
     edge_index = []
     features = []
@@ -81,7 +87,10 @@ criterion = torch.nn.CrossEntropyLoss()
 losses = []
 accuracies = []
 
+print("befor epoch")
+
 for epoch in range(num_epochs):
+    print(epoch)
     model.train()
     total_loss = 0
     correct = 0
