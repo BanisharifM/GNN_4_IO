@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.feature_selection import mutual_info_regression
 import logging
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -13,13 +14,14 @@ chunks = pd.read_csv(file_path, chunksize=chunk_size)
 # Output file path
 output_file_path = "results/correlation/full_data/attribute_correlations_full.csv"
 
-# Initialize the output file with headers
-headers = ["Attribute1", "Attribute2", "Pearson_Correlation", "Spearman_Correlation", "Mutual_Information"]
-with open(output_file_path, 'w') as f:
-    f.write(','.join(headers) + '\n')
+# Initialize the output file with headers if it does not exist
+if not os.path.exists(output_file_path):
+    headers = ["Attribute1", "Attribute2", "Pearson_Correlation", "Spearman_Correlation", "Mutual_Information"]
+    with open(output_file_path, 'w') as f:
+        f.write(','.join(headers) + '\n')
 
-# Function to compute correlations and save to file
-def compute_and_save_correlations(data, output_file_path):
+# Function to compute correlations
+def compute_correlations(data):
     # Remove constant columns (features with the same value in all samples)
     data = data.loc[:, (data != data.iloc[0]).any()]
     
@@ -49,15 +51,24 @@ def compute_and_save_correlations(data, output_file_path):
 
     # Convert the list to a DataFrame
     correlation_results_df = pd.DataFrame(correlation_results)
-
-    # Append the results to the CSV file
-    correlation_results_df.to_csv(output_file_path, mode='a', header=False, index=False)
+    return correlation_results_df
 
 # Process each chunk
 chunk_number = 0
 for chunk in chunks:
     chunk_number += 1
     logging.info(f'Processing chunk {chunk_number}')
-    compute_and_save_correlations(chunk, output_file_path)
+    new_correlation_results_df = compute_correlations(chunk)
+    
+    # Read the existing results if the file is not empty
+    if os.path.getsize(output_file_path) > 0:
+        existing_correlation_results_df = pd.read_csv(output_file_path)
+        # Combine the new results with the existing ones
+        combined_results_df = pd.concat([existing_correlation_results_df, new_correlation_results_df], ignore_index=True)
+    else:
+        combined_results_df = new_correlation_results_df
+    
+    # Save the combined results back to the CSV file
+    combined_results_df.to_csv(output_file_path, index=False)
 
 print(f"Full correlation results saved to {output_file_path}")
