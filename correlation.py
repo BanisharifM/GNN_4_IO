@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.feature_selection import mutual_info_classif
 
 # Load the dataset
@@ -9,14 +10,21 @@ data = pd.read_csv(file_path)
 X = data.iloc[:, :-1]
 y = data.iloc[:, -1]
 
-# Calculate Pearson correlation
-pearson_corr = X.corrwith(y)
+# Remove constant columns (features with the same value in all samples)
+X = X.loc[:, (X != X.iloc[0]).any()]
 
-# Calculate Spearman correlation
-spearman_corr = X.corrwith(y, method="spearman")
+# Calculate Pearson correlation, handling NaN values
+pearson_corr = X.corrwith(y, method="pearson").fillna(0)
+
+# Calculate Spearman correlation, handling NaN values
+spearman_corr = X.corrwith(y, method="spearman").fillna(0)
+
+# Ensure the target variable is categorical for mutual information
+if y.dtype != "object":
+    y = y.astype("category")
 
 # Calculate Mutual Information
-mutual_info = mutual_info_classif(X, y, discrete_features=False)
+mutual_info = mutual_info_classif(X, y, discrete_features="auto")
 
 # Create a DataFrame to hold the results
 correlation_results = pd.DataFrame(
