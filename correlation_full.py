@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.feature_selection import mutual_info_regression
 
 # Load the dataset
-file_path = "CSVs/sample_train_100.csv"
+file_path = "CSVs/sample_train.csv"
 data = pd.read_csv(file_path)
 
 # Remove constant columns (features with the same value in all samples)
@@ -36,7 +36,7 @@ for attr1 in data.columns:
 correlation_results_df = pd.DataFrame(correlation_results)
 
 # Save the results to a CSV file
-output_file_path = "results/correlation/attribute_correlations_full.csv"
+output_file_path = "results/correlation/full_data/attribute_correlations_full.csv"
 correlation_results_df.to_csv(output_file_path, index=False)
 
 print(f"Full correlation results saved to {output_file_path}")
