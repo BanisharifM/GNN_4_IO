@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.feature_selection import mutual_info_classif
+from sklearn.feature_selection import mutual_info_regression
 
 # Load the dataset
 file_path = "CSVs/sample_train_100.csv"
@@ -19,12 +19,8 @@ pearson_corr = X.corrwith(y, method="pearson").fillna(0)
 # Calculate Spearman correlation, handling NaN values
 spearman_corr = X.corrwith(y, method="spearman").fillna(0)
 
-# Ensure the target variable is categorical for mutual information
-if y.dtype != "object":
-    y = y.astype("category")
-
-# Calculate Mutual Information
-mutual_info = mutual_info_classif(X, y, discrete_features="auto")
+# Calculate Mutual Information for regression
+mutual_info = mutual_info_regression(X, y, discrete_features="auto")
 
 # Create a DataFrame to hold the results
 correlation_results = pd.DataFrame(
