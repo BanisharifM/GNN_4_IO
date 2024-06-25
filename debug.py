@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the correlation results CSV file
-correlation_results_path = '/mnt/data/attribute_correlations.csv'
+correlation_results_path = 'results/correlation/attribute_correlations.csv'
 correlation_results = pd.read_csv(correlation_results_path)
 
 # Display the contents of the correlation results
