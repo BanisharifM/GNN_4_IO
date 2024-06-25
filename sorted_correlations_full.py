@@ -1,7 +1,6 @@
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
-from openpyxl.utils.dataframe import dataframe_to_rows
 
 # Load the full correlation results CSV file
 correlation_results_path = "results/correlation/attribute_correlations_full.csv"
@@ -49,14 +48,27 @@ for attr in attributes:
         | (correlation_results["Attribute2"] == attr)
     ].copy()
 
-    # Sort by Pearson, Spearman, and Mutual Information separately and then combined
+    # Add 'attr2' column
+    filtered_results["attr2"] = filtered_results.apply(
+        lambda row: (
+            row["Attribute2"] if row["Attribute1"] == attr else row["Attribute1"]
+        ),
+        axis=1,
+    )
+
+    # Keep only the necessary columns and reorder them
+    filtered_results = filtered_results[
+        ["attr2", "Pearson_Correlation", "Spearman_Correlation", "Mutual_Information"]
+    ]
+    filtered_results.insert(0, "Attribute1", attr)
+
+    # Sort by Combined_Score
     filtered_results["Combined_Score"] = (
         filtered_results["Pearson_Correlation"].abs()
         + filtered_results["Spearman_Correlation"].abs()
         + filtered_results["Mutual_Information"]
     ) / 3
 
-    # Sort by Combined_Score
     sorted_filtered_results = filtered_results.sort_values(
         by="Combined_Score", ascending=False
     )
@@ -64,8 +76,8 @@ for attr in attributes:
     # Store the sorted results
     sorted_results[attr] = sorted_filtered_results
 
-    # Save the sorted results to a CSV file for each attribute
-    output_file_path = f"results/correlation/sorted/sorted_{attr}_correlations.xlsx"
+    # Save the sorted results to an Excel file for each attribute
+    output_file_path = f"results/correlation/sorted_{attr}_correlations.xlsx"
     sorted_filtered_results.to_excel(output_file_path, index=False)
 
     # Apply formatting
@@ -73,10 +85,10 @@ for attr in attributes:
 
     print(f"Sorted correlation results for {attr} saved to {output_file_path}")
 
-# Optionally: Save all sorted results into a single CSV file
+# Optionally: Save all sorted results into a single Excel file
 combined_sorted_results = pd.concat(sorted_results.values(), keys=sorted_results.keys())
 combined_output_file_path = (
-    "results/correlation/sorted/sorted_attribute_correlations_full.xlsx"
+    "results/correlation/sorted_attribute_correlations_full.xlsx"
 )
 combined_sorted_results.to_excel(combined_output_file_path, index=False)
 format_excel(combined_output_file_path)
