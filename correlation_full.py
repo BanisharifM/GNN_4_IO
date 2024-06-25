@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.feature_selection import mutual_info_regression
 
 # Load the dataset
 file_path = "CSVs/sample_train_100.csv"
