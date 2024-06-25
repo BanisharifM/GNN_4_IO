@@ -7,25 +7,29 @@ file_path = "CSVs/sample_train_100.csv"
 data = pd.read_csv(file_path)
 
 # Separate features and target variable
-X = data.iloc[:, :-1]
-y = data.iloc[:, -1]
+X = data.drop(columns=["tag"])
+y = data["tag"]
+
+# Print initial columns
+print("Initial columns:", X.columns.tolist())
 
 # Remove constant columns (features with the same value in all samples)
-X = X.loc[:, (X != X.iloc[0]).any()]
+non_constant_columns = X.loc[:, (X != X.iloc[0]).any()]
+print("Columns after removing constants:", non_constant_columns.columns.tolist())
 
 # Calculate Pearson correlation, handling NaN values
-pearson_corr = X.corrwith(y, method="pearson").fillna(0)
+pearson_corr = non_constant_columns.corrwith(y, method="pearson").fillna(0)
 
 # Calculate Spearman correlation, handling NaN values
-spearman_corr = X.corrwith(y, method="spearman").fillna(0)
+spearman_corr = non_constant_columns.corrwith(y, method="spearman").fillna(0)
 
 # Calculate Mutual Information for regression
-mutual_info = mutual_info_regression(X, y, discrete_features="auto")
+mutual_info = mutual_info_regression(non_constant_columns, y, discrete_features="auto")
 
 # Create a DataFrame to hold the results
 correlation_results = pd.DataFrame(
     {
-        "Attribute": X.columns,
+        "Attribute": non_constant_columns.columns,
         "Pearson_Correlation": pearson_corr.values,
         "Spearman_Correlation": spearman_corr.values,
         "Mutual_Information": mutual_info,
