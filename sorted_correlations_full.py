@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
@@ -6,11 +7,20 @@ from openpyxl.styles import PatternFill
 correlation_results_path = "results/correlation/attribute_correlations_full.csv"
 correlation_results = pd.read_csv(correlation_results_path)
 
-# Prepare a dictionary to store sorted results for each attribute
-sorted_results = {}
+# Remove constant columns
+data = pd.read_csv("CSVs/sample_train_100.csv")
+data = data.loc[:, (data != data.iloc[0]).any()]
+attributes = data.columns
 
-# List of unique attributes
-attributes = correlation_results["Attribute1"].unique()
+# Normalize the correlation values (optional)
+scaler = MinMaxScaler()
+correlation_results[
+    ["Pearson_Correlation", "Spearman_Correlation", "Mutual_Information"]
+] = scaler.fit_transform(
+    correlation_results[
+        ["Pearson_Correlation", "Spearman_Correlation", "Mutual_Information"]
+    ]
+)
 
 
 # Define a function to apply formatting
@@ -62,13 +72,14 @@ for attr in attributes:
     ]
     filtered_results.insert(0, "Attribute1", attr)
 
-    # Sort by Combined_Score
+    # Calculate Combined_Score
     filtered_results["Combined_Score"] = (
-        filtered_results["Pearson_Correlation"].abs()
-        + filtered_results["Spearman_Correlation"].abs()
+        filtered_results["Pearson_Correlation"]
+        + filtered_results["Spearman_Correlation"]
         + filtered_results["Mutual_Information"]
     ) / 3
 
+    # Sort by Combined_Score
     sorted_filtered_results = filtered_results.sort_values(
         by="Combined_Score", ascending=False
     )
@@ -77,7 +88,7 @@ for attr in attributes:
     sorted_results[attr] = sorted_filtered_results
 
     # Save the sorted results to an Excel file for each attribute
-    output_file_path = f"results/correlation/sorted_{attr}_correlations.xlsx"
+    output_file_path = f"results/correlation/sorted/sorted_{attr}_correlations.xlsx"
     sorted_filtered_results.to_excel(output_file_path, index=False)
 
     # Apply formatting
@@ -88,7 +99,7 @@ for attr in attributes:
 # Optionally: Save all sorted results into a single Excel file
 combined_sorted_results = pd.concat(sorted_results.values(), keys=sorted_results.keys())
 combined_output_file_path = (
-    "results/correlation/sorted_attribute_correlations_full.xlsx"
+    "results/correlation/sorted/sorted_attribute_correlations_full.xlsx"
 )
 combined_sorted_results.to_excel(combined_output_file_path, index=False)
 format_excel(combined_output_file_path)
