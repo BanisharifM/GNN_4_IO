@@ -5,15 +5,15 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
 # Ensure the output directory exists
-output_dir = "results/correlation/sorted"
+output_dir = "results/correlation/full_data"
 os.makedirs(output_dir, exist_ok=True)
 
 # Load the full correlation results CSV file
-correlation_results_path = "results/correlation/attribute_correlations_full.csv"
+correlation_results_path = "results/correlation/full_data/attribute_correlations_full.csv"
 correlation_results = pd.read_csv(correlation_results_path)
 
 # Remove constant columns
-data = pd.read_csv("CSVs/sample_train_100.csv")
+data = pd.read_csv("CSVs/sample_train.csv")
 data = data.loc[:, (data != data.iloc[0]).any()]
 attributes = data.columns
 

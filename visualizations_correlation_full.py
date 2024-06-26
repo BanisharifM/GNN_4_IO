@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the data to get the list of attributes
-data = pd.read_csv('CSVs/sample_train_100.csv')
+data = pd.read_csv('CSVs/sample_train.csv')
 data = data.loc[:, (data != data.iloc[0]).any()]
 attributes = data.columns
 
 # Ensure the output directory exists
-visualization_dir = "results/correlation/visualization"
+visualization_dir = "results/correlation/full_data/visualization"
 os.makedirs(visualization_dir, exist_ok=True)
 
 # Function to create and save visualizations
@@ -49,7 +49,7 @@ def create_visualizations(attribute, sorted_results, threshold=0.7):
 
 # Generate visualizations for each attribute
 for attr in attributes:
-    sorted_results_path = f"results/correlation/sorted/sorted_{attr}_correlations.xlsx"
+    sorted_results_path = f"results/correlation/full_data/sorted_{attr}_correlations.xlsx"
     sorted_results = pd.read_excel(sorted_results_path)
     create_visualizations(attr, sorted_results)
 

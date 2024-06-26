@@ -12,7 +12,7 @@ chunk_size = 10000  # Adjust chunk size as needed
 chunks = pd.read_csv(file_path, chunksize=chunk_size)
 
 # Output file path
-output_file_path = "results/correlation/full_data/attribute_correlations_full.csv"
+output_file_path = "results/correlation/full_data/attribute_correlations_full2.csv"
 
 # Initialize the output file with headers if it does not exist
 if not os.path.exists(output_file_path):

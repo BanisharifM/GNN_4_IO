@@ -11,3 +11,5 @@ pyyaml
 networkx
 matplotlib
 pydot
+openpyxl
+pyarrow
