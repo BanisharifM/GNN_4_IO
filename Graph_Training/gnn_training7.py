@@ -4,11 +4,10 @@ import torch
 import torch.nn.functional as F
 from torch_geometric.data import Data, DataLoader
 from torch_geometric.nn import GCNConv, GATConv, SAGEConv
-from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import numpy as np
 import logging
-from sklearn.model_selection import train_test_split
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,16 +15,16 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Parameters
 num_epochs = 200
 batch_size = 32
-learning_rate = 0.001
-weight_decay = 0.0001
-hidden_dim = 128
-patience = 20
+learning_rate = 0.001  # Adjusted learning rate
+weight_decay = 0.0001  # Added weight decay
+hidden_dim = 128  # Increased hidden dimension
+patience = 20  # Increased patience
 
 logging.info("Starting the graph training process.")
 
 # Load the graph data from Parquet
-nodes_file_path = 'Graphs/Graph21/nodes_10000.parquet'
-edges_file_path = 'Graphs/Graph21/edges_10000.parquet'
+nodes_file_path = 'Graphs/Graph20/nodes_10000.parquet'
+edges_file_path = 'Graphs/Graph20/edges_10000.parquet'
 logging.info(f"Loading nodes from {nodes_file_path}")
 nodes_df = pd.read_parquet(nodes_file_path)
 logging.info(f"Loading edges from {edges_file_path}")
@@ -36,9 +35,6 @@ data_list = []
 graph_indices = nodes_df['index'].unique()
 
 logging.info("Processing each graph in the Parquet files.")
-scaler = StandardScaler()
-nodes_df['value'] = scaler.fit_transform(nodes_df[['value']])  # Normalize node features
-
 for index in graph_indices:
     if index % 1000 == 0 and index > 0:
         logging.info(f"Processing graph with index {index}")
@@ -58,17 +54,13 @@ for index in graph_indices:
     # Convert to torch tensors
     x = torch.tensor(features, dtype=torch.float).unsqueeze(1)
     edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
-    y = torch.tensor([labels], dtype=torch.long)
+    y = torch.tensor([labels], dtype=torch.long)  # Ensure labels are batched correctly
     
     data = Data(x=x, edge_index=edge_index, y=y)
     data_list.append(data)
 
-# Split into training and validation sets
-train_data, val_data = train_test_split(data_list, test_size=0.2, random_state=42)
-
 logging.info("Creating DataLoader.")
-train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
-val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=False)
+dataloader = DataLoader(data_list, batch_size=batch_size, shuffle=True)
 
 logging.info("Data and labels processed successfully.")
 
@@ -100,14 +92,12 @@ logging.info("Initializing model, optimizer, and loss function.")
 # Model, optimizer, and loss function
 model = GNN(input_dim=1, hidden_dim=hidden_dim, output_dim=num_classes)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.1)
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.1)  # Learning rate scheduler
 criterion = torch.nn.CrossEntropyLoss()
 
 # Training loop
 losses = []
 accuracies = []
-val_losses = []
-val_accuracies = []
 best_accuracy = 0
 patience_counter = 0
 
@@ -118,7 +108,7 @@ for epoch in range(num_epochs):
     correct = 0
     total = 0
 
-    for batch in train_loader:
+    for batch in dataloader:
         optimizer.zero_grad()
         out = model(batch)
 
@@ -126,7 +116,7 @@ for epoch in range(num_epochs):
         root_node_indices = torch.arange(batch.num_graphs)
         
         out = out[root_node_indices]
-        target = batch.y.squeeze()
+        target = batch.y.squeeze()  # Ensure the target has the correct shape
 
         loss = criterion(out, target)
         loss.backward()
@@ -137,40 +127,16 @@ for epoch in range(num_epochs):
         total += target.size(0)
         correct += predicted.eq(target).sum().item()
 
-    avg_loss = total_loss / len(train_loader)
+    avg_loss = total_loss / len(dataloader)
     accuracy = correct / total
     losses.append(avg_loss)
     accuracies.append(accuracy)
-
-    # Validation step
-    model.eval()
-    val_total_loss = 0
-    val_correct = 0
-    val_total = 0
-
-    with torch.no_grad():
-        for batch in val_loader:
-            out = model(batch)
-            root_node_indices = torch.arange(batch.num_graphs)
-            out = out[root_node_indices]
-            target = batch.y.squeeze()
-            val_loss = criterion(out, target)
-            val_total_loss += val_loss.item()
-            _, val_predicted = out.max(dim=1)
-            val_total += target.size(0)
-            val_correct += val_predicted.eq(target).sum().item()
-
-    avg_val_loss = val_total_loss / len(val_loader)
-    val_accuracy = val_correct / val_total
-    val_losses.append(avg_val_loss)
-    val_accuracies.append(val_accuracy)
-    
-    logging.info(f'Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}, Accuracy: {accuracy:.4f}, Val Loss: {avg_val_loss:.4f}, Val Accuracy: {val_accuracy:.4f}')
+    logging.info(f'Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}, Accuracy: {accuracy:.4f}')
     
     # Save the best model based on validation accuracy
-    if val_accuracy > best_accuracy:
-        best_accuracy = val_accuracy
-        model_path = "Graphs/Graph21/best_model.pt"
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy
+        model_path = "Graphs/Graph20/best_model.pt"
         torch.save(model.state_dict(), model_path)
         logging.info(f"Best model saved to {model_path}")
         patience_counter = 0
@@ -180,28 +146,26 @@ for epoch in range(num_epochs):
     # Update and save the training metrics plot at each epoch
     plt.figure(figsize=(12, 5))
     plt.subplot(1, 2, 1)
-    plt.plot(range(1, len(losses) + 1), losses, label='Training Loss')
-    plt.plot(range(1, len(val_losses) + 1), val_losses, label='Validation Loss')
+    plt.plot(range(1, len(losses) + 1), losses, label='Loss')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
 
     plt.subplot(1, 2, 2)
-    plt.plot(range(1, len(accuracies) + 1), accuracies, label='Training Accuracy')
-    plt.plot(range(1, len(val_accuracies) + 1), val_accuracies, label='Validation Accuracy')
+    plt.plot(range(1, len(accuracies) + 1), accuracies, label='Accuracy')
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy')
     plt.legend()
 
     plt.tight_layout()
-    metrics_path = "Graphs/Graph21/training_metrics.png"
+    metrics_path = "Graphs/Graph20/training_metrics.png"
     plt.savefig(metrics_path)
     plt.close()
     logging.info(f"Training metrics plot saved to {metrics_path}")
 
-    # Early stopping check
-    if patience_counter >= patience:
-        logging.info("Early stopping triggered.")
-        break
+    # # Early stopping check
+    # if patience_counter >= patience:
+    #     logging.info("Early stopping triggered.")
+    #     break
 
 logging.info("Training completed.")

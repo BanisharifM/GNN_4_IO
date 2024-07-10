@@ -26,7 +26,7 @@ def generate_graph(yaml_path, data_path, save_path):
 
     logging.info("Processing each row in the dataset.")
     for index, row in df.iterrows():
-        if index >= 1000:  # Limit to the first 10,000 rows for testing
+        if index >= 10000:  # Limit to the first 10,000 rows for testing
             break
         if index % 1000 == 0 and index > 0:
             logging.info(f"Processed {index} rows out of {len(df)}")
@@ -73,13 +73,13 @@ def generate_graph(yaml_path, data_path, save_path):
     nodes_table = pa.Table.from_pandas(nodes_df)
     edges_table = pa.Table.from_pandas(edges_df)
 
-    pq.write_table(nodes_table, os.path.join(save_path, 'nodes_1000.parquet'))
-    pq.write_table(edges_table, os.path.join(save_path, 'edges_1000.parquet'))
+    pq.write_table(nodes_table, os.path.join(save_path, 'nodes_10000.parquet'))
+    pq.write_table(edges_table, os.path.join(save_path, 'edges_10000.parquet'))
 
     logging.info(f"Graph data saved to Parquet files in {save_path}")
 
 if __name__ == "__main__":
-    yaml_path = 'Graphs/Graph22/graph_structure.yaml'
+    yaml_path = 'Graphs/Graph20/graph_structure.yaml'
     data_path = 'CSVs/train_data.csv'
-    save_path = 'Graphs/Graph22/'
+    save_path = 'Graphs/Graph20/'
     generate_graph(yaml_path, data_path, save_path)
