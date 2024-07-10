@@ -1,3 +1,7 @@
 CSVs/sample_train.csv
 CSVs/test_data.csv
 CSVs/train_data.csv
+CSVs/val_data.csv
+Graphs/Graph*/*.csv
+Graphs/Graph*/*.parquet
+
