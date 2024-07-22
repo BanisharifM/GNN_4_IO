@@ -48,7 +48,7 @@ def load_data(file_path):
     return graphs
 
 # Define paths to the data files
-train_file_path = "Graphs/Graph39/train_graphs.csv"
+train_file_path = "Graphs/Graph40/train_graphs.csv"
 
 # Load the data
 train_data = load_data(train_file_path)
@@ -101,7 +101,7 @@ def train(model, train_loader, criterion, optimizer, scheduler, num_epochs):
         scheduler.step()
 
         # Save the model at the end of each epoch
-        torch.save(model.state_dict(), os.path.join('Graphs/Graph39', 'best_model.pt'))
+        torch.save(model.state_dict(), os.path.join('Graphs/Graph40', 'best_model.pt'))
 
     return train_losses, train_rmse
 
@@ -114,11 +114,11 @@ plt.plot(train_losses, label='Train Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend()
-plt.savefig(os.path.join('Graphs/Graph39', 'loss_chart.png'))
+plt.savefig(os.path.join('Graphs/Graph40', 'loss_chart.png'))
 
 plt.figure()
 plt.plot(train_rmse, label='Train RMSE')
 plt.xlabel('Epoch')
 plt.ylabel('RMSE')
 plt.legend()
-plt.savefig(os.path.join('Graphs/Graph39', 'rmse_chart.png'))
+plt.savefig(os.path.join('Graphs/Graph40', 'rmse_chart.png'))

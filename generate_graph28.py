@@ -11,7 +11,7 @@ def load_graph_structure(yaml_file_path):
     with open(yaml_file_path, 'r') as file:
         return yaml.safe_load(file)
 
-def load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=100):
+def load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=1000):
     # Load graph structure from YAML file
     graph_structure = load_graph_structure(yaml_file_path)
     attributes = list(graph_structure['tag'].keys())
@@ -21,7 +21,7 @@ def load_and_process_data(train_file_path, total_rows, yaml_file_path, log_inter
     logging.info(f"Processing training data from {train_file_path} with {total_rows} rows.")
     
     # Create directory for output CSVs if it doesn't exist
-    output_dir = 'Graphs/Graph_Test/'
+    output_dir = 'Graphs/Graph40/'
     os.makedirs(output_dir, exist_ok=True)
     
     # Prepare the output file
@@ -65,9 +65,9 @@ def load_and_process_data(train_file_path, total_rows, yaml_file_path, log_inter
 
 # Define path to your training data CSV file
 train_file_path = 'CSVs/train_data.csv'
-yaml_file_path = "Graphs/Graph_Test/graph_structure.yaml"
-total_rows = 1000  # You can adjust this value as needed
+yaml_file_path = "Graphs/Graph40/graph_structure.yaml"
+total_rows = 10000  # You can adjust this value as needed
 
 logging.info("Starting data processing.")
-load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=100)
+load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=1000)
 logging.info("Data processing completed.")

@@ -8,7 +8,6 @@ from torch_geometric.nn import GCNConv, global_mean_pool
 from torch.optim.lr_scheduler import StepLR
 import matplotlib.pyplot as plt
 import logging
-import shap
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -31,6 +30,7 @@ class EnhancedGNN(torch.nn.Module):
         x = F.relu(x)
         x = self.dropout(x)
         x = self.conv3(x, edge_index)
+        # Pooling layer to get a graph-level output
         x = global_mean_pool(x, batch)
         return F.log_softmax(x, dim=1)
 
@@ -75,12 +75,12 @@ criterion = torch.nn.CrossEntropyLoss()
 # Training function
 def train(model, train_loader, criterion, optimizer, scheduler, num_epochs):
     train_losses = []
-    train_accuracies = []
+    train_rmse = []
 
     for epoch in range(num_epochs):
         model.train()
         total_loss = 0
-        correct = 0
+        squared_error = 0
         for data in train_loader:
             optimizer.zero_grad()
             output = model(data)
@@ -89,32 +89,26 @@ def train(model, train_loader, criterion, optimizer, scheduler, num_epochs):
             optimizer.step()
             total_loss += loss.item() * data.num_graphs
             pred = output.argmax(dim=1)
-            correct += (pred == data.y).sum().item()
-
-            # Calculate SHAP values
-            explainer = shap.DeepExplainer(model, data)
-            shap_values = explainer.shap_values(data.x)
-
-            logging.info(f'Epoch {epoch+1}, SHAP values: {shap_values}')
+            squared_error += torch.sum((pred.float() - data.y.float()) ** 2).item()
 
         train_loss = total_loss / len(train_loader.dataset)
-        train_accuracy = correct / len(train_loader.dataset)
+        rmse = (squared_error / len(train_loader.dataset)) ** 0.5
         train_losses.append(train_loss)
-        train_accuracies.append(train_accuracy)
+        train_rmse.append(rmse)
 
-        logging.info(f'Epoch {epoch+1}, Train Loss: {train_loss:.4f}, Train Acc: {train_accuracy:.4f}')
+        logging.info(f'Epoch {epoch+1}, Train Loss: {train_loss:.4f}, Train RMSE: {rmse:.4f}')
 
         scheduler.step()
 
         # Save the model at the end of each epoch
         torch.save(model.state_dict(), os.path.join('Graphs/Graph39', 'best_model.pt'))
 
-    return train_losses, train_accuracies
+    return train_losses, train_rmse
 
 # Train the model
-train_losses, train_accuracies = train(model, train_loader, criterion, optimizer, scheduler, num_epochs)
+train_losses, train_rmse = train(model, train_loader, criterion, optimizer, scheduler, num_epochs)
 
-# Plot and save the loss and accuracy charts
+# Plot and save the loss and RMSE charts
 plt.figure()
 plt.plot(train_losses, label='Train Loss')
 plt.xlabel('Epoch')
@@ -123,8 +117,8 @@ plt.legend()
 plt.savefig(os.path.join('Graphs/Graph39', 'loss_chart.png'))
 
 plt.figure()
-plt.plot(train_accuracies, label='Train Accuracy')
+plt.plot(train_rmse, label='Train RMSE')
 plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
+plt.ylabel('RMSE')
 plt.legend()
-plt.savefig(os.path.join('Graphs/Graph39', 'accuracy_chart.png'))
+plt.savefig(os.path.join('Graphs/Graph39', 'rmse_chart.png'))
