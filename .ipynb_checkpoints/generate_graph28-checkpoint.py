@@ -64,9 +64,9 @@ def load_and_process_data(train_file_path, total_rows, yaml_file_path, log_inter
     logging.info(f"All training graphs saved to {output_file}.")
 
 # Define path to your training data CSV file
-train_file_path = 'CSVs/train_data.csv'
+train_file_path = 'CSVs/sample_train.csv'
 yaml_file_path = "Graphs/Graph40/graph_structure.yaml"
-total_rows = 10000  # You can adjust this value as needed
+total_rows = 1000  # You can adjust this value as needed
 
 logging.info("Starting data processing.")
 load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=1000)

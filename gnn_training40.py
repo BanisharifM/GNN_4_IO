@@ -30,7 +30,6 @@ class EnhancedGNN(torch.nn.Module):
         x = F.relu(x)
         x = self.dropout(x)
         x = self.conv3(x, edge_index)
-        # Pooling layer to get a graph-level output
         x = global_mean_pool(x, batch)
         return F.log_softmax(x, dim=1)
 
@@ -71,6 +70,10 @@ model = EnhancedGNN(num_node_features, num_classes)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
 criterion = torch.nn.CrossEntropyLoss()
+
+# Function to calculate RMSE
+def calculate_rmse(y_true, y_pred):
+    return torch.sqrt(F.mse_loss(y_pred, y_true)).item()
 
 # Training function
 def train(model, train_loader, criterion, optimizer, scheduler, num_epochs):
