@@ -1,0 +1,29 @@
+/u/mbanisharifdehkordi/env4/bin/python
+Job started on Sat Aug  3 19:32:34 CDT 2024
+Running on node gpuc05.delta.ncsa.illinois.edu
+Using the following GPUs:
+Sat Aug  3 19:32:34 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  | 00000000:48:00.0 Off |                    0 |
+| N/A   30C    P0              53W / 400W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  | 00000000:4C:00.0 Off |                    0 |
+| N/A   29C    P0              52W / 400W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+Job ended on Sat Aug  3 21:56:22 CDT 2024

@@ -1,0 +1,34 @@
+2024-08-04 13:52:59,514 - INFO - Downloading file from https://drive.google.com/uc?id=1AjejmV_qS4VJLBlRzRnFxAl2vkD4L0zE&export=download to CSVs/sample_train.csv
+2024-08-04 13:52:59,518 - DEBUG - Starting new HTTPS connection (1): drive.google.com:443
+2024-08-04 13:53:01,195 - DEBUG - https://drive.google.com:443 "GET /uc?id=1AjejmV_qS4VJLBlRzRnFxAl2vkD4L0zE&export=download HTTP/11" 200 None
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/gdown/download.py", line 267, in download
+    url = get_url_from_gdrive_confirmation(res.text)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/gdown/download.py", line 53, in get_url_from_gdrive_confirmation
+    raise FileURLRetrievalError(error)
+gdown.exceptions.FileURLRetrievalError: Too many users have viewed or downloaded this file recently. Please try accessing the file again later. If the file you are trying to access is particularly large or is shared with many people, it may take up to 24 hours to be able to view or download the file. If you still can't access a file after 24 hours, contact your domain administrator.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/Darshan-logs-Processing/generate_graph51.py", line 83, in <module>
+    download_file_from_google_drive(google_drive_link, train_file_path)
+  File "/u/mbanisharifdehkordi/Github/Darshan-logs-Processing/generate_graph51.py", line 74, in download_file_from_google_drive
+    gdown.download(drive_url, output_path, quiet=False)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/gdown/download.py", line 278, in download
+    raise FileURLRetrievalError(message)
+gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+
+	Too many users have viewed or downloaded this file recently. Please
+	try accessing the file again later. If the file you are trying to
+	access is particularly large or is shared with many people, it may
+	take up to 24 hours to be able to view or download the file. If you
+	still can't access a file after 24 hours, contact your domain
+	administrator.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=1AjejmV_qS4VJLBlRzRnFxAl2vkD4L0zE&export=download
+
+but Gdown can't. Please check connections and permissions.
+srun: error: gpuc04: task 0: Exited with exit code 1
