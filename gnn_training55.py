@@ -68,9 +68,9 @@ test_data = load_data(test_file_path)
 
 # Hyperparameters
 num_epochs = 200
-batch_size = 64
-learning_rate = 0.001
-weight_decay = 1e-4
+batch_size = 128
+learning_rate = 0.0001
+weight_decay = 1e-5
 
 # Create data loader
 train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
@@ -159,12 +159,12 @@ def train(model, train_loader, test_loader, criterion, optimizer, scheduler, num
         train_loss = total_loss / len(train_loader.dataset)
         train_losses.append(train_loss)
         
-        train_rmse, train_mae, train_r2 = evaluate(model, train_loader, epoch, 'train')
+        train_rmse, train_mae, train_r2 = evaluate(model, train_loader, epoch, 'train', update_logs_and_charts)
         train_rmse_scores.append(train_rmse)
         train_mae_scores.append(train_mae)
         train_r2_scores.append(train_r2)
         
-        test_rmse, test_mae, test_r2 = evaluate(model, test_loader, epoch, 'test')
+        test_rmse, test_mae, test_r2 = evaluate(model, test_loader, epoch, 'test', update_logs_and_charts)
         test_rmse_scores.append(test_rmse)
         test_mae_scores.append(test_mae)
         test_r2_scores.append(test_r2)
@@ -184,6 +184,9 @@ def train(model, train_loader, test_loader, criterion, optimizer, scheduler, num
     # Always update logs and charts at the end of training
     if not update_logs_and_charts:
         save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores)
+
+    # Save the model at the end of training
+    torch.save(model.state_dict(), os.path.join('Graphs/Graph55', 'best_model.pt'))
 
     return train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores
 
@@ -228,7 +231,7 @@ def save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scor
     plt.close()
 
 # Evaluation function
-def evaluate(model, loader, epoch, phase):
+def evaluate(model, loader, epoch, phase, update_logs_and_charts):
     model.eval()
     targets = []
     predictions = []
@@ -239,8 +242,9 @@ def evaluate(model, loader, epoch, phase):
             targets.extend(data.y.view(-1).tolist())  # Flatten the target
             predictions.extend(pred.tolist())
 
-    # Log predictions and targets to a file
-    log_predictions(predictions, targets, epoch, phase)
+    # Log predictions and targets to a file if updating logs and charts
+    if update_logs_and_charts:
+        log_predictions(predictions, targets, epoch, phase)
 
     mse_score = mean_squared_error(targets, predictions)
     rmse_score = np.sqrt(mse_score)
@@ -252,6 +256,7 @@ def evaluate(model, loader, epoch, phase):
 def signal_handler(sig, frame):
     print('Graceful termination initiated...')
     save_checkpoint(epoch, model, optimizer, scheduler, train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores, checkpoint_path)
+    torch.save(model.state_dict(), os.path.join('Graphs/Graph55', 'best_model.pt'))
     sys.exit(0)
 
 # Register signal handler
@@ -261,7 +266,12 @@ signal.signal(signal.SIGINT, signal_handler)
 checkpoint_path = os.path.join('Graphs/Graph55', 'checkpoint.pt')
 
 # Variable to control logging and chart updates
-update_logs_and_charts = False
+update_logs_and_charts = False  # Set to False to update only at the end
 
 # Train the model
 train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores = train(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, update_logs_and_charts)
+
+# Ensure final predictions are logged
+if not update_logs_and_charts:
+    evaluate(model, train_loader, num_epochs, 'train', True)
+    evaluate(model, test_loader, num_epochs, 'test', True)
