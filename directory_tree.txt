@@ -1,0 +1,1577 @@
+├── .gitignore
+├── CSVs
+│   ├── acme_fcase_trace
+│   │   ├── snyder_acme.exe_id1253318_9-27-24239-1515303144625770178_2_counters.csv
+│   │   └── snyder_acme.exe_id1253318_9-27-24239-1515303144625770178_2_fcounters.csv
+│   ├── edges.csv
+│   ├── hdf5_diagonal_write_only
+│   │   ├── hdf5_diagonal_write_1_byte_dxt_counters.csv
+│   │   ├── hdf5_diagonal_write_1_byte_dxt_fcounters.csv
+│   │   ├── hdf5_diagonal_write_bytes_range_dxt_counters.csv
+│   │   ├── hdf5_diagonal_write_bytes_range_dxt_fcounters.csv
+│   │   ├── hdf5_diagonal_write_half_flush_dxt_counters.csv
+│   │   ├── hdf5_diagonal_write_half_flush_dxt_fcounters.csv
+│   │   ├── hdf5_diagonal_write_half_ranks_dxt_counters.csv
+│   │   ├── hdf5_diagonal_write_half_ranks_dxt_fcounters.csv
+│   │   ├── hdf5_file_opens_only_counters.csv
+│   │   └── hdf5_file_opens_only_fcounters.csv
+│   ├── hdf5_orthogonality
+│   │   ├── treddy_h5d_no_h5f_counters.csv
+│   │   └── treddy_h5d_no_h5f_fcounters.csv
+│   ├── imbalanced_io
+│   │   ├── imbalanced-io_counters.csv
+│   │   └── imbalanced-io_fcounters.csv
+│   ├── ior_pnetcdf_hdf5
+│   │   ├── shane_ior-HDF5_id438090-438090_11-9-41522-17417065676046418211_1_counters.csv
+│   │   ├── shane_ior-HDF5_id438090-438090_11-9-41522-17417065676046418211_1_fcounters.csv
+│   │   ├── shane_ior-PNETCDF_id438100-438100_11-9-41525-10280033558448664385_1_counters.csv
+│   │   └── shane_ior-PNETCDF_id438100-438100_11-9-41525-10280033558448664385_1_fcounters.csv
+│   ├── mpi_io_test_with_dxt
+│   │   ├── treddy_mpi-io-test_id4373053_6-2-60198-9815401321915095332_1_counters.csv
+│   │   └── treddy_mpi-io-test_id4373053_6-2-60198-9815401321915095332_1_fcounters.csv
+│   ├── nodes.csv
+│   ├── nonmpi_dxt_anonymized
+│   │   ├── nonmpi_dxt_anonymized_counters.csv
+│   │   └── nonmpi_dxt_anonymized_fcounters.csv
+│   ├── partial_data_dxt
+│   │   ├── partial_data_dxt_counters.csv
+│   │   └── partial_data_dxt_fcounters.csv
+│   ├── partial_data_stdio
+│   │   ├── partial_data_stdio_counters.csv
+│   │   └── partial_data_stdio_fcounters.csv
+│   ├── runtime_and_dxt_heatmaps_diagonal_write_only
+│   │   ├── runtime_and_dxt_heatmaps_diagonal_write_only_counters.csv
+│   │   └── runtime_and_dxt_heatmaps_diagonal_write_only_fcounters.csv
+│   ├── sample_train.csv
+│   ├── sample_train_100.csv
+│   └── skew_io
+│       ├── skew-app_counters.csv
+│       ├── skew-app_fcounters.csv
+│       ├── skew-autobench-ior_counters.csv
+│       └── skew-autobench-ior_fcounters.csv
+├── Correlation
+│   ├── 1
+│   │   ├── Heatmap_100
+│   │   │   ├── heatmap_LUSTRE_STRIPE_SIZE.png
+│   │   │   ├── heatmap_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── heatmap_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── heatmap_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── heatmap_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── heatmap_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── heatmap_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── heatmap_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── heatmap_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── heatmap_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── heatmap_POSIX_BYTES_READ.png
+│   │   │   ├── heatmap_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── heatmap_POSIX_CONSEC_READS.png
+│   │   │   ├── heatmap_POSIX_CONSEC_WRITES.png
+│   │   │   ├── heatmap_POSIX_FILENOS.png
+│   │   │   ├── heatmap_POSIX_FILE_ALIGNMENT.png
+│   │   │   ├── heatmap_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── heatmap_POSIX_MEM_ALIGNMENT.png
+│   │   │   ├── heatmap_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── heatmap_POSIX_OPENS.png
+│   │   │   ├── heatmap_POSIX_READS.png
+│   │   │   ├── heatmap_POSIX_RW_SWITCHES.png
+│   │   │   ├── heatmap_POSIX_SEEKS.png
+│   │   │   ├── heatmap_POSIX_SEQ_READS.png
+│   │   │   ├── heatmap_POSIX_SEQ_WRITES.png
+│   │   │   ├── heatmap_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── heatmap_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── heatmap_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── heatmap_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── heatmap_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── heatmap_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │   ├── heatmap_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── heatmap_POSIX_SIZE_WRITE_10K_100K.png
+│   │   │   ├── heatmap_POSIX_SIZE_WRITE_1K_10K.png
+│   │   │   ├── heatmap_POSIX_STATS.png
+│   │   │   ├── heatmap_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── heatmap_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── heatmap_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── heatmap_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── heatmap_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── heatmap_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── heatmap_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── heatmap_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── heatmap_POSIX_WRITES.png
+│   │   │   ├── heatmap_nprocs.png
+│   │   │   └── heatmap_tag.png
+│   │   ├── mutual_information.csv
+│   │   ├── mutual_information_100.csv
+│   │   ├── mutual_information_boxplot.png
+│   │   ├── mutual_information_boxplot_100.png
+│   │   ├── mutual_information_heatmap.png
+│   │   ├── mutual_information_heatmap_100.png
+│   │   ├── mutual_information_histogram.png
+│   │   └── mutual_information_histogram_100.png
+│   ├── 2
+│   │   ├── 100
+│   │   │   ├── mutual_information2_100.csv
+│   │   │   ├── mutual_information_boxplot2_100.png
+│   │   │   ├── mutual_information_heatmap2_100.png
+│   │   │   └── mutual_information_histogram2_100.png
+│   │   ├── Heatmap
+│   │   │   ├── heatmap2_100_LUSTRE_STRIPE_SIZE.png
+│   │   │   ├── heatmap2_100_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── heatmap2_100_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_BYTES_READ.png
+│   │   │   ├── heatmap2_100_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── heatmap2_100_POSIX_CONSEC_READS.png
+│   │   │   ├── heatmap2_100_POSIX_CONSEC_WRITES.png
+│   │   │   ├── heatmap2_100_POSIX_FILENOS.png
+│   │   │   ├── heatmap2_100_POSIX_FILE_ALIGNMENT.png
+│   │   │   ├── heatmap2_100_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_100_POSIX_MEM_ALIGNMENT.png
+│   │   │   ├── heatmap2_100_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_100_POSIX_OPENS.png
+│   │   │   ├── heatmap2_100_POSIX_READS.png
+│   │   │   ├── heatmap2_100_POSIX_RW_SWITCHES.png
+│   │   │   ├── heatmap2_100_POSIX_SEEKS.png
+│   │   │   ├── heatmap2_100_POSIX_SEQ_READS.png
+│   │   │   ├── heatmap2_100_POSIX_SEQ_WRITES.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_WRITE_10K_100K.png
+│   │   │   ├── heatmap2_100_POSIX_SIZE_WRITE_1K_10K.png
+│   │   │   ├── heatmap2_100_POSIX_STATS.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── heatmap2_100_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── heatmap2_100_POSIX_WRITES.png
+│   │   │   ├── heatmap2_100_nprocs.png
+│   │   │   ├── heatmap2_100_tag.png
+│   │   │   ├── heatmap2_LUSTRE_STRIPE_SIZE.png
+│   │   │   ├── heatmap2_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── heatmap2_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── heatmap2_POSIX_BYTES_READ.png
+│   │   │   ├── heatmap2_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── heatmap2_POSIX_CONSEC_READS.png
+│   │   │   ├── heatmap2_POSIX_CONSEC_WRITES.png
+│   │   │   ├── heatmap2_POSIX_FILENOS.png
+│   │   │   ├── heatmap2_POSIX_FILE_ALIGNMENT.png
+│   │   │   ├── heatmap2_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_POSIX_MEM_ALIGNMENT.png
+│   │   │   ├── heatmap2_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_POSIX_OPENS.png
+│   │   │   ├── heatmap2_POSIX_READS.png
+│   │   │   ├── heatmap2_POSIX_RW_SWITCHES.png
+│   │   │   ├── heatmap2_POSIX_SEEKS.png
+│   │   │   ├── heatmap2_POSIX_SEQ_READS.png
+│   │   │   ├── heatmap2_POSIX_SEQ_WRITES.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_10K_100K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_1K_10K.png
+│   │   │   ├── heatmap2_POSIX_STATS.png
+│   │   │   ├── heatmap2_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_WRITES.png
+│   │   │   ├── heatmap2_nprocs.png
+│   │   │   └── heatmap2_tag.png
+│   │   ├── Heatmap_100
+│   │   │   ├── heatmap2_LUSTRE_STRIPE_SIZE.png
+│   │   │   ├── heatmap2_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── heatmap2_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── heatmap2_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── heatmap2_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── heatmap2_POSIX_BYTES_READ.png
+│   │   │   ├── heatmap2_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── heatmap2_POSIX_CONSEC_READS.png
+│   │   │   ├── heatmap2_POSIX_CONSEC_WRITES.png
+│   │   │   ├── heatmap2_POSIX_FILENOS.png
+│   │   │   ├── heatmap2_POSIX_FILE_ALIGNMENT.png
+│   │   │   ├── heatmap2_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_POSIX_MEM_ALIGNMENT.png
+│   │   │   ├── heatmap2_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── heatmap2_POSIX_OPENS.png
+│   │   │   ├── heatmap2_POSIX_READS.png
+│   │   │   ├── heatmap2_POSIX_RW_SWITCHES.png
+│   │   │   ├── heatmap2_POSIX_SEEKS.png
+│   │   │   ├── heatmap2_POSIX_SEQ_READS.png
+│   │   │   ├── heatmap2_POSIX_SEQ_WRITES.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_10K_100K.png
+│   │   │   ├── heatmap2_POSIX_SIZE_WRITE_1K_10K.png
+│   │   │   ├── heatmap2_POSIX_STATS.png
+│   │   │   ├── heatmap2_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── heatmap2_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── heatmap2_POSIX_WRITES.png
+│   │   │   ├── heatmap2_nprocs.png
+│   │   │   └── heatmap2_tag.png
+│   │   ├── graph_edges.csv
+│   │   ├── graph_representation_complete_with_labels.png
+│   │   ├── graph_simplified_clean.yaml
+│   │   ├── mutual_information2.csv
+│   │   ├── mutual_information_boxplot2.png
+│   │   ├── mutual_information_heatmap2.png
+│   │   └── mutual_information_histogram2.png
+│   ├── correlation.py
+│   ├── correlation_full1.py
+│   ├── correlation_full2.py
+│   ├── correlation_graph_structure1.py
+│   ├── correlation_graph_structure2.py
+│   ├── correlation_graph_structures.py
+│   ├── sorted_correlations.py
+│   ├── sorted_correlations_full1.py
+│   ├── visualizations_correlation.py
+│   ├── visualizations_correlation_graph.py
+│   └── visualizations_correlation_graph1.py
+├── Darshan
+│   ├── convert_to_csv_file.py
+│   ├── performance_csv_uniqe.py
+│   ├── performance_darshan_logs.py
+│   └── read_darshan_logs.py
+├── Dockerfile
+├── Generate_Graphs
+│   ├── construct_graph_gen.py
+│   ├── generate_graph.py
+│   ├── generate_graph1.py
+│   ├── generate_graph10.py
+│   ├── generate_graph11.py
+│   ├── generate_graph12.py
+│   ├── generate_graph13.py
+│   ├── generate_graph15t.py
+│   ├── generate_graph16.py
+│   ├── generate_graph17.py
+│   ├── generate_graph18.py
+│   ├── generate_graph19.py
+│   ├── generate_graph2.py
+│   ├── generate_graph27.py
+│   ├── generate_graph28.py
+│   ├── generate_graph29.py
+│   ├── generate_graph3.py
+│   ├── generate_graph4.py
+│   ├── generate_graph41.py
+│   ├── generate_graph42.py
+│   ├── generate_graph43.py
+│   ├── generate_graph44.py
+│   ├── generate_graph45.py
+│   ├── generate_graph46.py
+│   ├── generate_graph48.py
+│   ├── generate_graph49.py
+│   ├── generate_graph5.py
+│   ├── generate_graph50.py
+│   ├── generate_graph51.py
+│   ├── generate_graph8.py
+│   ├── generate_graph9.py
+│   ├── graph_gen.py
+│   ├── graph_gen2.py
+│   ├── graph_gen3.py
+│   ├── graph_gen4.py
+│   └── preprocess_data.py
+├── Graph_Images
+│   ├── Graph_0.png
+│   ├── Graph_1.png
+│   ├── Graph_2.png
+│   ├── Graph_3.png
+│   ├── Graph_4.png
+│   ├── Graph_5.png
+│   ├── Graph_6.png
+│   ├── Graph_7.png
+│   ├── Graph_8.png
+│   ├── Graph_9.png
+│   └── graph_structure (7).png
+├── Graph_Training
+│   ├── GNN_Training
+│   ├── gnn.py
+│   ├── gnn_training.py
+│   ├── gnn_training1.py
+│   ├── gnn_training10.py
+│   ├── gnn_training11.py
+│   ├── gnn_training2.py
+│   ├── gnn_training27.py
+│   ├── gnn_training28.py
+│   ├── gnn_training29.py
+│   ├── gnn_training3.py
+│   ├── gnn_training30.py
+│   ├── gnn_training31.py
+│   ├── gnn_training32.py
+│   ├── gnn_training33.py
+│   ├── gnn_training34.py
+│   ├── gnn_training35.py
+│   ├── gnn_training36.py
+│   ├── gnn_training38.py
+│   ├── gnn_training39.py
+│   ├── gnn_training4.py
+│   ├── gnn_training40.py
+│   ├── gnn_training41.py
+│   ├── gnn_training42.py
+│   ├── gnn_training43.py
+│   ├── gnn_training44.py
+│   ├── gnn_training45.py
+│   ├── gnn_training46.py
+│   ├── gnn_training47.py
+│   ├── gnn_training48.py
+│   ├── gnn_training49.py
+│   ├── gnn_training5.py
+│   ├── gnn_training50.py
+│   ├── gnn_training52.py
+│   ├── gnn_training53.py
+│   ├── gnn_training54.py
+│   ├── gnn_training55.py
+│   ├── gnn_training56.py
+│   ├── gnn_training6.py
+│   ├── gnn_training7.py
+│   ├── gnn_training8.py
+│   ├── gnn_training9.py
+│   └── gnn_training_test.py
+├── Graphs
+│   ├── Graph
+│   │   ├── graph_0.csv
+│   │   ├── graph_1.csv
+│   │   ├── graph_2.csv
+│   │   ├── graph_3.csv
+│   │   ├── graph_4.csv
+│   │   ├── graph_5.csv
+│   │   ├── graph_6.csv
+│   │   ├── graph_7.csv
+│   │   ├── graph_8.csv
+│   │   └── graph_9.csv
+│   ├── Graph10
+│   │   └── graphs_100.json
+│   ├── Graph11
+│   ├── Graph12
+│   │   ├── edges.parquet
+│   │   └── nodes.parquet
+│   ├── Graph13
+│   │   ├── edges.parquet
+│   │   ├── edges_1000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── graph_structure_2.yaml
+│   │   ├── graph_structure_old.yaml
+│   │   ├── model_epoch_1.pt
+│   │   ├── model_epoch_10.pt
+│   │   ├── model_epoch_11.pt
+│   │   ├── model_epoch_12.pt
+│   │   ├── model_epoch_2.pt
+│   │   ├── model_epoch_3.pt
+│   │   ├── model_epoch_4.pt
+│   │   ├── model_epoch_5.pt
+│   │   ├── model_epoch_6.pt
+│   │   ├── model_epoch_7.pt
+│   │   ├── model_epoch_8.pt
+│   │   ├── model_epoch_9.pt
+│   │   ├── nodes.parquet
+│   │   ├── nodes_1000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph14
+│   │   ├── best_model.pt
+│   │   ├── edges_1000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_1000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph15
+│   │   ├── best_model.pt
+│   │   ├── edges_10000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_10000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph16
+│   │   ├── best_model.pt
+│   │   ├── edges_10000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_10000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph17
+│   │   ├── best_model.pt
+│   │   ├── edges_1000.parquet
+│   │   ├── edges_10000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_1000.parquet
+│   │   ├── nodes_10000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph18
+│   │   ├── best_model.pt
+│   │   ├── edges_1000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_1000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph19
+│   │   ├── best_model.pt
+│   │   ├── edges_1000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_1000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph2
+│   │   ├── graph_0.csv
+│   │   ├── graph_1.csv
+│   │   ├── graph_2.csv
+│   │   ├── graph_3.csv
+│   │   ├── graph_4.csv
+│   │   ├── graph_5.csv
+│   │   ├── graph_6.csv
+│   │   ├── graph_7.csv
+│   │   ├── graph_8.csv
+│   │   └── graph_9.csv
+│   ├── Graph20
+│   │   ├── best_model.pt
+│   │   ├── edges_10000.parquet
+│   │   ├── graph_structure.yaml
+│   │   ├── nodes_10000.parquet
+│   │   └── training_metrics.png
+│   ├── Graph21
+│   │   ├── best_model.pt
+│   │   ├── first_graph.json
+│   │   ├── graph_structure.yaml
+│   │   └── training_metrics.png
+│   ├── Graph22
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── training_metrics.png
+│   ├── Graph23t
+│   │   └── graph_structure.yaml
+│   ├── Graph24
+│   │   └── graph_structure.yaml
+│   ├── Graph25
+│   │   └── graph_structure.yaml
+│   ├── Graph27
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph28
+│   │   └── graph_structure.yaml
+│   ├── Graph29
+│   │   └── graph_structure.yaml
+│   ├── Graph3
+│   │   └── graphs.xlsx
+│   ├── Graph30
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph31
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph32
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph33
+│   │   ├── best_model.pt
+│   │   └── graph_structure.yaml
+│   ├── Graph34
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph35
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph36
+│   │   ├── best_model.pt
+│   │   └── graph_structure.yaml
+│   ├── Graph37
+│   │   └── graph_structure.yaml
+│   ├── Graph38
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pth
+│   │   ├── graph_structure.yaml
+│   │   └── loss_chart.png
+│   ├── Graph39
+│   │   └── graph_structure.yaml
+│   ├── Graph4
+│   │   ├── graphs.json
+│   │   └── graphs_sample.json
+│   ├── Graph40
+│   │   ├── best_model.pt
+│   │   └── graph_structure.yaml
+│   ├── Graph41
+│   │   ├── best_model.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── loss_chart.png
+│   │   └── rmse_chart.png
+│   ├── Graph42
+│   │   ├── best_model.pt
+│   │   └── graph_structure.yaml
+│   ├── Graph43
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── loss_chart.png
+│   │   └── rmse_chart.png
+│   ├── Graph44
+│   │   └── graph_structure.yaml
+│   ├── Graph45
+│   │   └── graph_structure.yaml
+│   ├── Graph46
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── loss_chart.png
+│   │   ├── rmse_chart.png
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph47
+│   │   ├── accuracy_chart.png
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── loss_chart.png
+│   │   ├── rmse_chart.png
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph48
+│   │   ├── graph_structure.yaml
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph49
+│   │   ├── graph_structure.yaml
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph5
+│   │   ├── graph_data.h5
+│   │   └── graph_data_100.h5
+│   ├── Graph50
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph51
+│   │   └── graph_structure.yaml
+│   ├── Graph52
+│   │   ├── 50,000
+│   │   │   ├── test_graphs.csv
+│   │   │   └── train_graphs.csv
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph53
+│   ├── Graph54
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── loss_chart.png
+│   │   ├── mae_chart.png
+│   │   ├── r2_chart.png
+│   │   ├── rmse_chart.png
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph55
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── logs
+│   │   │   ├── test_predictions.csv
+│   │   │   └── train_predictions.csv
+│   │   ├── loss_chart.png
+│   │   ├── mae_chart.png
+│   │   ├── r2_chart.png
+│   │   ├── rmse_chart.png
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph56
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph57
+│   │   ├── best_model.pt
+│   │   ├── checkpoint.pt
+│   │   ├── graph_structure.yaml
+│   │   ├── logs
+│   │   │   ├── test_predictions.csv
+│   │   │   └── train_predictions.csv
+│   │   ├── loss_chart.png
+│   │   ├── mae_chart.png
+│   │   ├── r2_chart.png
+│   │   ├── rmse_chart.png
+│   │   ├── test_graphs.csv
+│   │   └── train_graphs.csv
+│   ├── Graph6
+│   │   └── graph_data.h5
+│   ├── Graph7
+│   │   ├── graph_data.h5
+│   │   └── graph_data_test.h5
+│   ├── Graph8
+│   │   └── graph_data.h5
+│   ├── Graph9
+│   │   ├── edge_index
+│   │   │   ├── edge_index_0.csv
+│   │   │   ├── edge_index_1.csv
+│   │   │   ├── edge_index_10.csv
+│   │   │   ├── edge_index_11.csv
+│   │   │   ├── edge_index_12.csv
+│   │   │   ├── edge_index_13.csv
+│   │   │   ├── edge_index_14.csv
+│   │   │   ├── edge_index_15.csv
+│   │   │   ├── edge_index_16.csv
+│   │   │   ├── edge_index_17.csv
+│   │   │   ├── edge_index_18.csv
+│   │   │   ├── edge_index_19.csv
+│   │   │   ├── edge_index_2.csv
+│   │   │   ├── edge_index_20.csv
+│   │   │   ├── edge_index_21.csv
+│   │   │   ├── edge_index_22.csv
+│   │   │   ├── edge_index_23.csv
+│   │   │   ├── edge_index_24.csv
+│   │   │   ├── edge_index_25.csv
+│   │   │   ├── edge_index_26.csv
+│   │   │   ├── edge_index_27.csv
+│   │   │   ├── edge_index_28.csv
+│   │   │   ├── edge_index_29.csv
+│   │   │   ├── edge_index_3.csv
+│   │   │   ├── edge_index_30.csv
+│   │   │   ├── edge_index_31.csv
+│   │   │   ├── edge_index_32.csv
+│   │   │   ├── edge_index_33.csv
+│   │   │   ├── edge_index_34.csv
+│   │   │   ├── edge_index_35.csv
+│   │   │   ├── edge_index_36.csv
+│   │   │   ├── edge_index_37.csv
+│   │   │   ├── edge_index_38.csv
+│   │   │   ├── edge_index_39.csv
+│   │   │   ├── edge_index_4.csv
+│   │   │   ├── edge_index_40.csv
+│   │   │   ├── edge_index_41.csv
+│   │   │   ├── edge_index_42.csv
+│   │   │   ├── edge_index_43.csv
+│   │   │   ├── edge_index_44.csv
+│   │   │   ├── edge_index_45.csv
+│   │   │   ├── edge_index_46.csv
+│   │   │   ├── edge_index_47.csv
+│   │   │   ├── edge_index_48.csv
+│   │   │   ├── edge_index_49.csv
+│   │   │   ├── edge_index_5.csv
+│   │   │   ├── edge_index_50.csv
+│   │   │   ├── edge_index_51.csv
+│   │   │   ├── edge_index_52.csv
+│   │   │   ├── edge_index_53.csv
+│   │   │   ├── edge_index_54.csv
+│   │   │   ├── edge_index_55.csv
+│   │   │   ├── edge_index_56.csv
+│   │   │   ├── edge_index_57.csv
+│   │   │   ├── edge_index_58.csv
+│   │   │   ├── edge_index_59.csv
+│   │   │   ├── edge_index_6.csv
+│   │   │   ├── edge_index_60.csv
+│   │   │   ├── edge_index_61.csv
+│   │   │   ├── edge_index_62.csv
+│   │   │   ├── edge_index_63.csv
+│   │   │   ├── edge_index_64.csv
+│   │   │   ├── edge_index_65.csv
+│   │   │   ├── edge_index_66.csv
+│   │   │   ├── edge_index_67.csv
+│   │   │   ├── edge_index_68.csv
+│   │   │   ├── edge_index_69.csv
+│   │   │   ├── edge_index_7.csv
+│   │   │   ├── edge_index_70.csv
+│   │   │   ├── edge_index_71.csv
+│   │   │   ├── edge_index_72.csv
+│   │   │   ├── edge_index_73.csv
+│   │   │   ├── edge_index_74.csv
+│   │   │   ├── edge_index_75.csv
+│   │   │   ├── edge_index_76.csv
+│   │   │   ├── edge_index_77.csv
+│   │   │   ├── edge_index_78.csv
+│   │   │   ├── edge_index_79.csv
+│   │   │   ├── edge_index_8.csv
+│   │   │   ├── edge_index_80.csv
+│   │   │   ├── edge_index_81.csv
+│   │   │   ├── edge_index_82.csv
+│   │   │   ├── edge_index_83.csv
+│   │   │   ├── edge_index_84.csv
+│   │   │   ├── edge_index_85.csv
+│   │   │   ├── edge_index_86.csv
+│   │   │   ├── edge_index_87.csv
+│   │   │   ├── edge_index_88.csv
+│   │   │   ├── edge_index_89.csv
+│   │   │   ├── edge_index_9.csv
+│   │   │   ├── edge_index_90.csv
+│   │   │   ├── edge_index_91.csv
+│   │   │   ├── edge_index_92.csv
+│   │   │   ├── edge_index_93.csv
+│   │   │   ├── edge_index_94.csv
+│   │   │   ├── edge_index_95.csv
+│   │   │   ├── edge_index_96.csv
+│   │   │   ├── edge_index_97.csv
+│   │   │   ├── edge_index_98.csv
+│   │   │   └── edge_index_99.csv
+│   │   ├── features
+│   │   │   ├── features_0.csv
+│   │   │   ├── features_1.csv
+│   │   │   ├── features_10.csv
+│   │   │   ├── features_11.csv
+│   │   │   ├── features_12.csv
+│   │   │   ├── features_13.csv
+│   │   │   ├── features_14.csv
+│   │   │   ├── features_15.csv
+│   │   │   ├── features_16.csv
+│   │   │   ├── features_17.csv
+│   │   │   ├── features_18.csv
+│   │   │   ├── features_19.csv
+│   │   │   ├── features_2.csv
+│   │   │   ├── features_20.csv
+│   │   │   ├── features_21.csv
+│   │   │   ├── features_22.csv
+│   │   │   ├── features_23.csv
+│   │   │   ├── features_24.csv
+│   │   │   ├── features_25.csv
+│   │   │   ├── features_26.csv
+│   │   │   ├── features_27.csv
+│   │   │   ├── features_28.csv
+│   │   │   ├── features_29.csv
+│   │   │   ├── features_3.csv
+│   │   │   ├── features_30.csv
+│   │   │   ├── features_31.csv
+│   │   │   ├── features_32.csv
+│   │   │   ├── features_33.csv
+│   │   │   ├── features_34.csv
+│   │   │   ├── features_35.csv
+│   │   │   ├── features_36.csv
+│   │   │   ├── features_37.csv
+│   │   │   ├── features_38.csv
+│   │   │   ├── features_39.csv
+│   │   │   ├── features_4.csv
+│   │   │   ├── features_40.csv
+│   │   │   ├── features_41.csv
+│   │   │   ├── features_42.csv
+│   │   │   ├── features_43.csv
+│   │   │   ├── features_44.csv
+│   │   │   ├── features_45.csv
+│   │   │   ├── features_46.csv
+│   │   │   ├── features_47.csv
+│   │   │   ├── features_48.csv
+│   │   │   ├── features_49.csv
+│   │   │   ├── features_5.csv
+│   │   │   ├── features_50.csv
+│   │   │   ├── features_51.csv
+│   │   │   ├── features_52.csv
+│   │   │   ├── features_53.csv
+│   │   │   ├── features_54.csv
+│   │   │   ├── features_55.csv
+│   │   │   ├── features_56.csv
+│   │   │   ├── features_57.csv
+│   │   │   ├── features_58.csv
+│   │   │   ├── features_59.csv
+│   │   │   ├── features_6.csv
+│   │   │   ├── features_60.csv
+│   │   │   ├── features_61.csv
+│   │   │   ├── features_62.csv
+│   │   │   ├── features_63.csv
+│   │   │   ├── features_64.csv
+│   │   │   ├── features_65.csv
+│   │   │   ├── features_66.csv
+│   │   │   ├── features_67.csv
+│   │   │   ├── features_68.csv
+│   │   │   ├── features_69.csv
+│   │   │   ├── features_7.csv
+│   │   │   ├── features_70.csv
+│   │   │   ├── features_71.csv
+│   │   │   ├── features_72.csv
+│   │   │   ├── features_73.csv
+│   │   │   ├── features_74.csv
+│   │   │   ├── features_75.csv
+│   │   │   ├── features_76.csv
+│   │   │   ├── features_77.csv
+│   │   │   ├── features_78.csv
+│   │   │   ├── features_79.csv
+│   │   │   ├── features_8.csv
+│   │   │   ├── features_80.csv
+│   │   │   ├── features_81.csv
+│   │   │   ├── features_82.csv
+│   │   │   ├── features_83.csv
+│   │   │   ├── features_84.csv
+│   │   │   ├── features_85.csv
+│   │   │   ├── features_86.csv
+│   │   │   ├── features_87.csv
+│   │   │   ├── features_88.csv
+│   │   │   ├── features_89.csv
+│   │   │   ├── features_9.csv
+│   │   │   ├── features_90.csv
+│   │   │   ├── features_91.csv
+│   │   │   ├── features_92.csv
+│   │   │   ├── features_93.csv
+│   │   │   ├── features_94.csv
+│   │   │   ├── features_95.csv
+│   │   │   ├── features_96.csv
+│   │   │   ├── features_97.csv
+│   │   │   ├── features_98.csv
+│   │   │   └── features_99.csv
+│   │   ├── labels.csv
+│   │   ├── metadata.json
+│   │   └── nodes.csv
+│   └── Graph_Test
+│       ├── accuracy_chart.png
+│       ├── best_model.pt
+│       ├── checkpoint.pth
+│       ├── graph_structure.yaml
+│       └── loss_chart.png
+├── Jupyter Lab
+│   ├── Untitled.ipynb
+│   ├── Untitled1.ipynb
+│   ├── Untitled2.ipynb
+│   ├── Untitled3.ipynb
+│   └── Untitled6.ipynb
+├── README.md
+├── Slurm Output
+│   ├── my_job_error_4309472.err
+│   ├── my_job_error_4309504.err
+│   ├── my_job_error_4309904.err
+│   ├── my_job_error_4309959.err
+│   ├── my_job_error_4311454.err
+│   ├── my_job_error_4311457.err
+│   ├── my_job_error_4311512.err
+│   ├── my_job_error_4311517.err
+│   ├── my_job_error_4311706.err
+│   ├── my_job_error_4311792.err
+│   ├── my_job_error_4331009.err
+│   ├── my_job_output_4309472.out
+│   ├── my_job_output_4309504.out
+│   ├── my_job_output_4309904.out
+│   ├── my_job_output_4309959.out
+│   ├── my_job_output_4311454.out
+│   ├── my_job_output_4311457.out
+│   ├── my_job_output_4311512.out
+│   ├── my_job_output_4311517.out
+│   ├── my_job_output_4311706.out
+│   ├── my_job_output_4311792.out
+│   └── my_job_output_4331009.out
+├── Untitled.ipynb
+├── Untitled1.ipynb
+├── data
+│   ├── acme_fcase_trace
+│   │   └── snyder_acme.exe_id1253318_9-27-24239-1515303144625770178_2.darshan
+│   ├── hdf5_diagonal_write_only
+│   │   ├── hdf5_diagonal_write_1_byte_dxt.darshan
+│   │   ├── hdf5_diagonal_write_bytes_range_dxt.darshan
+│   │   ├── hdf5_diagonal_write_half_flush_dxt.darshan
+│   │   ├── hdf5_diagonal_write_half_ranks_dxt.darshan
+│   │   └── hdf5_file_opens_only.darshan
+│   ├── hdf5_orthogonality
+│   │   └── treddy_h5d_no_h5f.darshan
+│   ├── imbalanced_io
+│   │   └── imbalanced-io.darshan
+│   ├── ior_pnetcdf_hdf5
+│   │   ├── shane_ior-HDF5_id438090-438090_11-9-41522-17417065676046418211_1.darshan
+│   │   └── shane_ior-PNETCDF_id438100-438100_11-9-41525-10280033558448664385_1.darshan
+│   ├── mpi_io_test_with_dxt
+│   │   └── treddy_mpi-io-test_id4373053_6-2-60198-9815401321915095332_1.darshan
+│   ├── nonmpi_dxt_anonymized
+│   │   └── nonmpi_dxt_anonymized.darshan
+│   ├── partial_data_dxt
+│   │   └── partial_data_dxt.darshan
+│   ├── partial_data_stdio
+│   │   └── partial_data_stdio.darshan
+│   ├── runtime_and_dxt_heatmaps_diagonal_write_only
+│   │   └── runtime_and_dxt_heatmaps_diagonal_write_only.darshan
+│   └── skew_io
+│       ├── skew-app.darshan
+│       └── skew-autobench-ior.darshan
+├── directory_tree.txt
+├── distirbuted_run.slurm
+├── docker-compose.yml
+├── gen_run.slurm
+├── light_run.slurm
+├── logs
+│   ├── test_predictions_epoch_0.csv
+│   ├── test_predictions_epoch_1.csv
+│   ├── test_predictions_epoch_10.csv
+│   ├── test_predictions_epoch_100.csv
+│   ├── test_predictions_epoch_101.csv
+│   ├── test_predictions_epoch_102.csv
+│   ├── test_predictions_epoch_103.csv
+│   ├── test_predictions_epoch_104.csv
+│   ├── test_predictions_epoch_105.csv
+│   ├── test_predictions_epoch_106.csv
+│   ├── test_predictions_epoch_107.csv
+│   ├── test_predictions_epoch_108.csv
+│   ├── test_predictions_epoch_109.csv
+│   ├── test_predictions_epoch_11.csv
+│   ├── test_predictions_epoch_110.csv
+│   ├── test_predictions_epoch_111.csv
+│   ├── test_predictions_epoch_112.csv
+│   ├── test_predictions_epoch_113.csv
+│   ├── test_predictions_epoch_114.csv
+│   ├── test_predictions_epoch_115.csv
+│   ├── test_predictions_epoch_116.csv
+│   ├── test_predictions_epoch_117.csv
+│   ├── test_predictions_epoch_118.csv
+│   ├── test_predictions_epoch_119.csv
+│   ├── test_predictions_epoch_12.csv
+│   ├── test_predictions_epoch_120.csv
+│   ├── test_predictions_epoch_121.csv
+│   ├── test_predictions_epoch_122.csv
+│   ├── test_predictions_epoch_123.csv
+│   ├── test_predictions_epoch_124.csv
+│   ├── test_predictions_epoch_13.csv
+│   ├── test_predictions_epoch_14.csv
+│   ├── test_predictions_epoch_15.csv
+│   ├── test_predictions_epoch_16.csv
+│   ├── test_predictions_epoch_17.csv
+│   ├── test_predictions_epoch_18.csv
+│   ├── test_predictions_epoch_19.csv
+│   ├── test_predictions_epoch_2.csv
+│   ├── test_predictions_epoch_20.csv
+│   ├── test_predictions_epoch_21.csv
+│   ├── test_predictions_epoch_22.csv
+│   ├── test_predictions_epoch_23.csv
+│   ├── test_predictions_epoch_24.csv
+│   ├── test_predictions_epoch_25.csv
+│   ├── test_predictions_epoch_26.csv
+│   ├── test_predictions_epoch_27.csv
+│   ├── test_predictions_epoch_28.csv
+│   ├── test_predictions_epoch_29.csv
+│   ├── test_predictions_epoch_3.csv
+│   ├── test_predictions_epoch_30.csv
+│   ├── test_predictions_epoch_31.csv
+│   ├── test_predictions_epoch_32.csv
+│   ├── test_predictions_epoch_33.csv
+│   ├── test_predictions_epoch_34.csv
+│   ├── test_predictions_epoch_35.csv
+│   ├── test_predictions_epoch_36.csv
+│   ├── test_predictions_epoch_37.csv
+│   ├── test_predictions_epoch_38.csv
+│   ├── test_predictions_epoch_39.csv
+│   ├── test_predictions_epoch_4.csv
+│   ├── test_predictions_epoch_40.csv
+│   ├── test_predictions_epoch_41.csv
+│   ├── test_predictions_epoch_42.csv
+│   ├── test_predictions_epoch_43.csv
+│   ├── test_predictions_epoch_44.csv
+│   ├── test_predictions_epoch_45.csv
+│   ├── test_predictions_epoch_46.csv
+│   ├── test_predictions_epoch_47.csv
+│   ├── test_predictions_epoch_48.csv
+│   ├── test_predictions_epoch_49.csv
+│   ├── test_predictions_epoch_5.csv
+│   ├── test_predictions_epoch_50.csv
+│   ├── test_predictions_epoch_51.csv
+│   ├── test_predictions_epoch_52.csv
+│   ├── test_predictions_epoch_53.csv
+│   ├── test_predictions_epoch_54.csv
+│   ├── test_predictions_epoch_55.csv
+│   ├── test_predictions_epoch_56.csv
+│   ├── test_predictions_epoch_57.csv
+│   ├── test_predictions_epoch_58.csv
+│   ├── test_predictions_epoch_59.csv
+│   ├── test_predictions_epoch_6.csv
+│   ├── test_predictions_epoch_60.csv
+│   ├── test_predictions_epoch_61.csv
+│   ├── test_predictions_epoch_62.csv
+│   ├── test_predictions_epoch_63.csv
+│   ├── test_predictions_epoch_64.csv
+│   ├── test_predictions_epoch_65.csv
+│   ├── test_predictions_epoch_66.csv
+│   ├── test_predictions_epoch_67.csv
+│   ├── test_predictions_epoch_68.csv
+│   ├── test_predictions_epoch_69.csv
+│   ├── test_predictions_epoch_7.csv
+│   ├── test_predictions_epoch_70.csv
+│   ├── test_predictions_epoch_71.csv
+│   ├── test_predictions_epoch_72.csv
+│   ├── test_predictions_epoch_73.csv
+│   ├── test_predictions_epoch_74.csv
+│   ├── test_predictions_epoch_75.csv
+│   ├── test_predictions_epoch_76.csv
+│   ├── test_predictions_epoch_77.csv
+│   ├── test_predictions_epoch_78.csv
+│   ├── test_predictions_epoch_79.csv
+│   ├── test_predictions_epoch_8.csv
+│   ├── test_predictions_epoch_80.csv
+│   ├── test_predictions_epoch_81.csv
+│   ├── test_predictions_epoch_82.csv
+│   ├── test_predictions_epoch_83.csv
+│   ├── test_predictions_epoch_84.csv
+│   ├── test_predictions_epoch_85.csv
+│   ├── test_predictions_epoch_86.csv
+│   ├── test_predictions_epoch_87.csv
+│   ├── test_predictions_epoch_88.csv
+│   ├── test_predictions_epoch_89.csv
+│   ├── test_predictions_epoch_9.csv
+│   ├── test_predictions_epoch_90.csv
+│   ├── test_predictions_epoch_91.csv
+│   ├── test_predictions_epoch_92.csv
+│   ├── test_predictions_epoch_93.csv
+│   ├── test_predictions_epoch_94.csv
+│   ├── test_predictions_epoch_95.csv
+│   ├── test_predictions_epoch_96.csv
+│   ├── test_predictions_epoch_97.csv
+│   ├── test_predictions_epoch_98.csv
+│   ├── test_predictions_epoch_99.csv
+│   ├── train_predictions_epoch_0.csv
+│   ├── train_predictions_epoch_1.csv
+│   ├── train_predictions_epoch_10.csv
+│   ├── train_predictions_epoch_100.csv
+│   ├── train_predictions_epoch_101.csv
+│   ├── train_predictions_epoch_102.csv
+│   ├── train_predictions_epoch_103.csv
+│   ├── train_predictions_epoch_104.csv
+│   ├── train_predictions_epoch_105.csv
+│   ├── train_predictions_epoch_106.csv
+│   ├── train_predictions_epoch_107.csv
+│   ├── train_predictions_epoch_108.csv
+│   ├── train_predictions_epoch_109.csv
+│   ├── train_predictions_epoch_11.csv
+│   ├── train_predictions_epoch_110.csv
+│   ├── train_predictions_epoch_111.csv
+│   ├── train_predictions_epoch_112.csv
+│   ├── train_predictions_epoch_113.csv
+│   ├── train_predictions_epoch_114.csv
+│   ├── train_predictions_epoch_115.csv
+│   ├── train_predictions_epoch_116.csv
+│   ├── train_predictions_epoch_117.csv
+│   ├── train_predictions_epoch_118.csv
+│   ├── train_predictions_epoch_119.csv
+│   ├── train_predictions_epoch_12.csv
+│   ├── train_predictions_epoch_120.csv
+│   ├── train_predictions_epoch_121.csv
+│   ├── train_predictions_epoch_122.csv
+│   ├── train_predictions_epoch_123.csv
+│   ├── train_predictions_epoch_124.csv
+│   ├── train_predictions_epoch_125.csv
+│   ├── train_predictions_epoch_13.csv
+│   ├── train_predictions_epoch_14.csv
+│   ├── train_predictions_epoch_15.csv
+│   ├── train_predictions_epoch_16.csv
+│   ├── train_predictions_epoch_17.csv
+│   ├── train_predictions_epoch_18.csv
+│   ├── train_predictions_epoch_19.csv
+│   ├── train_predictions_epoch_2.csv
+│   ├── train_predictions_epoch_20.csv
+│   ├── train_predictions_epoch_21.csv
+│   ├── train_predictions_epoch_22.csv
+│   ├── train_predictions_epoch_23.csv
+│   ├── train_predictions_epoch_24.csv
+│   ├── train_predictions_epoch_25.csv
+│   ├── train_predictions_epoch_26.csv
+│   ├── train_predictions_epoch_27.csv
+│   ├── train_predictions_epoch_28.csv
+│   ├── train_predictions_epoch_29.csv
+│   ├── train_predictions_epoch_3.csv
+│   ├── train_predictions_epoch_30.csv
+│   ├── train_predictions_epoch_31.csv
+│   ├── train_predictions_epoch_32.csv
+│   ├── train_predictions_epoch_33.csv
+│   ├── train_predictions_epoch_34.csv
+│   ├── train_predictions_epoch_35.csv
+│   ├── train_predictions_epoch_36.csv
+│   ├── train_predictions_epoch_37.csv
+│   ├── train_predictions_epoch_38.csv
+│   ├── train_predictions_epoch_39.csv
+│   ├── train_predictions_epoch_4.csv
+│   ├── train_predictions_epoch_40.csv
+│   ├── train_predictions_epoch_41.csv
+│   ├── train_predictions_epoch_42.csv
+│   ├── train_predictions_epoch_43.csv
+│   ├── train_predictions_epoch_44.csv
+│   ├── train_predictions_epoch_45.csv
+│   ├── train_predictions_epoch_46.csv
+│   ├── train_predictions_epoch_47.csv
+│   ├── train_predictions_epoch_48.csv
+│   ├── train_predictions_epoch_49.csv
+│   ├── train_predictions_epoch_5.csv
+│   ├── train_predictions_epoch_50.csv
+│   ├── train_predictions_epoch_51.csv
+│   ├── train_predictions_epoch_52.csv
+│   ├── train_predictions_epoch_53.csv
+│   ├── train_predictions_epoch_54.csv
+│   ├── train_predictions_epoch_55.csv
+│   ├── train_predictions_epoch_56.csv
+│   ├── train_predictions_epoch_57.csv
+│   ├── train_predictions_epoch_58.csv
+│   ├── train_predictions_epoch_59.csv
+│   ├── train_predictions_epoch_6.csv
+│   ├── train_predictions_epoch_60.csv
+│   ├── train_predictions_epoch_61.csv
+│   ├── train_predictions_epoch_62.csv
+│   ├── train_predictions_epoch_63.csv
+│   ├── train_predictions_epoch_64.csv
+│   ├── train_predictions_epoch_65.csv
+│   ├── train_predictions_epoch_66.csv
+│   ├── train_predictions_epoch_67.csv
+│   ├── train_predictions_epoch_68.csv
+│   ├── train_predictions_epoch_69.csv
+│   ├── train_predictions_epoch_7.csv
+│   ├── train_predictions_epoch_70.csv
+│   ├── train_predictions_epoch_71.csv
+│   ├── train_predictions_epoch_72.csv
+│   ├── train_predictions_epoch_73.csv
+│   ├── train_predictions_epoch_74.csv
+│   ├── train_predictions_epoch_75.csv
+│   ├── train_predictions_epoch_76.csv
+│   ├── train_predictions_epoch_77.csv
+│   ├── train_predictions_epoch_78.csv
+│   ├── train_predictions_epoch_79.csv
+│   ├── train_predictions_epoch_8.csv
+│   ├── train_predictions_epoch_80.csv
+│   ├── train_predictions_epoch_81.csv
+│   ├── train_predictions_epoch_82.csv
+│   ├── train_predictions_epoch_83.csv
+│   ├── train_predictions_epoch_84.csv
+│   ├── train_predictions_epoch_85.csv
+│   ├── train_predictions_epoch_86.csv
+│   ├── train_predictions_epoch_87.csv
+│   ├── train_predictions_epoch_88.csv
+│   ├── train_predictions_epoch_89.csv
+│   ├── train_predictions_epoch_9.csv
+│   ├── train_predictions_epoch_90.csv
+│   ├── train_predictions_epoch_91.csv
+│   ├── train_predictions_epoch_92.csv
+│   ├── train_predictions_epoch_93.csv
+│   ├── train_predictions_epoch_94.csv
+│   ├── train_predictions_epoch_95.csv
+│   ├── train_predictions_epoch_96.csv
+│   ├── train_predictions_epoch_97.csv
+│   ├── train_predictions_epoch_98.csv
+│   └── train_predictions_epoch_99.csv
+├── regular_run.slurm
+├── requirements.txt
+├── results
+│   ├── accuracy_plot.png
+│   ├── confusion_matrix.png
+│   ├── correlation
+│   │   ├── .gitkeep
+│   │   ├── attribute_correlations.csv
+│   │   ├── attribute_correlations1.csv
+│   │   ├── attribute_correlations_full.csv
+│   │   ├── attributes_correlation_graph.png
+│   │   ├── combined_scores_bar_chart.png
+│   │   ├── correlation_heatmap.png
+│   │   ├── full_data
+│   │   │   ├── attribute_correlations_full.csv
+│   │   │   ├── graph_structure.yaml
+│   │   │   ├── sorted_LUSTRE_STRIPE_SIZE_correlations.xlsx
+│   │   │   ├── sorted_LUSTRE_STRIPE_WIDTH_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS1_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS1_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS2_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS2_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS3_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS3_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS4_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS4_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_BYTES_READ_correlations.xlsx
+│   │   │   ├── sorted_POSIX_BYTES_WRITTEN_correlations.xlsx
+│   │   │   ├── sorted_POSIX_CONSEC_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_CONSEC_WRITES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_FILENOS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_FILE_ALIGNMENT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_FILE_NOT_ALIGNED_correlations.xlsx
+│   │   │   ├── sorted_POSIX_MEM_NOT_ALIGNED_correlations.xlsx
+│   │   │   ├── sorted_POSIX_OPENS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_RW_SWITCHES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEEKS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEQ_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEQ_WRITES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_0_100_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_100K_1M_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_100_1K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_1K_10K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_0_100_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_100K_1M_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_100_1K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_10K_100K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_1K_10K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STATS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE1_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE1_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE2_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE2_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE3_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE3_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE4_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE4_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_WRITES_correlations.xlsx
+│   │   │   ├── sorted_attribute_correlations_full.xlsx
+│   │   │   ├── sorted_nprocs_correlations.xlsx
+│   │   │   ├── sorted_tag_correlations.xlsx
+│   │   │   ├── training
+│   │   │   │   ├── model.pt
+│   │   │   │   └── training_metrics.png
+│   │   │   └── visualization
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS1_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS2_ACCESS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS2_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS3_ACCESS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS3_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS4_ACCESS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_ACCESS4_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_BYTES_READ.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_BYTES_WRITTEN.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_CONSEC_READS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_CONSEC_WRITES.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_FILENOS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_FILE_NOT_ALIGNED.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_MEM_NOT_ALIGNED.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_OPENS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_READS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_RW_SWITCHES.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SEEKS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SEQ_READS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SEQ_WRITES.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_0_100.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_100_1K.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_1K_10K.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_0_100.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_100_1K.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STATS.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE1_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE1_STRIDE.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE2_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE2_STRIDE.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE3_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE3_STRIDE.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE4_COUNT.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_STRIDE4_STRIDE.png
+│   │   │       ├── combined_scores_bar_chart_POSIX_WRITES.png
+│   │   │       ├── combined_scores_bar_chart_nprocs.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS1_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS2_ACCESS.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS2_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS3_ACCESS.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS3_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS4_ACCESS.png
+│   │   │       ├── correlation_heatmap_POSIX_ACCESS4_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_BYTES_READ.png
+│   │   │       ├── correlation_heatmap_POSIX_BYTES_WRITTEN.png
+│   │   │       ├── correlation_heatmap_POSIX_CONSEC_READS.png
+│   │   │       ├── correlation_heatmap_POSIX_CONSEC_WRITES.png
+│   │   │       ├── correlation_heatmap_POSIX_FILENOS.png
+│   │   │       ├── correlation_heatmap_POSIX_FILE_NOT_ALIGNED.png
+│   │   │       ├── correlation_heatmap_POSIX_MEM_NOT_ALIGNED.png
+│   │   │       ├── correlation_heatmap_POSIX_OPENS.png
+│   │   │       ├── correlation_heatmap_POSIX_READS.png
+│   │   │       ├── correlation_heatmap_POSIX_RW_SWITCHES.png
+│   │   │       ├── correlation_heatmap_POSIX_SEEKS.png
+│   │   │       ├── correlation_heatmap_POSIX_SEQ_READS.png
+│   │   │       ├── correlation_heatmap_POSIX_SEQ_WRITES.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_READ_0_100.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_READ_100_1K.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_READ_1K_10K.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_0_100.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_100K_1M.png
+│   │   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_100_1K.png
+│   │   │       ├── correlation_heatmap_POSIX_STATS.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE1_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE1_STRIDE.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE2_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE2_STRIDE.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE3_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE3_STRIDE.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE4_COUNT.png
+│   │   │       ├── correlation_heatmap_POSIX_STRIDE4_STRIDE.png
+│   │   │       ├── correlation_heatmap_POSIX_WRITES.png
+│   │   │       └── correlation_heatmap_nprocs.png
+│   │   ├── graph_structure.json
+│   │   ├── graph_structure.png
+│   │   ├── graph_structure.yaml
+│   │   ├── graph_structure1.png
+│   │   ├── graph_structure_from_json.png
+│   │   ├── sorted
+│   │   │   ├── .gitkeep
+│   │   │   ├── sorted_LUSTRE_STRIPE_WIDTH_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS1_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS1_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS2_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS2_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS3_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS3_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS4_ACCESS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_ACCESS4_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_BYTES_READ_correlations.xlsx
+│   │   │   ├── sorted_POSIX_BYTES_WRITTEN_correlations.xlsx
+│   │   │   ├── sorted_POSIX_CONSEC_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_CONSEC_WRITES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_FILE_NOT_ALIGNED_correlations.xlsx
+│   │   │   ├── sorted_POSIX_MEM_NOT_ALIGNED_correlations.xlsx
+│   │   │   ├── sorted_POSIX_OPENS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_RW_SWITCHES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEEKS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEQ_READS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SEQ_WRITES_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_0_100_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_100K_1M_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_100_1K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_READ_1K_10K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_0_100_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_100K_1M_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_100_1K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_10K_100K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_SIZE_WRITE_1K_10K_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STATS_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE1_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE1_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE2_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE2_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE3_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE3_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE4_COUNT_correlations.xlsx
+│   │   │   ├── sorted_POSIX_STRIDE4_STRIDE_correlations.xlsx
+│   │   │   ├── sorted_POSIX_WRITES_correlations.xlsx
+│   │   │   ├── sorted_attribute_correlations_full.xlsx
+│   │   │   ├── sorted_nprocs_correlations.xlsx
+│   │   │   └── sorted_tag_correlations.xlsx
+│   │   ├── top_attributes_pairplot.png
+│   │   ├── visualization
+│   │   │   ├── .gitkeep
+│   │   │   ├── combined_scores_bar_chart_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_BYTES_READ.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_CONSEC_READS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_CONSEC_WRITES.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_OPENS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_READS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_RW_SWITCHES.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SEEKS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SEQ_READS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SEQ_WRITES.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STATS.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── combined_scores_bar_chart_POSIX_WRITES.png
+│   │   │   ├── combined_scores_bar_chart_nprocs.png
+│   │   │   ├── combined_scores_bar_chart_tag.png
+│   │   │   ├── correlation_heatmap_LUSTRE_STRIPE_WIDTH.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS1_ACCESS.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS1_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS2_ACCESS.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS2_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS3_ACCESS.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS3_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS4_ACCESS.png
+│   │   │   ├── correlation_heatmap_POSIX_ACCESS4_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_BYTES_READ.png
+│   │   │   ├── correlation_heatmap_POSIX_BYTES_WRITTEN.png
+│   │   │   ├── correlation_heatmap_POSIX_CONSEC_READS.png
+│   │   │   ├── correlation_heatmap_POSIX_CONSEC_WRITES.png
+│   │   │   ├── correlation_heatmap_POSIX_FILE_NOT_ALIGNED.png
+│   │   │   ├── correlation_heatmap_POSIX_MEM_NOT_ALIGNED.png
+│   │   │   ├── correlation_heatmap_POSIX_OPENS.png
+│   │   │   ├── correlation_heatmap_POSIX_READS.png
+│   │   │   ├── correlation_heatmap_POSIX_SEEKS.png
+│   │   │   ├── correlation_heatmap_POSIX_SEQ_READS.png
+│   │   │   ├── correlation_heatmap_POSIX_SEQ_WRITES.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_READ_0_100.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_READ_100K_1M.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_READ_100_1K.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_READ_1K_10K.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_WRITE_0_100.png
+│   │   │   ├── correlation_heatmap_POSIX_SIZE_WRITE_100_1K.png
+│   │   │   ├── correlation_heatmap_POSIX_STATS.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE1_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE1_STRIDE.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE2_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE2_STRIDE.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE3_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE3_STRIDE.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE4_COUNT.png
+│   │   │   ├── correlation_heatmap_POSIX_STRIDE4_STRIDE.png
+│   │   │   ├── correlation_heatmap_POSIX_WRITES.png
+│   │   │   ├── correlation_heatmap_nprocs.png
+│   │   │   └── correlation_heatmap_tag.png
+│   │   └── visualization1
+│   │       ├── .gitkeep
+│   │       ├── combined_scores_bar_chart_LUSTRE_STRIPE_WIDTH.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS1_ACCESS.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS1_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS2_ACCESS.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS2_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS3_ACCESS.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS3_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS4_ACCESS.png
+│   │       ├── combined_scores_bar_chart_POSIX_ACCESS4_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_BYTES_READ.png
+│   │       ├── combined_scores_bar_chart_POSIX_BYTES_WRITTEN.png
+│   │       ├── combined_scores_bar_chart_POSIX_CONSEC_READS.png
+│   │       ├── combined_scores_bar_chart_POSIX_CONSEC_WRITES.png
+│   │       ├── combined_scores_bar_chart_POSIX_FILE_NOT_ALIGNED.png
+│   │       ├── combined_scores_bar_chart_POSIX_MEM_NOT_ALIGNED.png
+│   │       ├── combined_scores_bar_chart_POSIX_OPENS.png
+│   │       ├── combined_scores_bar_chart_POSIX_READS.png
+│   │       ├── combined_scores_bar_chart_POSIX_RW_SWITCHES.png
+│   │       ├── combined_scores_bar_chart_POSIX_SEEKS.png
+│   │       ├── combined_scores_bar_chart_POSIX_SEQ_READS.png
+│   │       ├── combined_scores_bar_chart_POSIX_SEQ_WRITES.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_0_100.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_100K_1M.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_100_1K.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_READ_1K_10K.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_0_100.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_100K_1M.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_100_1K.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_10K_100K.png
+│   │       ├── combined_scores_bar_chart_POSIX_SIZE_WRITE_1K_10K.png
+│   │       ├── combined_scores_bar_chart_POSIX_STATS.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE1_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE1_STRIDE.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE2_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE2_STRIDE.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE3_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE3_STRIDE.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE4_COUNT.png
+│   │       ├── combined_scores_bar_chart_POSIX_STRIDE4_STRIDE.png
+│   │       ├── combined_scores_bar_chart_POSIX_WRITES.png
+│   │       ├── combined_scores_bar_chart_nprocs.png
+│   │       ├── combined_scores_bar_chart_tag.png
+│   │       ├── correlation_heatmap_LUSTRE_STRIPE_WIDTH.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS1_ACCESS.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS1_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS2_ACCESS.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS2_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS3_ACCESS.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS3_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS4_ACCESS.png
+│   │       ├── correlation_heatmap_POSIX_ACCESS4_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_BYTES_READ.png
+│   │       ├── correlation_heatmap_POSIX_BYTES_WRITTEN.png
+│   │       ├── correlation_heatmap_POSIX_CONSEC_READS.png
+│   │       ├── correlation_heatmap_POSIX_CONSEC_WRITES.png
+│   │       ├── correlation_heatmap_POSIX_FILE_NOT_ALIGNED.png
+│   │       ├── correlation_heatmap_POSIX_MEM_NOT_ALIGNED.png
+│   │       ├── correlation_heatmap_POSIX_OPENS.png
+│   │       ├── correlation_heatmap_POSIX_READS.png
+│   │       ├── correlation_heatmap_POSIX_RW_SWITCHES.png
+│   │       ├── correlation_heatmap_POSIX_SEEKS.png
+│   │       ├── correlation_heatmap_POSIX_SEQ_READS.png
+│   │       ├── correlation_heatmap_POSIX_SEQ_WRITES.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_READ_0_100.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_READ_100K_1M.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_READ_100_1K.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_READ_1K_10K.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_0_100.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_100K_1M.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_100_1K.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_10K_100K.png
+│   │       ├── correlation_heatmap_POSIX_SIZE_WRITE_1K_10K.png
+│   │       ├── correlation_heatmap_POSIX_STATS.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE1_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE1_STRIDE.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE2_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE2_STRIDE.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE3_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE3_STRIDE.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE4_COUNT.png
+│   │       ├── correlation_heatmap_POSIX_STRIDE4_STRIDE.png
+│   │       ├── correlation_heatmap_POSIX_WRITES.png
+│   │       ├── correlation_heatmap_nprocs.png
+│   │       └── correlation_heatmap_tag.png
+│   ├── model.pt
+│   ├── test_results.txt
+│   └── training_metrics.png
+├── run.slurm
+└── src
+    ├── Correlation
+    │   ├── correlation.py
+    │   ├── correlation_full.py
+    │   ├── correlation_full1.py
+    │   ├── correlation_full2.py
+    │   ├── correlation_full3.py
+    │   ├── correlation_graph_structure1.py
+    │   ├── correlation_graph_structure2.py
+    │   ├── correlation_graph_structure3.py
+    │   ├── correlation_graph_structures.py
+    │   ├── sorted_correlations.py
+    │   ├── sorted_correlations_full1.py
+    │   ├── visualizations_correlation.py
+    │   ├── visualizations_correlation_graph.py
+    │   └── visualizations_correlation_graph1.py
+    ├── convert_to_csv.py
+    ├── correlation_full.py
+    ├── correlation_full3.py
+    ├── correlation_graph_structure3.py
+    ├── debug.py
+    ├── eval_graph_generated.py
+    ├── generate_graph52.py
+    ├── gnn_training57.py
+    ├── graph_represent.py
+    ├── mutual_information.py
+    ├── mutual_information2.py
+    ├── mutual_information_plot.py
+    ├── mutual_information_plot_heatmap.py
+    ├── preprocess_data.py
+    ├── preprocess_data1.py
+    ├── sorted_correlations_full.py
+    ├── test.py
+    ├── threshold_calculator.py
+    └── visualizations_correlation_full.py
