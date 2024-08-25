@@ -49,3 +49,69 @@ High-Performance Computing (HPC) applications often suffer from I/O performance 
 2.  **Install dependencies**:
    ```bash
    pip install -r requirements.txt```
+3.  **(Optional) To run the project in a Docker container**:
+   ```bash
+   docker-compose up
+   ```
+## Usage
+
+### 1. Converting Darshan Log Files to CSV
+
+Use the `convert_to_csv.py` script to convert Darshan log files to CSV format:
+```bash
+python convert_to_csv.py --input-dir /path/to/darshan/logs --output-dir /path/to/output/csvs
+```
+
+### 2. Generating Graph Structures
+
+Generate graph structures from the converted CSV files:
+```bash
+python generate_graph.py --input-csv /path/to/csv --output-graph /path/to/output/graphs
+```
+
+### 3. Training the GNN Model
+
+Train the GNN model using the prepared graph data:
+```bash
+python train_gnn.py --config /path/to/config.yaml   
+```
+
+
+## Project Structure
+
+- `src/`: Contains the source code for data processing, graph generation, and GNN training.
+- `configs/`: Configuration files for different stages of the project.
+- `notebooks/`: Jupyter notebooks for exploratory data analysis and experiments.
+- `CSVs/`: Directory containing CSV files generated from Darshan logs.
+- `graphs/`: Directory containing graph structures ready for GNN input.
+- `models/`: Trained GNN models and their checkpoints.
+- `images/`: Images and visualizations used in the project.
+
+## Results
+
+### Performance Metrics
+
+- **Train Accuracy**: 50.41%
+- **Test Accuracy**: 51.31%
+- **Train RMSE**: 0.9509
+- **Test RMSE**: 0.9429
+
+![Training Accuracy](path_to_your_image)
+
+### Model Interpretability
+
+We utilized SHAP values to interpret the model's predictions and understand the contribution of different features to the I/O performance diagnosis.
+
+![SHAP Values](path_to_your_image)
+
+## Contributing
+
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Acknowledgements
+
+This project was developed as part of the Google Summer of Code (GSoC) 2024. Special thanks to the mentors and the open-source community for their support and guidance throughout the project.
