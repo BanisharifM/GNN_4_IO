@@ -1,0 +1,33 @@
+2024-08-04 16:04:20,561 - INFO - Epoch 1, Train Loss: 1.5212, Train RMSE: 1.0282, Test RMSE: 1.0267, Train Acc: 0.4591, Test Acc: 0.4551
+2024-08-04 18:32:36,656 - INFO - Epoch 2, Train Loss: 1.2386, Train RMSE: 0.9238, Test RMSE: 0.9233, Train Acc: 0.4997, Test Acc: 0.4972
+2024-08-04 20:06:41,466 - INFO - Epoch 3, Train Loss: 1.2285, Train RMSE: 0.9249, Test RMSE: 0.9217, Train Acc: 0.4928, Test Acc: 0.4924
+2024-08-04 21:35:04,634 - INFO - Epoch 4, Train Loss: 1.2178, Train RMSE: 0.9448, Test RMSE: 0.9430, Train Acc: 0.5142, Test Acc: 0.5131
+2024-08-04 23:08:00,636 - INFO - Epoch 5, Train Loss: 1.2100, Train RMSE: 0.9925, Test RMSE: 0.9921, Train Acc: 0.4884, Test Acc: 0.4863
+2024-08-05 01:22:26,414 - INFO - Epoch 6, Train Loss: 1.2052, Train RMSE: 0.9905, Test RMSE: 0.9889, Train Acc: 0.4958, Test Acc: 0.4937
+2024-08-05 04:31:21,143 - INFO - Epoch 7, Train Loss: 1.2009, Train RMSE: 0.9511, Test RMSE: 0.9498, Train Acc: 0.5122, Test Acc: 0.5104
+2024-08-05 05:58:43,104 - INFO - Epoch 8, Train Loss: 1.1994, Train RMSE: 0.9493, Test RMSE: 0.9470, Train Acc: 0.5153, Test Acc: 0.5139
+2024-08-05 07:23:32,203 - INFO - Epoch 9, Train Loss: 1.1984, Train RMSE: 0.9533, Test RMSE: 0.9519, Train Acc: 0.5135, Test Acc: 0.5119
+2024-08-05 08:51:13,337 - INFO - Epoch 10, Train Loss: 1.1960, Train RMSE: 0.9473, Test RMSE: 0.9460, Train Acc: 0.5175, Test Acc: 0.5160
+2024-08-05 10:20:30,094 - INFO - Epoch 11, Train Loss: 1.1936, Train RMSE: 0.9324, Test RMSE: 0.9285, Train Acc: 0.5249, Test Acc: 0.5253
+2024-08-05 11:45:26,010 - INFO - Epoch 12, Train Loss: 1.1930, Train RMSE: 0.9630, Test RMSE: 0.9610, Train Acc: 0.5131, Test Acc: 0.5122
+2024-08-05 13:11:38,101 - INFO - Epoch 13, Train Loss: 1.1897, Train RMSE: 0.9355, Test RMSE: 0.9317, Train Acc: 0.5275, Test Acc: 0.5277
+2024-08-05 14:40:27,892 - INFO - Epoch 14, Train Loss: 1.1889, Train RMSE: 0.9421, Test RMSE: 0.9395, Train Acc: 0.5225, Test Acc: 0.5214
+2024-08-05 16:07:38,601 - INFO - Epoch 15, Train Loss: 1.1857, Train RMSE: 0.9389, Test RMSE: 0.9362, Train Acc: 0.5280, Test Acc: 0.5282
+2024-08-05 17:35:19,675 - INFO - Epoch 16, Train Loss: 1.1844, Train RMSE: 0.9235, Test RMSE: 0.9204, Train Acc: 0.5280, Test Acc: 0.5280
+2024-08-05 19:04:23,670 - INFO - Epoch 17, Train Loss: 1.1827, Train RMSE: 0.9534, Test RMSE: 0.9530, Train Acc: 0.5185, Test Acc: 0.5168
+2024-08-05 20:30:47,724 - INFO - Epoch 18, Train Loss: 1.1804, Train RMSE: 0.9301, Test RMSE: 0.9282, Train Acc: 0.5351, Test Acc: 0.5346
+2024-08-05 21:56:45,218 - INFO - Epoch 19, Train Loss: 1.1779, Train RMSE: 0.9218, Test RMSE: 0.9182, Train Acc: 0.5325, Test Acc: 0.5326
+2024-08-05 23:21:45,609 - INFO - Epoch 20, Train Loss: 1.1786, Train RMSE: 0.9240, Test RMSE: 0.9218, Train Acc: 0.5419, Test Acc: 0.5421
+2024-08-06 00:49:53,554 - INFO - Epoch 21, Train Loss: 1.1770, Train RMSE: 0.9193, Test RMSE: 0.9168, Train Acc: 0.5337, Test Acc: 0.5332
+2024-08-06 02:16:50,620 - INFO - Epoch 22, Train Loss: 1.1742, Train RMSE: 0.9393, Test RMSE: 0.9376, Train Acc: 0.5354, Test Acc: 0.5340
+2024-08-06 03:45:42,554 - INFO - Epoch 23, Train Loss: 1.1728, Train RMSE: 0.9171, Test RMSE: 0.9145, Train Acc: 0.5444, Test Acc: 0.5432
+2024-08-06 05:14:43,170 - INFO - Epoch 24, Train Loss: 1.1721, Train RMSE: 0.9323, Test RMSE: 0.9290, Train Acc: 0.5384, Test Acc: 0.5377
+2024-08-06 06:39:58,964 - INFO - Epoch 25, Train Loss: 1.1705, Train RMSE: 0.9533, Test RMSE: 0.9533, Train Acc: 0.5290, Test Acc: 0.5268
+2024-08-06 08:07:50,207 - INFO - Epoch 26, Train Loss: 1.1701, Train RMSE: 0.9472, Test RMSE: 0.9455, Train Acc: 0.5328, Test Acc: 0.5316
+2024-08-06 09:33:58,470 - INFO - Epoch 27, Train Loss: 1.1694, Train RMSE: 0.9179, Test RMSE: 0.9157, Train Acc: 0.5330, Test Acc: 0.5325
+2024-08-06 10:56:19,197 - INFO - Epoch 28, Train Loss: 1.1698, Train RMSE: 0.9183, Test RMSE: 0.9153, Train Acc: 0.5253, Test Acc: 0.5253
+2024-08-06 12:20:08,195 - INFO - Epoch 29, Train Loss: 1.1680, Train RMSE: 0.9169, Test RMSE: 0.9147, Train Acc: 0.5490, Test Acc: 0.5480
+2024-08-06 13:47:17,869 - INFO - Epoch 30, Train Loss: 1.1674, Train RMSE: 0.9125, Test RMSE: 0.9109, Train Acc: 0.5498, Test Acc: 0.5484
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 4311517.0 ON gpuc04 CANCELLED AT 2024-08-06T14:21:14 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 4311517 ON gpuc04 CANCELLED AT 2024-08-06T14:21:14 DUE TO TIME LIMIT ***

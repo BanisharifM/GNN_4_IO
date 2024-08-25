@@ -4,4 +4,5 @@ CSVs/train_data.csv
 CSVs/val_data.csv
 Graphs/Graph*/*.csv
 Graphs/Graph*/*.parquet
+Graphs/Graph*/*/*.csv
 

@@ -27,7 +27,11 @@ echo "Using the following GPUs:"
 nvidia-smi
 
 # Run your Python script with the absolute path to Python executable
-srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/generate_graph51.py
+# srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/generate_graph.py
+srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/gnn_training57.py
+# srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/mutual_information_plot.py
+# srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/mutual_information_plot_heatmap.py
+#srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/mutual_information2.py
 
 # Print job end time
 echo "Job ended on $(date)"
