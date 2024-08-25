@@ -1,6 +1,7 @@
 # Graph4IO: Heterogeneous Graph Neural Networks for I/O Performance Bottleneck Diagnosis
 
-![Graph4IO](path_to_your_image) 
+![Screenshot 2024-08-25 at 4 54 34 PM](https://github.com/user-attachments/assets/aa194384-24b2-4fe0-a373-cc89076a750c)
+
 
 ## Overview
 
@@ -45,10 +46,12 @@ High-Performance Computing (HPC) applications often suffer from I/O performance 
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/BanisharifM/Graph4IO.git
-   cd Graph4IO```
+   cd Graph4IO
+   ```
 2. **Install dependencies**:
    ```bash
-   pip install -r requirements.txt```
+   pip install -r requirements.txt
+   ```
 3.  **(Optional) To run the project in a Docker container**:
    ```bash
    docker-compose up
@@ -97,17 +100,12 @@ python train_gnn.py --config /path/to/config.yaml
 - **Train RMSE**: 0.9509
 - **Test RMSE**: 0.9429
 
-![Training Accuracy](path_to_your_image)
+// ![Training Accuracy](path_to_your_image)
+![rmse_chart](https://github.com/user-attachments/assets/3ceb9fc1-89b4-44c9-af06-fb01483ba7ef)
+![r2_chart](https://github.com/user-attachments/assets/6386e975-4943-468f-9ddd-86cbed305a33)
+![mae_chart](https://github.com/user-attachments/assets/874b2b3f-4b6c-4c2a-8eaa-e0b40fa32a7a)
+![loss_chart](https://github.com/user-attachments/assets/9d85a25d-125f-4334-9dd1-b39c9e911a56)
 
-### Model Interpretability
-
-We utilized SHAP values to interpret the model's predictions and understand the contribution of different features to the I/O performance diagnosis.
-
-![SHAP Values](path_to_your_image)
-
-## Contributing
-
-Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
 
 ## License
 
