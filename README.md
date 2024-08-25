@@ -45,4 +45,7 @@ High-Performance Computing (HPC) applications often suffer from I/O performance 
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/BanisharifM/Graph4IO.git
-   cd Graph4IO
+   cd Graph4IO```
+2.  **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt```
