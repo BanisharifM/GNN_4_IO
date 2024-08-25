@@ -46,13 +46,14 @@ High-Performance Computing (HPC) applications often suffer from I/O performance 
    ```bash
    git clone https://github.com/BanisharifM/Graph4IO.git
    cd Graph4IO```
-2.  **Install dependencies**:
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt```
 3.  **(Optional) To run the project in a Docker container**:
    ```bash
    docker-compose up
    ```
+
 ## Usage
 
 ### 1. Converting Darshan Log Files to CSV
