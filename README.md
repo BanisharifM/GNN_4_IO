@@ -95,14 +95,17 @@ python train_gnn.py --config /path/to/config.yaml
 
 ### Performance Metrics
 
-- **Train Accuracy**: 50.41%
-- **Test Accuracy**: 51.31%
-- **Train RMSE**: 0.9509
-- **Test RMSE**: 0.9429
+- **Train Loss**: 0.5751
+- **Train RMSE**: 0.7927
+- **Test RMSE**: 0.7907
+- **Train MAE**: 0.5640
+- **Test MAE**: 0.5646
+- **Train R²**: 0.3395
+- **Test R²**: 0.3400
 
 ![loss_chart](https://github.com/user-attachments/assets/9d85a25d-125f-4334-9dd1-b39c9e911a56)
-![mae_chart](https://github.com/user-attachments/assets/874b2b3f-4b6c-4c2a-8eaa-e0b40fa32a7a)
 ![rmse_chart](https://github.com/user-attachments/assets/3ceb9fc1-89b4-44c9-af06-fb01483ba7ef)
+![mae_chart](https://github.com/user-attachments/assets/874b2b3f-4b6c-4c2a-8eaa-e0b40fa32a7a)
 ![r2_chart](https://github.com/user-attachments/assets/6386e975-4943-468f-9ddd-86cbed305a33)
 
 
@@ -113,3 +116,6 @@ This project is licensed under the MIT License.
 ## Acknowledgements
 
 This project was developed as part of the Google Summer of Code (GSoC) 2024. Special thanks to the mentors and the open-source community for their support and guidance throughout the project.
+
+This project was developed as part of the Google Summer of Code (GSoC) 2024. Special thanks to the mentors [Bin Dong](https://github.com/BinDong314) and [Suren Byna](https://github.com/sbyna) and the open-source community for their support and guidance throughout the project.
+
