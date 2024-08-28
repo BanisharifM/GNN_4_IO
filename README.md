@@ -117,7 +117,7 @@ python train_gnn.py --config /path/to/config.yaml
     <br />
     <a href="https://github.com/banisharifm" style="text-decoration: none; color: #000; font-size: 16px; font-weight: bold;">Mahdi Banisharifdehkordi</a>
     <br />
-    <span style="font-size: 14px !important; color: #555 !important;">PhD student in Computer Science<br/>Iowa State University</span>
+    <span style="color: #555 !important;">PhD student in Computer Science<br/>Iowa State University</span>
 </div>
 
 </div>
