@@ -112,12 +112,12 @@ python train_gnn.py --config /path/to/config.yaml
 
 <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
 
-<a href="https://github.com/banisharifm" style="text-decoration: none; color: initial; text-align: center;">
+<a href="https://github.com/banisharifm" style="text-decoration: none !important; color: inherit !important; text-align: center;">
     <img src="https://avatars.githubusercontent.com/u/41099498?v=4" width="100" style="border-radius: 50%; padding-top: 10px;" alt="BanisharifM"/>
     <br />
-    <span style="font-size: 16px; font-weight: bold; color: #000;">Mahdi Banisharif</span>
+    <span style="font-size: 16px !important; font-weight: bold !important; color: #000 !important;">Mahdi Banisharif</span>
     <br />
-    <span style="font-size: 14px; color: #555;">PhD student in Computer Science<br/>Iowa State University</span>
+    <span style="font-size: 14px !important; color: #555 !important;">PhD student in Computer Science<br/>Iowa State University</span>
 </a>
 
 </div>
