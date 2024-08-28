@@ -108,6 +108,20 @@ python train_gnn.py --config /path/to/config.yaml
 ![mae_chart](https://github.com/user-attachments/assets/874b2b3f-4b6c-4c2a-8eaa-e0b40fa32a7a)
 ![r2_chart](https://github.com/user-attachments/assets/6386e975-4943-468f-9ddd-86cbed305a33)
 
+## Contributors
+
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+
+<a href="https://github.com/banisharifm" style="text-decoration: none; color: inherit; text-align: center;">
+    <img src="https://avatars.githubusercontent.com/u/41099498?v=4" width="100" style="border-radius: 50%; padding-top: 10px;" alt="BanisharifM"/>
+    <br />
+    <span style="font-size: 16px; font-weight: bold;">Mahdi Banisharif</span>
+    <br />
+    <span style="font-size: 14px; color: #555;">PhD student in Computer Science<br/>Iowa State University</span>
+</a>
+
+</div>
+
 
 ## License
 
@@ -115,7 +129,10 @@ This project is licensed under the MIT License.
 
 ## Acknowledgements
 
-This project was developed as part of the Google Summer of Code (GSoC) 2024. Special thanks to the mentors and the open-source community for their support and guidance throughout the project.
+This project was developed as part of the Google Summer of Code (GSoC) 2024.
 
-This project was developed as part of the Google Summer of Code (GSoC) 2024. Special thanks to the mentors [Bin Dong](https://github.com/BinDong314) and [Suren Byna](https://github.com/sbyna) and the open-source community for their support and guidance throughout the project.
+Special thanks to my supervisor [Ali Jannesari](https://www.cs.iastate.edu/jannesar) at Iowa State University for his continuous support and guidance throughout this project.
+
+Additional thanks to the mentors [Bin Dong](https://github.com/BinDong314) and [Suren Byna](https://github.com/sbyna), as well as the open-source community for their invaluable contributions.
+
 
