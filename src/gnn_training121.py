@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
-from torch_geometric.nn import GCNConv, global_mean_pool
+from torch_geometric.nn import GCNConv, global_mean_pool, GATConv, global_max_pool
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import matplotlib.pyplot as plt
 import logging
@@ -15,6 +15,8 @@ import signal
 import sys
 from sklearn.model_selection import train_test_split
 
+base_dir = "Graphs/Graph121"
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -24,8 +26,8 @@ class EnhancedGNNWithEmbeddings(torch.nn.Module):
         self.conv1 = GCNConv(num_node_features, 128)
         self.conv2 = GCNConv(128, 256)
         self.conv3 = GCNConv(256, 128)
-        self.conv4 = GCNConv(128, 64)
-        self.attention_conv = GraphAttentionConv(64, 64)
+        self.conv4 = GCNConv(128, 64)  
+        self.attention_conv = GATConv(64, 64)
 
         # Fully connected layers for final prediction
         self.fc1 = torch.nn.Linear(128, 64)
@@ -46,6 +48,9 @@ class EnhancedGNNWithEmbeddings(torch.nn.Module):
         x = self.dropout(x)
 
         x = self.conv3(x, edge_index, edge_weight=edge_weight)
+        x = F.relu(x)
+
+        x = self.conv4(x, edge_index, edge_weight=edge_weight)
         x = F.relu(x)
 
         # Attention layer
@@ -161,20 +166,28 @@ def load_tags(tags_file):
     return tags_dict
 
 # Define paths to the data files
-train_file_path = "Graphs/Graph120/train_graphs.csv"
-test_file_path = "Graphs/Graph120/test_graphs.csv"
-train_tags_file = "Graphs/Graph120/train_tags.csv"
-test_tags_file = "Graphs/Graph120/test_tags.csv"
+train_file_path = os.path.join(base_dir, "train_graphs.csv")
+test_file_path = os.path.join(base_dir, "test_graphs.csv")
+train_tags_file = os.path.join(base_dir, "train_tags.csv")
+test_tags_file = os.path.join(base_dir, "test_tags.csv")
 
 # Load the data
 train_data = load_data(train_file_path)
 test_data = load_data(test_file_path)
+tags_train = load_tags(train_tags_file)
+tags_test = load_tags(test_tags_file)
 
 # Split train_data into 90% train_data and 10% val_data (validation)
 train_data, val_data = train_test_split(train_data, test_size=0.1, random_state=42)
 
-tags_train = load_tags(train_tags_file)
-tags_test = load_tags(test_tags_file)
+# Split tags_train into 90% for training and 10% for validation
+train_indices = [data.graph_index for data in train_data]
+val_indices = [data.graph_index for data in val_data]
+
+tags_val = {idx: tags_train[idx] for idx in val_indices}
+tags_train = {idx: tags_train[idx] for idx in train_indices}
+
+
 
 # Hyperparameters
 num_epochs = 100
@@ -194,40 +207,68 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=
 scheduler = ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=10, min_lr=1e-6)
 criterion = torch.nn.L1Loss()
 
-# Checkpointing function
-def save_checkpoint(epoch, model, optimizer, scheduler, train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores, checkpoint_path):
+# Updated checkpointing function to save model, optimizer, and scheduler states
+def save_checkpoint(epoch, model, optimizer, scheduler, train_losses, val_losses, train_rmse_scores, val_rmse_scores, test_rmse_scores, train_mae_scores, val_mae_scores, test_mae_scores, train_r2_scores, val_r2_scores, test_r2_scores, checkpoint_path):
     torch.save({
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
         'scheduler_state_dict': scheduler.state_dict(),
         'train_losses': train_losses,
+        'val_losses': val_losses,
         'train_rmse_scores': train_rmse_scores,
+        'val_rmse_scores': val_rmse_scores,
         'test_rmse_scores': test_rmse_scores,
         'train_mae_scores': train_mae_scores,
+        'val_mae_scores': val_mae_scores,
         'test_mae_scores': test_mae_scores,
         'train_r2_scores': train_r2_scores,
+        'val_r2_scores': val_r2_scores,
         'test_r2_scores': test_r2_scores,
     }, checkpoint_path)
 
-def load_checkpoint(checkpoint_path, model, optimizer, scheduler):
+# Updated function to load model, optimizer, and scheduler states safely
+def load_checkpoint(checkpoint_path, model, optimizer=None, scheduler=None):
     if os.path.exists(checkpoint_path):
-        checkpoint = torch.load(checkpoint_path)  # Use the default (weights_only=False)
-        model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-        epoch = checkpoint['epoch']
-        train_losses = checkpoint['train_losses']
-        train_rmse_scores = checkpoint['train_rmse_scores']
-        test_rmse_scores = checkpoint['test_rmse_scores']
-        train_mae_scores = checkpoint['train_mae_scores']
-        test_mae_scores = checkpoint['test_mae_scores']
-        train_r2_scores = checkpoint['train_r2_scores']
-        test_r2_scores = checkpoint['test_r2_scores']
+        checkpoint = torch.load(checkpoint_path)
+        
+        # Load model state dict with partial matching (handles new layers)
+        model_state_dict = model.state_dict()
+        pretrained_dict = {k: v for k, v in checkpoint['model_state_dict'].items() if k in model_state_dict and v.size() == model_state_dict[k].size()}
+        model_state_dict.update(pretrained_dict)
+        model.load_state_dict(model_state_dict)
+
+        # Load optimizer state if matching
+        if optimizer and 'optimizer_state_dict' in checkpoint:
+            try:
+                optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            except ValueError as e:
+                logging.warning(f"Optimizer state could not be loaded due to a mismatch: {e}")
+                logging.warning("Optimizer state will be reset. Continuing with the new optimizer settings.")
+                # You can reset the optimizer if needed, or skip the optimizer state
+
+        # Load scheduler state if matching
+        if scheduler and 'scheduler_state_dict' in checkpoint:
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+
+        # Retrieve the saved epoch and losses
+        epoch = checkpoint.get('epoch', 0)
+        train_losses = checkpoint.get('train_losses', [])
+        val_losses = checkpoint.get('val_losses', [])
+        train_rmse_scores = checkpoint.get('train_rmse_scores', [])
+        val_rmse_scores = checkpoint.get('val_rmse_scores', [])
+        test_rmse_scores = checkpoint.get('test_rmse_scores', [])
+        train_mae_scores = checkpoint.get('train_mae_scores', [])
+        val_mae_scores = checkpoint.get('val_mae_scores', [])
+        test_mae_scores = checkpoint.get('test_mae_scores', [])
+        train_r2_scores = checkpoint.get('train_r2_scores', [])
+        val_r2_scores = checkpoint.get('val_r2_scores', [])
+        test_r2_scores = checkpoint.get('test_r2_scores', [])
+
         logging.info(f'Loaded checkpoint from {checkpoint_path}, starting at epoch {epoch + 1}')
-        return epoch, train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores
+        return epoch, train_losses, val_losses, train_rmse_scores, val_rmse_scores, test_rmse_scores, train_mae_scores, val_mae_scores, test_mae_scores, train_r2_scores, val_r2_scores, test_r2_scores
     else:
-        return 0, [], [], [], [], [], [], []
+        return 0, [], [], [], [], [], [], [], [], [], [], []
 
 # Validation function similar to the evaluate function
 def evaluate_validation(model, val_loader, epoch, update_logs_and_charts, tags_val):
@@ -237,7 +278,9 @@ def evaluate_validation(model, val_loader, epoch, update_logs_and_charts, tags_v
 
     with torch.no_grad():
         for data in val_loader:
-            output = model(data).view(-1)
+            output, _ = model(data)  # Unpack the tuple, output is the first element
+            output = output.view(-1)  # Then apply .view() to the output
+            # output = model(data).view(-1)
             graph_index = int(data.batch[0])
             target_tag = tags_val.get(graph_index)
             if target_tag is None:
@@ -267,7 +310,8 @@ def train(model, train_loader, val_loader, test_loader, criterion, optimizer, sc
             optimizer.zero_grad()
 
             # Forward pass
-            output = model(data).view(-1)  # Flatten the output, size [batch_size]
+            output, _ = model(data)  # Unpack the tuple, output is the first element
+            output = output.view(-1)  # Then apply .view() to the output
 
             # Get the graph indices and retrieve the corresponding tags for all graphs in the batch
             graph_indices = data.batch.unique().tolist()
@@ -322,12 +366,12 @@ def train(model, train_loader, val_loader, test_loader, criterion, optimizer, sc
         save_plots(train_losses, val_losses, train_rmse_scores, val_rmse_scores, test_rmse_scores, train_mae_scores, val_mae_scores, test_mae_scores, train_r2_scores, val_r2_scores, test_r2_scores)
 
     # Save the model at the end of training
-    torch.save(model.state_dict(), os.path.join('Graphs/Graph120', 'best_model.pt'))
+    torch.save(model.state_dict(), os.path.join(base_dir, 'best_model.pt'))
 
     return train_losses, val_losses, train_rmse_scores, val_rmse_scores, test_rmse_scores, train_mae_scores, val_mae_scores, test_mae_scores, train_r2_scores, val_r2_scores, test_r2_scores
 
 def save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores):
-    plot_dir = 'Graphs/Graph107'
+    plot_dir = base_dir
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
 
@@ -375,8 +419,10 @@ def evaluate(model, loader, epoch, phase, update_logs_and_charts, tags_dict):
 
     with torch.no_grad():
         for data in loader:
-            output = model(data).view(-1)  # The model outputs one value per graph, so we flatten it
-
+            # output = model(data).view(-1)  # The model outputs one value per graph, so we flatten it
+            output, _ = model(data)  # Unpack the tuple, output is the first element
+            output = output.view(-1)  # Then apply .view() to the output
+            
             # Get graph indices for the batch and the corresponding tags
             graph_indices = data.batch.unique().tolist()
             target_tags = [tags_dict.get(graph_index) for graph_index in graph_indices]
@@ -410,14 +456,14 @@ def evaluate(model, loader, epoch, phase, update_logs_and_charts, tags_dict):
 def signal_handler(sig, frame):
     print('Graceful termination initiated...')
     save_checkpoint(epoch, model, optimizer, scheduler, train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores, checkpoint_path)
-    torch.save(model.state_dict(), os.path.join('Graphs/Graph120', 'best_model.pt'))
+    torch.save(model.state_dict(), os.path.join(base_dir, 'best_model.pt'))
     sys.exit(0)
 
 # Register signal handler
 signal.signal(signal.SIGINT, signal_handler)
 
 # Define checkpoint path
-checkpoint_path = os.path.join('Graphs/Graph120', 'checkpoint.pt')
+checkpoint_path = os.path.join(base_dir, 'checkpoint.pt')
 
 # Variable to control logging and chart updates
 update_logs_and_charts = False  # Set to False to update only at the end
