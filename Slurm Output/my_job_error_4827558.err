@@ -1,0 +1,15 @@
+2024-09-13 01:12:25,096 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 287, in <module>
+[rank0]:     train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 214, in train_ddp
+[rank0]:     model = DDP(model, device_ids=[rank])
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/parallel/distributed.py", line 822, in __init__
+[rank0]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank0]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank0]: torch.distributed.DistBackendError: NCCL error in: ../torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:2044, internal error - please report this issue to the NCCL developers, NCCL version 2.20.5
+[rank0]: ncclInternalError: Internal check failed.
+[rank0]: Last error:
+[rank0]: Bootstrap : no socket interface found
+srun: error: gpub020: task 0: Exited with exit code 1

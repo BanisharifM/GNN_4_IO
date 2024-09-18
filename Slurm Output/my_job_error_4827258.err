@@ -1,0 +1,9 @@
+2024-09-13 00:17:10,485 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-13 00:17:13,072 - INFO - Epoch 1, Train Loss: 0.9755
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 285, in <module>
+[rank0]:     train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 244, in train_ddp
+[rank0]:     save_checkpoint(epoch, model, optimizer, scheduler, [train_loss], [], [], [], [], [], checkpoint_path)
+[rank0]: TypeError: save_checkpoint() missing 1 required positional argument: 'checkpoint_path'
+srun: error: gpuc03: task 0: Exited with exit code 1

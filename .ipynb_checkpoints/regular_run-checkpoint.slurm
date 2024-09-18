@@ -1,33 +1,43 @@
 #!/bin/bash
-#SBATCH --job-name=my_job_name              # Job name
-#SBATCH --output=my_job_output_%j.out       # Output file (%j expands to jobId)
-#SBATCH --error=my_job_error_%j.err         # Error file (%j expands to jobId)
-#SBATCH --ntasks=1                          # Number of tasks (usually 1 for GPU jobs)
-#SBATCH --cpus-per-task=16                  # Number of CPU cores per task (adjust as needed)
-#SBATCH --mem=128g                           # Total memory per node (adjust as needed)
-#SBATCH --time=48:00:00                     # Maximum time limit hrs:min:sec
-#SBATCH --partition=gpuA100x8               # Partition name
-#SBATCH --gres=gpu:1                        # Number of GPUs per node
-#SBATCH --account=bdau-delta-gpu            # Account name
+#SBATCH --job-name=GNN_Training
+#SBATCH --output=my_job_output_%j.out
+#SBATCH --error=my_job_error_%j.err
+#SBATCH --nodes=1                           
+#SBATCH --ntasks=1                          
+#SBATCH --ntasks-per-node=1                 
+#SBATCH --cpus-per-task=8                   
+#SBATCH --mem=128g                           
+#SBATCH --time=24:00:00                      
+#SBATCH --partition=gpuA100x8               
+#SBATCH --gres=gpu:1                        
+#SBATCH --account=bdau-delta-gpu            
 
 # Load necessary modules
 module load python/3.11.6
-module load cuda/11.8                       # Load CUDA 11.8
+module load cuda/11.8
 
 # Activate your virtual environment
-source ~/env4/bin/activate
+source /u/mbanisharifdehkordi/env4/bin/activate
 
-# Verify Python executable
-which python
+# Set environment variables for distributed training
+export WORLD_SIZE=$SLURM_NTASKS
+export MASTER_ADDR=localhost  # Use localhost for single node
+export MASTER_PORT=29511      # Use a different, unused port
+export RANK=$SLURM_PROCID
+export LOCAL_RANK=$SLURM_LOCALID
 
-# Print some information about the job
-echo "Job started on $(date)"
-echo "Running on node $(hostname)"
-echo "Using the following GPUs:"
-nvidia-smi
+# NCCL settings
+export NCCL_SOCKET_IFNAME=eth0
+export NCCL_IB_DISABLE=1
+export NCCL_NET_GDR_LEVEL=0
+export NCCL_DEBUG=INFO
 
-# Run your Python script with the absolute path to Python executable
-srun ~/env4/bin/python /u/mbanisharifdehkordi/Github/Darshan-logs-Processing/generate_graph51.py
+# Debugging output
+echo "WORLD_SIZE: $WORLD_SIZE"
+echo "MASTER_ADDR: $MASTER_ADDR"
+echo "MASTER_PORT: $MASTER_PORT"
+echo "RANK: $RANK"
+echo "LOCAL_RANK: $LOCAL_RANK"
 
-# Print job end time
-echo "Job ended on $(date)"
+# Run the Python script with srun
+srun --export=ALL python /u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py

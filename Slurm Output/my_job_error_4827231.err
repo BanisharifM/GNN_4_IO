@@ -1,0 +1,34 @@
+2024-09-13 00:11:21,711 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 281, in <module>
+[rank0]:     train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 222, in train_ddp
+[rank0]:     output = model(data).view(-1)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/parallel/distributed.py", line 1636, in forward
+[rank0]:     else self._run_ddp_forward(*inputs, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/parallel/distributed.py", line 1454, in _run_ddp_forward
+[rank0]:     return self.module(*inputs, **kwargs)  # type: ignore[index]
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 36, in forward
+[rank0]:     x = self.conv1(x, edge_index, edge_weight=edge_weight)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 260, in forward
+[rank0]:     x = self.lin(x)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch_geometric/nn/dense/linear.py", line 147, in forward
+[rank0]:     return F.linear(x, self.weight, self.bias)
+[rank0]: RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument mat2 in method wrapper_CUDA_mm)
+srun: error: gpuc03: task 0: Exited with exit code 1

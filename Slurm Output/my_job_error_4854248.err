@@ -1,0 +1,15 @@
+2024-09-17 23:30:23,165 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-17 23:30:27,201 - INFO - Epoch 1, Train Loss: 0.9870, Train RMSE: 0.2973, Test RMSE: 0.2957, Train R²: -194.1275, Test R²: -200.1358
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py", line 336, in <module>
+[rank0]:     train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=True)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py", line 292, in train_ddp
+[rank0]:     torch.save(model.module.state_dict(), os.path.join(f'Graphs/{plot_dir}', 'best_model.pt'))
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/serialization.py", line 651, in save
+[rank0]:     with _open_zipfile_writer(f) as opened_zipfile:
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/serialization.py", line 525, in _open_zipfile_writer
+[rank0]:     return container(name_or_buffer)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/serialization.py", line 496, in __init__
+[rank0]:     super().__init__(torch._C.PyTorchFileWriter(self.name))
+[rank0]: RuntimeError: Parent directory Graphs/Graphs/Graph104 does not exist.
+srun: error: gpuc01: task 0: Exited with exit code 1

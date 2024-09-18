@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 215, in <module>
+    world_size = int(os.environ['WORLD_SIZE'])
+  File "/sw/external/python/anaconda3_gpu/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'WORLD_SIZE'
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 215, in <module>
+    world_size = int(os.environ['WORLD_SIZE'])
+  File "/sw/external/python/anaconda3_gpu/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'WORLD_SIZE'
+srun: error: gpuc02: task 1: Exited with exit code 1
+srun: error: gpuc02: task 0: Exited with exit code 1
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 215, in <module>
+    world_size = int(os.environ['WORLD_SIZE'])
+  File "/sw/external/python/anaconda3_gpu/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'WORLD_SIZE'
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 215, in <module>
+    world_size = int(os.environ['WORLD_SIZE'])
+  File "/sw/external/python/anaconda3_gpu/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'WORLD_SIZE'
+srun: error: gpuc03: tasks 2-3: Exited with exit code 1

@@ -1,0 +1,5 @@
+2024-09-13 02:04:38,716 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-13 02:04:41,780 - INFO - Epoch 1, Train Loss: 1.0547
+2024-09-13 02:04:42,984 - INFO - Epoch 2, Train Loss: 0.1389
+2024-09-13 02:04:44,113 - INFO - Epoch 3, Train Loss: 0.1193
+2024-09-13 02:04:45,254 - INFO - Epoch 4, Train Loss: 0.0910

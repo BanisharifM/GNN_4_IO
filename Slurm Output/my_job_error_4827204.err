@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training103.py", line 212, in <module>
+    world_size = int(os.environ['WORLD_SIZE'])
+  File "/sw/external/python/anaconda3_gpu/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'WORLD_SIZE'

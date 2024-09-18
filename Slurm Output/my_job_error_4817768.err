@@ -1,0 +1,2 @@
+srun: error: gpuc01: task 0: Exited with exit code 8
+slurmstepd: error: execve(): /u/mbanisharifdehkordi/env4/bin/activate: Exec format error

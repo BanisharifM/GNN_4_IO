@@ -1,0 +1,80 @@
+2024-09-11 13:31:30,716 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-11 13:31:31,238 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 264, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 190, in train_ddp
+2024-09-11 13:31:31,242 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 50, in setup
+    dist.init_process_group(backend="nccl", init_method="env://", rank=rank, world_size=world_size)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 79, in wrapper
+    return func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 93, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1361, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 258, in _env_rendezvous_handler
+    store = _create_c10d_store(master_addr, master_port, rank, world_size, timeout, use_libuv)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 185, in _create_c10d_store
+    return TCPStore(
+RuntimeError: The server socket has failed to listen on any local network address. useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+2024-09-11 13:31:31,306 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 264, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 190, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 50, in setup
+    dist.init_process_group(backend="nccl", init_method="env://", rank=rank, world_size=world_size)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 79, in wrapper
+    return func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 93, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1361, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 258, in _env_rendezvous_handler
+    store = _create_c10d_store(master_addr, master_port, rank, world_size, timeout, use_libuv)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 185, in _create_c10d_store
+    return TCPStore(
+RuntimeError: The server socket has failed to listen on any local network address. useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+srun: error: gpuc02: task 2: Exited with exit code 1
+srun: error: gpuc01: task 1: Exited with exit code 1
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 264, in <module>
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 264, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 190, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 50, in setup
+    dist.init_process_group(backend="nccl", init_method="env://", rank=rank, world_size=world_size)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 79, in wrapper
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 190, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 50, in setup
+    dist.init_process_group(backend="nccl", init_method="env://", rank=rank, world_size=world_size)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 79, in wrapper
+    return func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 93, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1361, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 258, in _env_rendezvous_handler
+    store = _create_c10d_store(master_addr, master_port, rank, world_size, timeout, use_libuv)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 185, in _create_c10d_store
+    return TCPStore(
+torch.distributed.DistStoreError: Timed out after 601 seconds waiting for clients. 2/4 clients joined.
+    return func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 93, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1361, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 258, in _env_rendezvous_handler
+    store = _create_c10d_store(master_addr, master_port, rank, world_size, timeout, use_libuv)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 185, in _create_c10d_store
+    return TCPStore(
+torch.distributed.DistNetworkError: Connection reset by peer
+srun: error: gpuc02: task 3: Exited with exit code 1
+srun: error: gpuc01: task 0: Exited with exit code 1

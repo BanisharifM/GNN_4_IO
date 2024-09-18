@@ -1,0 +1,24 @@
+2024-09-12 22:20:46,135 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-12 22:20:46,704 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 272, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 198, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 59, in setup
+    dist.init_process_group(backend="nccl", init_method="env://", rank=rank, world_size=world_size)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 79, in wrapper
+    return func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/c10d_logger.py", line 93, in wrapper
+    func_return = func(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 1361, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 258, in _env_rendezvous_handler
+    store = _create_c10d_store(master_addr, master_port, rank, world_size, timeout, use_libuv)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/distributed/rendezvous.py", line 185, in _create_c10d_store
+    return TCPStore(
+RuntimeError: The server socket has failed to listen on any local network address. useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+srun: error: gpuc03: task 1: Exited with exit code 1
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 4826493.0 ON gpuc03 CANCELLED AT 2024-09-12T22:24:49 ***
+slurmstepd: error: *** JOB 4826493 ON gpuc03 CANCELLED AT 2024-09-12T22:24:49 ***

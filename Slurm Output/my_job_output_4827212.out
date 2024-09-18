@@ -1,0 +1,10 @@
+WORLD_SIZE: 1
+MASTER_ADDR: localhost
+MASTER_PORT: 29511
+RANK: 0
+LOCAL_RANK: 0
+gpuc03:3030820:3030820 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth1
+
+gpuc03:3030820:3030820 [0] bootstrap.cc:48 NCCL WARN Bootstrap : no socket interface found
+gpuc03:3030820:3030820 [0] NCCL INFO init.cc:84 -> 3
+gpuc03:3030820:3030820 [0] NCCL INFO init.cc:103 -> 3

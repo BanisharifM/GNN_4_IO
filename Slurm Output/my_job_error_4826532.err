@@ -1,0 +1,20 @@
+2024-09-12 22:27:39,957 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 280, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 206, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 65, in setup
+    timeout=datetime.timedelta(seconds=1200)  # Increase the timeout to 1200 seconds
+NameError: name 'datetime' is not defined
+2024-09-12 22:27:40,255 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 280, in <module>
+    train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=False)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 206, in train_ddp
+    setup(rank, world_size)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training104.py", line 65, in setup
+    timeout=datetime.timedelta(seconds=1200)  # Increase the timeout to 1200 seconds
+NameError: name 'datetime' is not defined
+srun: error: gpuc03: task 0: Exited with exit code 1
+srun: error: gpuc03: task 1: Exited with exit code 1
