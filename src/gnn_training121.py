@@ -154,7 +154,10 @@ def load_data(file_path):
         
         y = torch.tensor([y_value], dtype=torch.float).view(1, -1)  # Ensure target is of shape [1, 1]
 
+        # Create the data object and add the graph_index as an attribute
         data = Data(x=x, edge_index=edge_index, edge_weight=edge_weight, y=y)
+        data.graph_index = graph_index  # Add graph_index as an attribute
+
         graphs.append(data)
 
     return graphs
@@ -167,27 +170,21 @@ def load_tags(tags_file):
 
 # Define paths to the data files
 train_file_path = os.path.join(base_dir, "train_graphs.csv")
+val_file_path = os.path.join(base_dir, "val_graphs.csv")
 test_file_path = os.path.join(base_dir, "test_graphs.csv")
 train_tags_file = os.path.join(base_dir, "train_tags.csv")
+val_tags_file = os.path.join(base_dir, "val_tags.csv")
 test_tags_file = os.path.join(base_dir, "test_tags.csv")
 
 # Load the data
 train_data = load_data(train_file_path)
+val_data = load_data(val_file_path)
 test_data = load_data(test_file_path)
+
+# Load the tags
 tags_train = load_tags(train_tags_file)
+tags_val = load_tags(val_tags_file)
 tags_test = load_tags(test_tags_file)
-
-# Split train_data into 90% train_data and 10% val_data (validation)
-train_data, val_data = train_test_split(train_data, test_size=0.1, random_state=42)
-
-# Split tags_train into 90% for training and 10% for validation
-train_indices = [data.graph_index for data in train_data]
-val_indices = [data.graph_index for data in val_data]
-
-tags_val = {idx: tags_train[idx] for idx in val_indices}
-tags_train = {idx: tags_train[idx] for idx in train_indices}
-
-
 
 # Hyperparameters
 num_epochs = 100
@@ -279,17 +276,23 @@ def evaluate_validation(model, val_loader, epoch, update_logs_and_charts, tags_v
     with torch.no_grad():
         for data in val_loader:
             output, _ = model(data)  # Unpack the tuple, output is the first element
-            output = output.view(-1)  # Then apply .view() to the output
-            # output = model(data).view(-1)
-            graph_index = int(data.batch[0])
-            target_tag = tags_val.get(graph_index)
-            if target_tag is None:
-                continue
+            output = output.view(-1)  # Flatten the output to match the target shape
+            
+            # Get the graph indices for the current batch
+            graph_indices = data.batch.unique().tolist()
+            target_tags = [tags_val.get(graph_index) for graph_index in graph_indices]
+            
+            if any(tag is None for tag in target_tags):
+                raise ValueError(f"Missing tags for graph indices {graph_indices}")
 
-            target_tag_tensor = torch.tensor([target_tag], dtype=torch.float).to(output.device)
-            val_predictions.append(output.item())
-            val_targets.append(target_tag_tensor.item())
+            # Convert the target tags to a tensor
+            target_tag_tensor = torch.tensor(target_tags, dtype=torch.float).to(output.device)
+            
+            # Append the entire batch of predictions and targets to the lists
+            val_predictions.extend(output.tolist())  # Extend by adding the whole batch, not a single item
+            val_targets.extend(target_tag_tensor.tolist())  # Similarly extend the targets
 
+    # Calculate the metrics over the entire validation set
     val_rmse = np.sqrt(mean_squared_error(val_targets, val_predictions))
     val_mae = mean_absolute_error(val_targets, val_predictions)
     val_r2 = r2_score(val_targets, val_predictions)
@@ -339,7 +342,8 @@ def train(model, train_loader, val_loader, test_loader, criterion, optimizer, sc
         train_mae_scores.append(train_mae)
         train_r2_scores.append(train_r2)
         
-        val_rmse, val_mae, val_r2 = evaluate(model, val_loader, epoch, 'val', update_logs_and_charts, tags_val)
+        # val_rmse, val_mae, val_r2 = evaluate(model, val_loader, epoch, 'val', update_logs_and_charts, tags_val)
+        val_rmse, val_mae, val_r2 = evaluate_validation(model, val_loader, epoch, update_logs_and_charts, tags_val)
         val_rmse_scores.append(val_rmse)
         val_mae_scores.append(val_mae)
         val_r2_scores.append(val_r2)
