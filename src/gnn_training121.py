@@ -169,6 +169,10 @@ test_tags_file = "Graphs/Graph120/test_tags.csv"
 # Load the data
 train_data = load_data(train_file_path)
 test_data = load_data(test_file_path)
+
+# Split train_data into 90% train_data and 10% val_data (validation)
+train_data, val_data = train_test_split(train_data, test_size=0.1, random_state=42)
+
 tags_train = load_tags(train_tags_file)
 tags_test = load_tags(test_tags_file)
 
@@ -185,7 +189,7 @@ test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
 
 # Initialize the model, optimizer, and loss function
 num_node_features = len(train_data[0].x[0])  # Number of node features based on dataset
-model = EnhancedGNN(num_node_features)
+model = EnhancedGNNWithEmbeddings(num_node_features)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 scheduler = ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=10, min_lr=1e-6)
 criterion = torch.nn.L1Loss()
