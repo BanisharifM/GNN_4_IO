@@ -1,0 +1,16 @@
+2024-09-17 23:38:14,399 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py:165: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(checkpoint_path, map_location=torch.device('cuda'))  # Ensure correct device
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py", line 346, in <module>
+[rank0]:     train_ddp(rank, world_size, model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, plot_dir, update_logs_and_charts=True)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py", line 262, in train_ddp
+[rank0]:     start_epoch, train_losses, train_rmse_scores, test_rmse_scores = load_checkpoint(checkpoint_path, model, optimizer, scheduler)
+[rank0]:   File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training105.py", line 170, in load_checkpoint
+[rank0]:     model.load_state_dict(model_state_dict)
+[rank0]:   File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2215, in load_state_dict
+[rank0]:     raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+[rank0]: RuntimeError: Error(s) in loading state_dict for DistributedDataParallel:
+[rank0]: 	Missing key(s) in state_dict: "module.conv1.bias", "module.conv1.lin.weight", "module.conv2.bias", "module.conv2.lin.weight", "module.conv3.bias", "module.conv3.lin.weight", "module.conv4.bias", "module.conv4.lin.weight". 
+[rank0]: 	Unexpected key(s) in state_dict: "conv1.bias", "conv1.lin.weight", "conv2.bias", "conv2.lin.weight", "conv3.bias", "conv3.lin.weight", "conv4.bias", "conv4.lin.weight". 
+srun: error: gpuc01: task 0: Exited with exit code 1

@@ -1,0 +1,2 @@
+2024-09-18 05:38:46,644 - INFO - Epoch 1, Train Loss: 0.6752, Train RMSE: 1.0684, Val RMSE: 1.1770, Test RMSE: 1.3177, Train MAE: 0.7910, Val MAE: 0.9226, Test MAE: 0.9669, Train R²: -1.1904, Val R²: -1.5891, Test R²: -1.1019
+2024-09-18 05:39:42,143 - INFO - Epoch 2, Train Loss: 0.5771, Train RMSE: 1.0682, Val RMSE: 1.1770, Test RMSE: 1.3177, Train MAE: 0.7907, Val MAE: 0.9227, Test MAE: 0.9671, Train R²: -1.1894, Val R²: -1.5892, Test R²: -1.1021

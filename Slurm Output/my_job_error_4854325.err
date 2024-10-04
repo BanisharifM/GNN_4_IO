@@ -1,0 +1,10 @@
+2024-09-17 23:49:04,973 - INFO - Saving checkpoint to Graphs/Graph104/checkpoint.pt
+2024-09-17 23:49:08,931 - INFO - Epoch 1, Train Loss: 0.9511, Train RMSE: 0.3018, Test RMSE: 0.3002, Train R²: -200.1310, Test R²: -206.2647
+2024-09-17 23:49:09,315 - INFO - New best model saved with RMSE: 0.3002
+2024-09-17 23:49:12,260 - INFO - Epoch 2, Train Loss: 0.1370, Train RMSE: 0.2101, Test RMSE: 0.2075, Train R²: -96.4081, Test R²: -98.0386
+2024-09-17 23:49:12,626 - INFO - New best model saved with RMSE: 0.2075
+2024-09-17 23:49:15,568 - INFO - Epoch 3, Train Loss: 0.1120, Train RMSE: 0.2268, Test RMSE: 0.2249, Train R²: -112.5534, Test R²: -115.3192
+2024-09-17 23:49:18,890 - INFO - Epoch 4, Train Loss: 0.0895, Train RMSE: 0.2380, Test RMSE: 0.2369, Train R²: -124.0593, Test R²: -128.0437
+2024-09-17 23:49:22,166 - INFO - Epoch 5, Train Loss: 0.0822, Train RMSE: 0.1861, Test RMSE: 0.1852, Train R²: -75.4887, Test R²: -77.9094
+2024-09-17 23:49:22,534 - INFO - New best model saved with RMSE: 0.1852
+2024-09-17 23:49:25,474 - INFO - Epoch 6, Train Loss: 0.0789, Train RMSE: 0.2216, Test RMSE: 0.2210, Train R²: -107.3762, Test R²: -111.3279

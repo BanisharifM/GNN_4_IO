@@ -1,0 +1,3 @@
+
+libgomp: Thread creation failed: Resource temporarily unavailable
+srun: error: gpuc02: task 0: Exited with exit code 1

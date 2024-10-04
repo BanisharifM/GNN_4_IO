@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training121.py", line 205, in <module>
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+NameError: name 'learning_rate' is not defined

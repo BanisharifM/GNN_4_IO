@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training200.py", line 322, in <module>
+    train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores = train(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs, checkpoint_path, update_logs_and_charts)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training200.py", line 203, in train
+    output = model(data).view(-1)  # Flatten the output
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training200.py", line 34, in forward
+    x = self.dropout(x)
+  File "/u/mbanisharifdehkordi/env4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'EnhancedGNN' object has no attribute 'dropout'
+srun: error: gpuc01: task 0: Exited with exit code 1

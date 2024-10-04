@@ -1,0 +1,12 @@
+2024-09-30 11:45:33,751 - INFO - Starting data processing.
+2024-09-30 11:45:33,751 - INFO - Loading graph structure from Graphs/Graph200/graph_structure.yaml
+2024-09-30 11:45:33,781 - INFO - Graph structure loaded successfully.
+2024-09-30 11:45:33,781 - INFO - Loading dataset from CSVs/sample_train_total.csv
+2024-09-30 11:46:08,186 - INFO - Dataset loaded successfully with 6647219 total rows.
+2024-09-30 11:46:08,186 - INFO - Randomly selecting 6000000 rows from the dataset
+2024-09-30 11:46:10,372 - INFO - Randomly selected 6000000 rows.
+2024-09-30 11:46:10,372 - INFO - Splitting selected data into training and testing sets with test size = 0.25
+2024-09-30 11:46:12,619 - INFO - Selected data split into 4500000 training rows and 1500000 testing rows.
+2024-09-30 11:46:12,619 - INFO - Processing training data with 4500000 rows.
+slurmstepd: error: Detected 1 oom_kill event in StepId=5015518.0. Some of the step tasks have been OOM Killed.
+srun: error: gpuc01: task 0: Out Of Memory

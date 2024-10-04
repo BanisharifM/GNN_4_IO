@@ -27,7 +27,7 @@ echo "Using the following GPUs:"
 nvidia-smi
 
 # Run your Python script
-python /u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training100.py
+python /u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training121.py
 
 # Print job end time
 echo "Job ended on $(date)"

@@ -109,8 +109,8 @@ def load_data(file_path):
     return graphs
 
 # Define paths to the data files
-train_file_path = "Graphs/Graph103/train_graphs.csv"
-test_file_path = "Graphs/Graph103/test_graphs.csv"
+train_file_path = "Graphs/Graph108/train_graphs.csv"
+test_file_path = "Graphs/Graph108/test_graphs.csv"
 
 # Load the data
 train_data = load_data(train_file_path)
@@ -169,7 +169,7 @@ def load_checkpoint(checkpoint_path, model, optimizer, scheduler):
         return 0, [], [], [], [], [], [], []
 
 def log_predictions(predictions, targets, epoch, phase):
-    log_dir = 'Graphs/Graph103/logs'
+    log_dir = 'Graphs/Graph109/logs'
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     log_file = os.path.join(log_dir, f'{phase}_predictions.csv')
@@ -236,12 +236,12 @@ def train(model, train_loader, test_loader, criterion, optimizer, scheduler, num
         save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores)
 
     # Save the model at the end of training
-    torch.save(model.state_dict(), os.path.join('Graphs/Graph103', 'best_model.pt'))
+    torch.save(model.state_dict(), os.path.join('Graphs/Graph108', 'best_model.pt'))
 
     return train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores
 
 def save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores):
-    plot_dir = 'Graphs/Graph103'
+    plot_dir = 'Graphs/Graph108'
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
 
@@ -306,14 +306,14 @@ def evaluate(model, loader, epoch, phase, update_logs_and_charts):
 def signal_handler(sig, frame):
     print('Graceful termination initiated...')
     save_checkpoint(epoch, model, optimizer, scheduler, train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores, checkpoint_path)
-    torch.save(model.state_dict(), os.path.join('Graphs/Graph103', 'best_model.pt'))
+    torch.save(model.state_dict(), os.path.join('Graphs/Graph108', 'best_model.pt'))
     sys.exit(0)
 
 # Register signal handler
 signal.signal(signal.SIGINT, signal_handler)
 
 # Define checkpoint path
-checkpoint_path = os.path.join('Graphs/Graph103', 'checkpoint.pt')
+checkpoint_path = os.path.join('Graphs/Graph108', 'checkpoint.pt')
 
 # Variable to control logging and chart updates
 update_logs_and_charts = False  # Set to False to update only at the end

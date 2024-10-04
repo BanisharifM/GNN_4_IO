@@ -73,33 +73,42 @@ def load_and_process_data(train_file_path, total_rows, yaml_file_path, test_size
     # Load dataset
     logging.info(f"Loading dataset from {train_file_path}")
     data = pd.read_csv(train_file_path)
-    logging.info("Dataset loaded successfully.")
+    logging.info(f"Dataset loaded successfully with {len(data)} total rows.")
 
-    # Split dataset into training and testing sets
-    logging.info(f"Splitting dataset into training and testing sets with test size = {test_size}")
-    train_data, test_data = train_test_split(data, test_size=test_size, random_state=1)
-    logging.info(f"Dataset split into {len(train_data)} training rows and {len(test_data)} testing rows.")
+    # Randomly sample 'total_rows' from the dataset
+    logging.info(f"Randomly selecting {total_rows} rows from the dataset")
+    if total_rows > len(data):
+        logging.warning(f"Requested total_rows ({total_rows}) exceeds dataset size ({len(data)}). Using the full dataset.")
+        total_rows = len(data)
+
+    data_sample = data.sample(n=total_rows, random_state=1)  # Use random_state to ensure reproducibility
+    logging.info(f"Randomly selected {len(data_sample)} rows.")
+
+    # Split the sampled data into training and testing sets
+    logging.info(f"Splitting selected data into training and testing sets with test size = {test_size}")
+    train_data, test_data = train_test_split(data_sample, test_size=test_size, random_state=1)
+    logging.info(f"Selected data split into {len(train_data)} training rows and {len(test_data)} testing rows.")
 
     # Save training graph data
     logging.info(f"Processing training data with {len(train_data)} rows.")
-    output_dir = 'Graphs/Graph104'
+    output_dir = 'Graphs/Graph200/6,000,000'
     output_file = os.path.join(output_dir, 'train_graphs.csv')
-    save_graph_data(output_dir, output_file, train_data, total_rows, graph_structure)
+    save_graph_data(output_dir, output_file, train_data, len(train_data), graph_structure)
 
     # Save testing graph data
     logging.info(f"Processing testing data with {len(test_data)} rows.")
-    output_dir = 'Graphs/Graph104'
+    output_dir = 'Graphs/Graph200/6,000,000'
     output_file = os.path.join(output_dir, 'test_graphs.csv')
-    save_graph_data(output_dir, output_file, test_data, total_rows, graph_structure)
+    save_graph_data(output_dir, output_file, test_data, len(test_data), graph_structure)
 
 def download_file_from_google_drive(drive_url, output_path):
     logging.info(f"Downloading file from {drive_url} to {output_path}")
     gdown.download(drive_url, output_path, quiet=False)
 
 # Define path to your training data CSV file
-train_file_path = 'CSVs/sample_train.csv'
-yaml_file_path = "Graphs/Graph104/graph_structure.yaml"
-total_rows = 10000  # Adjusted value
+train_file_path = 'CSVs/sample_train_total.csv'
+yaml_file_path = "Graphs/Graph200/graph_structure.yaml"
+total_rows = 6000000  # Adjusted value
 
 logging.info("Starting data processing.")
 load_and_process_data(train_file_path, total_rows, yaml_file_path, log_interval=1000)

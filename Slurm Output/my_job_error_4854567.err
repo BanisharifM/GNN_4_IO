@@ -1,0 +1,2 @@
+/u/mbanisharifdehkordi/env4/bin/python: can't open file '/u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training106.py': [Errno 2] No such file or directory
+srun: error: gpuc01: task 0: Exited with exit code 2

@@ -163,26 +163,38 @@ def save_checkpoint(epoch, model, optimizer, scheduler, train_losses, train_rmse
 def load_checkpoint(checkpoint_path, model, optimizer, scheduler):
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, map_location=torch.device('cuda'))  # Ensure correct device
-        # If model is wrapped in DDP, we need to handle the `module.` prefix in the keys
-        model_state_dict = checkpoint['model_state_dict']
-        if isinstance(model, DDP):
-            # Load state dict directly if wrapped in DDP
-            model.load_state_dict(model_state_dict)
-        else:
-            # If not using DDP, remove the 'module.' prefix from the keys
-            model_state_dict = {k.replace('module.', ''): v for k, v in model_state_dict.items()}
-            model.load_state_dict(model_state_dict)
         
+        # Load the model state dict
+        model_state_dict = checkpoint['model_state_dict']
+        
+        # Handle the 'module.' prefix if using DDP
+        model_keys = list(model.state_dict().keys())
+        if model_keys[0].startswith('module.') and not isinstance(model, DDP):
+            # Remove 'module.' prefix from the saved state dict keys
+            model_state_dict = {k.replace('module.', ''): v for k, v in model_state_dict.items()}
+        
+        elif not model_keys[0].startswith('module.') and isinstance(model, DDP):
+            # Add 'module.' prefix to state dict keys if loading into a DDP model
+            model_state_dict = {'module.' + k: v for k, v in model_state_dict.items()}
+        
+        # Load the state dict into the model
+        model.load_state_dict(model_state_dict)
+        
+        # Load the optimizer and scheduler states
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        
+        # Load other training states
         epoch = checkpoint['epoch']
         train_losses = checkpoint['train_losses']
         train_rmse_scores = checkpoint['train_rmse_scores']
         test_rmse_scores = checkpoint['test_rmse_scores']
+        
         logging.info(f"Checkpoint loaded. Resuming from epoch {epoch+1}")
         return epoch + 1, train_losses, train_rmse_scores, test_rmse_scores
     else:
         return 0, [], [], []
+
 
 # Plotting function
 def save_plots(train_losses, train_rmse_scores, test_rmse_scores, train_mae_scores, test_mae_scores, train_r2_scores, test_r2_scores, plot_dir):
@@ -308,7 +320,7 @@ def train_ddp(rank, world_size, model, train_loader, test_loader, criterion, opt
 
 # Main function
 if __name__ == "__main__":
-    version = "Graph104"
+    version = "Graph106"
     train_file_path = f"Graphs/{version}/train_graphs.csv"
     test_file_path = f"Graphs/{version}/test_graphs.csv"
     plot_dir = f"Graphs/{version}"
@@ -322,7 +334,7 @@ if __name__ == "__main__":
     rank = int(os.environ['RANK'])
 
     # Hyperparameters
-    num_epochs = 4
+    num_epochs = 100
     batch_size = 64
     learning_rate = 0.001
     weight_decay = 1e-4
