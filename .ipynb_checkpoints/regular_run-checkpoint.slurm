@@ -5,8 +5,8 @@
 #SBATCH --nodes=1                           
 #SBATCH --ntasks=1                          
 #SBATCH --ntasks-per-node=1                 
-#SBATCH --cpus-per-task=64                   
-#SBATCH --mem=700g                           
+#SBATCH --cpus-per-task=16                   
+#SBATCH --mem=128g                           
 #SBATCH --time=24:00:00                      
 #SBATCH --partition=gpuA100x8               
 #SBATCH --gres=gpu:1                        
@@ -42,5 +42,5 @@ echo "RANK: $RANK"
 echo "LOCAL_RANK: $LOCAL_RANK"
 
 # Run the Python script with srun
-srun --export=ALL python /u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training200_double.py
-# srun --export=ALL python /u/mbanisharifdehkordi/Github/GNN_4_IO/generate_graph100.py
+# srun --export=ALL python /u/mbanisharifdehkordi/Github/GNN_4_IO/gnn_training200_double.py
+# srun --export=ALL python /u/mbanisharifdehkordi/Github/GNN_4_IO/generate_graph201.py
